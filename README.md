@@ -8,7 +8,7 @@
 
 For more information about the project check our [documentation repo](https://github.com/FCI-E-campus/fci-e-campus-docs).  
 
-**This repository contains the Android client code.**  
+*This repository contains the Android client code.*  
 
 ## Development tools
 * [Android studio IDE](https://developer.android.com/studio/index.html)
