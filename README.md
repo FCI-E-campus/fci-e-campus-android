@@ -6,5 +6,10 @@
 * That’s not it, the app will provide a forum for the students to communicate with each other.
 * And many, many more.
 
+For more information about the project check our [documentation repo](https://github.com/FCI-E-campus/fci-e-campus-docs).  
+
 ---
 This repository contains the Android client code.  
+
+## License
+This project is licensed under the GPLv3 license.
