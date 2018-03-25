@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -22,5 +24,21 @@ public class SignupActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
             }
         });
+
+        Button signupButton = findViewById(R.id.btn_signup);
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signup();
+            }
+        });
+
     }
+
+    private void signup() {
+        Toast.makeText(this, "Account created Successfully!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, OverviewActivity.class);
+        startActivity(intent);
+    }
+
 }
