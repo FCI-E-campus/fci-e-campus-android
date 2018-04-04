@@ -7,7 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
 
@@ -60,13 +61,34 @@ public class OverviewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        String[] values = new String[]{"Android List View",
+                "Adapter implementation",
+                "Simple List View In Android",
+                "Create List View Android",
+                "Android Example",
+                "List View Source Code",
+                "List View Array Adapter",
+                "Android Example List View"
+        };
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+        ListView listView1 = view.findViewById(R.id.list1);
+        listView1.setAdapter(adapter);
+
+
+        ListView listView2 = view.findViewById(R.id.list2);
+        listView2.setAdapter(adapter);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
