@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus;
+package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
 public class OverviewActivity extends AppCompatActivity implements CalendarFragment.OnFragmentInteractionListener, OverviewFragment.OnFragmentInteractionListener {
 

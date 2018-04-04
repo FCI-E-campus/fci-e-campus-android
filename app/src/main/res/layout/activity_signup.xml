@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.SignupActivity">
+    tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.activities.SignupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

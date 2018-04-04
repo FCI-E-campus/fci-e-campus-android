@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus;
+package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 

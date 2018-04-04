@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus;
+package eg.edu.cu.fci.ecampus.fci_e_campus.fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
 
 /**

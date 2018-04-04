@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus;
+package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
 public class LoginActivity extends AppCompatActivity {
 
