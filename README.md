@@ -14,4 +14,4 @@ For more information about the project check our [documentation repo](https://gi
 * [Android studio IDE](https://developer.android.com/studio/index.html)
 
 ## License
-This project is licensed under the GPLv3 license.
+This project is licensed under the [GPLv3](https://github.com/FCI-E-campus/fci-e-campus-android/blob/master/LICENSE) license.
