@@ -19,12 +19,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.SignupActivity" />
+        <activity android:name=".activities.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.WelcomeActivity" />
+        </activity>
+        <activity android:name=".activities.SignupActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.WelcomeActivity" />
+        </activity>
         <activity
             android:name=".activities.OverviewActivity"
             android:label="@string/title_activity_overview"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
