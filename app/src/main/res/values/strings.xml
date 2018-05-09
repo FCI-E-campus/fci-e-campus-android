@@ -20,6 +20,7 @@
     <string name="date_of_birth_et_hint">Date of birth</string>
 
     <!-- API End Points -->
+    <!-- abdallah: http://10.0.2.2/E-campus/public  -->
     <string name="base_url" translatable="false">http://10.0.2.2/E-campus/public</string>
     <string name="student_prefix" translatable="false">student</string>
     <string name="ta_prefix" translatable="false">ta</string>
