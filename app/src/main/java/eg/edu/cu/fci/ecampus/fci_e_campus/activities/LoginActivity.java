@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -22,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                String userType = getIntent().getStringExtra(WelcomeActivity.EXTRA_USER_TYPE);
+                intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                 startActivity(intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
