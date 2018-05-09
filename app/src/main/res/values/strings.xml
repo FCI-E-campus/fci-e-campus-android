@@ -28,6 +28,7 @@
     <string name="login_endpoint" translatable="false">login</string>
     <!-- -->
 
+    <!-- Database constants-->
     <string name="general_major_dept_id" translatable="false">1</string>
     <string name="general_minor_dept_id" translatable="false">2</string>
     <string name="cs_dept_id" translatable="false">3</string>
@@ -36,6 +37,13 @@
     <string name="ds_dept_id" translatable="false">6</string>
     <string name="major_department_tv_text">Major department</string>
     <string name="minor_department_tv_text">Minor department</string>
+    <!-- -->
 
-
+    <!-- Auth Shared preferences -->
+    <string name="authentication_shared_preference_file_name" translatable="false">authsp</string>
+    <string name="saved_token_key" translatable="false">token</string>
+    <string name="saved_user_type_key" translatable="false">user_type</string>
+    <string name="saved_username_key" translatable="false">username</string>
+    <string name="saved_password_key" translatable="false">password</string>
+    <!-- -->
 </resources>

@@ -1,15 +1,20 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 
 public class WelcomeActivity extends AppCompatActivity {
+
+    private static final String TAG = WelcomeActivity.class.getSimpleName();
 
     final static String EXTRA_USER_TYPE = "USER_TYPE";
 
@@ -19,6 +24,20 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SharedPreferences authSharedPreferences
+                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                Context.MODE_PRIVATE);
+        if (authSharedPreferences != null) {
+            String token = authSharedPreferences.getString(getString(R.string.saved_token_key), null);
+            if (token != null) {
+                // user already logged in
+                Log.d(TAG, token);
+                Intent intent = new Intent(this, OverviewActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
 
         Button studentButton = findViewById(R.id.student_button);
         studentButton.setOnClickListener(new View.OnClickListener() {

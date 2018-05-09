@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,13 +22,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -99,7 +96,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
 
         if (userType.equals(getString(R.string.student_user_type))) {
             Uri uri = Uri.parse(getString(R.string.base_url))
@@ -181,11 +178,32 @@ public class SignupActivity extends AppCompatActivity {
             }
 
             Log.d(TAG, requestBody.toString());
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST
+            JsonObjectRequest signupRequest = new JsonObjectRequest(Request.Method.POST
                     , uri.toString(), requestBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     Log.d(TAG, response.toString());
+                    try {
+                        if (response.getString("status").equals("success")) {
+                            Toast.makeText(SignupActivity.this
+                                    , "Account created Successfully! Please login.", Toast.LENGTH_SHORT).show();
+
+                            // redirect to login activity
+                            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                            intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else if (response.getString("status").equals("failed")) {
+                            int errorCode = response.getInt("error_code");
+                            String errorMessage = APIUtils.getErrorMsg(errorCode);
+                            Toast.makeText(SignupActivity.this
+                                    , errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(SignupActivity.this
+                                , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             }, new Response.ErrorListener() {
@@ -193,18 +211,14 @@ public class SignupActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     // Handle error
                     Log.d(TAG, error.toString());
+                    Toast.makeText(SignupActivity.this
+                            , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
 
                 }
             });
 
-            requestQueue.add(jsonObjectRequest);
+            requestQueue.add(signupRequest);
         }
-
-
-
-        Toast.makeText(this, "Account created Successfully!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, OverviewActivity.class);
-        startActivity(intent);
     }
 
 }
