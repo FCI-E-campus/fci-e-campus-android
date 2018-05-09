@@ -219,6 +219,14 @@ public class SignupActivity extends AppCompatActivity {
 
             requestQueue.add(signupRequest);
         }
+        else if (userType.equals(getString(R.string.professor_user_type))) {
+            // professor
+            // TODO Ahmed
+        }
+        else if (userType.equals(getString(R.string.ta_user_type))) {
+            // ta
+            // TODO Ahmed
+        }
     }
 
 }
