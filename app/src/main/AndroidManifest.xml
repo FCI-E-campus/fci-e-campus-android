@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eg.edu.cu.fci.ecampus.fci_e_campus">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activities.WelcomeActivity"
             android:label="@string/app_launcher_name"
@@ -22,26 +21,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activities.LoginActivity"
+        <activity
+            android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
-
-        <activity android:name=".activities.SignupActivity"
+        <activity
+            android:name=".activities.SignupActivity"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
-
         <activity
             android:name=".activities.OverviewActivity"
             android:label="@string/title_activity_overview"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".activities.ActivationActivity"
+            android:parentActivityName=".activities.WelcomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.WelcomeActivity" />
+        </activity>
     </application>
 
 </manifest>

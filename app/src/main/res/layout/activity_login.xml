@@ -54,6 +54,45 @@
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
+        <LinearLayout
+            android:id="@+id/login_teacher_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/login_teacher_type_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/login_type_professor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/professor_prefix"
+                    android:textAllCaps="true" />
+
+                <RadioButton
+                    android:id="@+id/login_type_ta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ta_prefix"
+                    android:textAllCaps="true" />
+
+            </RadioGroup>
+        </LinearLayout>
+
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="fill_parent"

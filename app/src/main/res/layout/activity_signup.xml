@@ -198,54 +198,99 @@
         </RadioGroup>
 
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/minor_dept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/minor_department_tv_text"
-            android:textSize="18sp" />
+            android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/minor_dept_radio_group"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minor_department_tv_text"
+                android:textSize="18sp" />
+
+            <RadioGroup
+                android:id="@+id/minor_dept_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checkedButton="@+id/minor_general">
+
+                <RadioButton
+                    android:id="@+id/minor_general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="General" />
+
+                <RadioButton
+                    android:id="@+id/minor_cs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CS" />
+
+                <RadioButton
+                    android:id="@+id/minor_is"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="IS" />
+
+                <RadioButton
+                    android:id="@+id/minor_it"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="IT" />
+
+                <RadioButton
+                    android:id="@+id/minor_ds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DS" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signup_teacher_type"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:checkedButton="@+id/minor_general">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/minor_general"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="General" />
+                android:text="Type"
+                android:textSize="18sp" />
 
-            <RadioButton
-                android:id="@+id/minor_cs"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/signup_teacher_type_radio_group"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="CS" />
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/minor_is"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="IS" />
+                <RadioButton
+                    android:id="@+id/signup_type_professor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/professor_prefix"
+                    android:textAllCaps="true" />
 
-            <RadioButton
-                android:id="@+id/minor_it"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="IT" />
+                <RadioButton
+                    android:id="@+id/signup_type_ta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ta_prefix"
+                    android:textAllCaps="true" />
 
-            <RadioButton
-                android:id="@+id/minor_ds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="DS" />
-        </RadioGroup>
+            </RadioGroup>
+        </LinearLayout>
 
 
         <!-- Signup Button -->

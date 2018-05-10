@@ -18,6 +18,7 @@
     <string name="re_enter_password_et_hint">Re-enter Password</string>
     <string name="faculty_id_et_hint">Faculty ID</string>
     <string name="date_of_birth_et_hint">Date of birth</string>
+    <string name="activation_key_et_hint">Activation Key</string>
 
     <!-- API End Points -->
     <!-- abdallah: http://10.0.2.2/E-campus/public  -->
@@ -28,6 +29,7 @@
     <string name="professor_prefix" translatable="false">professor</string>
     <string name="signup_endpoint" translatable="false">signup</string>
     <string name="login_endpoint" translatable="false">login</string>
+    <string name="activate_endpoint" translatable="false">activate</string>
     <!-- -->
 
     <!-- Database constants-->

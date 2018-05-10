@@ -2,9 +2,12 @@ package eg.edu.cu.fci.ecampus.fci_e_campus.utils;
 
 public abstract class APIUtils {
 
-    private APIUtils(){};
+    private APIUtils() {
+    }
 
-    public static final String getErrorMsg(int errorCode){
+    ;
+
+    public static final String getErrorMsg(int errorCode) {
         switch (errorCode) {
             // TODO add the remaining error codes
             case 1:
@@ -33,6 +36,34 @@ public abstract class APIUtils {
                 return "This student does not exist";
             case 13:
                 return "This professor does not exist";
+            case 14:
+                return "This announcement id does not exist";
+            case 15:
+                return "This task id does not exist";
+            case 16:
+                return "This post id does not exist";
+            case 17:
+                return "Incorrect activation code";
+            case 18:
+                return "Username is required";
+            case 19:
+                return "Department is required";
+            case 20:
+                return "Major department must be different from minor department";
+            case 21:
+                return "Password is required";
+            case 22:
+                return "First name and Last name are required";
+            case 23:
+                return "Email is required";
+            case 24:
+                return "Phone number is required";
+            case 25:
+                return "Date of Birth is required";
+            case 26:
+                return "Faculty ID is required";
+            case 27:
+                return "Nonexistent department";
             default:
                 return "Error Code: " + errorCode;
         }
