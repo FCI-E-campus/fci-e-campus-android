@@ -64,6 +64,8 @@ public class SignupActivity extends AppCompatActivity {
     LinearLayout teacherTypeView;
     @BindView(R.id.signup_teacher_type_radio_group)
     RadioGroup teacherTypeRadioGroup;
+    @BindView(R.id.major_department_tv)
+    TextView majorDeptTextView;
 
     private String userType;
 
@@ -83,6 +85,7 @@ public class SignupActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                 startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
             }
         });
@@ -109,18 +112,20 @@ public class SignupActivity extends AppCompatActivity {
             // teacher
             facultyIdTextInput.setVisibility(View.GONE);
             minorView.setVisibility(View.GONE);
+            majorDeptTextView.setText("Department");
         }
-
     }
 
     private void signup() {
         if (userType.equals(getString(R.string.student_user_type))) {
             studentSignup();
         } else if (teacherTypeRadioGroup.getCheckedRadioButtonId() == R.id.signup_type_professor) {
+            Log.d(TAG, "Professor Signup");
             userType = getString(R.string.professor_user_type);
             // professor
             profSignup();
         } else if (teacherTypeRadioGroup.getCheckedRadioButtonId() == R.id.signup_type_ta) {
+            Log.d(TAG, "TA Signup");
             userType = getString(R.string.ta_user_type);
             // ta
             taSignup();
@@ -288,7 +293,7 @@ public class SignupActivity extends AppCompatActivity {
             } else if (majorDeptRadioButton == R.id.major_ds) {
                 majorDept = getString(R.string.ds_dept_id);
             }
-            requestBody.put("DEPTID", majorDept);
+            requestBody.put("DEPTID", Integer.parseInt(majorDept));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -303,9 +308,10 @@ public class SignupActivity extends AppCompatActivity {
                 try {
                     if (response.getString("status").equals("success")) {
                         Toast.makeText(SignupActivity.this
-                                , "Account created Successfully! Please login.", Toast.LENGTH_SHORT).show();
+                                , "Account created Successfully! Check your mail box for activation e-mail."
+                                , Toast.LENGTH_SHORT).show();
 
-                        // redirect to login activity
+                        // redirect to activation activity
                         Intent intent = new Intent(SignupActivity.this, ActivationActivity.class);
                         intent.putExtra(getString(R.string.saved_username_key), usernameTextInput.getEditText().getText().toString());
                         intent.putExtra(getString(R.string.saved_password_key), passwordTextInput.getEditText().getText().toString());
@@ -385,7 +391,7 @@ public class SignupActivity extends AppCompatActivity {
             } else if (majorDeptRadioButton == R.id.major_ds) {
                 majorDept = getString(R.string.ds_dept_id);
             }
-            requestBody.put("DEPTID", majorDept);
+            requestBody.put("DEPTID", Integer.parseInt(majorDept));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -400,9 +406,10 @@ public class SignupActivity extends AppCompatActivity {
                 try {
                     if (response.getString("status").equals("success")) {
                         Toast.makeText(SignupActivity.this
-                                , "Account created Successfully! Please login.", Toast.LENGTH_SHORT).show();
+                                , "Account created Successfully! Check your mail box for activation e-mail."
+                                , Toast.LENGTH_SHORT).show();
 
-                        // redirect to login activity
+                        // redirect to activation activity
                         Intent intent = new Intent(SignupActivity.this, ActivationActivity.class);
                         intent.putExtra(getString(R.string.saved_username_key), usernameTextInput.getEditText().getText().toString());
                         intent.putExtra(getString(R.string.saved_password_key), passwordTextInput.getEditText().getText().toString());

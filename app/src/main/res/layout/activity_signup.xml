@@ -148,54 +148,60 @@
                 android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/major_dept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/major_department_tv_text"
-            android:textSize="18sp" />
-
-        <RadioGroup
-            android:id="@+id/major_dept_radio_group"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:checkedButton="@+id/major_general">
-
-            <RadioButton
-                android:id="@+id/major_general"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/major_department_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="General" />
+                android:text="@string/major_department_tv_text"
+                android:textSize="18sp" />
 
-            <RadioButton
-                android:id="@+id/major_cs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="CS" />
+            <RadioGroup
+                android:id="@+id/major_dept_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:checkedButton="@+id/major_general">
 
-            <RadioButton
-                android:id="@+id/major_is"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="IS" />
+                <RadioButton
+                    android:id="@+id/major_general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="General" />
 
-            <RadioButton
-                android:id="@+id/major_it"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="IT" />
+                <RadioButton
+                    android:id="@+id/major_cs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CS" />
 
-            <RadioButton
-                android:id="@+id/major_ds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="DS" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/major_is"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="IS" />
+
+                <RadioButton
+                    android:id="@+id/major_it"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="IT" />
+
+                <RadioButton
+                    android:id="@+id/major_ds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DS" />
+            </RadioGroup>
+        </LinearLayout>
 
 
         <LinearLayout
@@ -263,7 +269,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type"
+                android:text="Account Type"
                 android:textSize="18sp" />
 
             <RadioGroup

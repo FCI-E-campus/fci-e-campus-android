@@ -44,6 +44,7 @@ public class ActivationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activation);
         ButterKnife.bind(this);
+
         username = getIntent().getStringExtra(getString(R.string.saved_username_key));
         Log.d("Hello",username);
         password = getIntent().getStringExtra(getString(R.string.saved_password_key));

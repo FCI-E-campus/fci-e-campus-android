@@ -9,7 +9,6 @@ public abstract class APIUtils {
 
     public static final String getErrorMsg(int errorCode) {
         switch (errorCode) {
-            // TODO add the remaining error codes
             case 1:
                 return "This user name does not exist";
             case 2:

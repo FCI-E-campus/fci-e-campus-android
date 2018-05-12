@@ -48,7 +48,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
             android:padding="12dp"
-            android:text="Active" />
+            android:text="Activate Account" />
 
     </LinearLayout>
 </ScrollView>

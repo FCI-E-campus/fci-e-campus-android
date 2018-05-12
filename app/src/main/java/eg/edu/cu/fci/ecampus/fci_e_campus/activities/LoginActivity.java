@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                 startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
