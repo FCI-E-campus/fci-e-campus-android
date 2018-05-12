@@ -11,15 +11,17 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -53,10 +55,10 @@ public class SignupActivity extends AppCompatActivity {
     TextInputLayout emailTextInput;
     @BindView(R.id.ti_phone_number)
     TextInputLayout phoneNumberTextInput;
-    @BindView(R.id.ti_date_of_birth_btn)
-    Button dateOfBirthButton;
-    @BindView(R.id.ti_date_of_birth_text_view)
-    TextView dateOfBirthTextView;
+    @BindView(R.id.ti_date_of_birth)
+    TextInputLayout dateOfBirthTextInputLayout;
+    @BindView(R.id.ib_pick_date)
+    ImageButton pickDateImageButton;
     @BindView(R.id.ti_username)
     TextInputLayout usernameTextInput;
     @BindView(R.id.ti_password)
@@ -107,13 +109,14 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateOfBirthButton.setOnClickListener(new View.OnClickListener() {
+        pickDateImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(SignupActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int Year, int monthOfYear, int dayOfMonth) {
-                        dateOfBirthTextView.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + Year);
+                        dateOfBirthTextInputLayout.getEditText()
+                                .setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + Year);
                         year = Year;
                         month = monthOfYear;
                         day = dayOfMonth;
@@ -123,6 +126,7 @@ public class SignupActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
         initializeActivityForUser();
 
         Button signupButton = findViewById(R.id.btn_signup);
@@ -149,6 +153,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
+        /* input validation */
         if (firstNameTextInput.getEditText().getText().toString().trim().equals("")) {
             Toast.makeText(SignupActivity.this, getString(R.string.first_name_not_valid), Toast.LENGTH_SHORT).show();
             firstNameTextInput.getEditText().requestFocus();
@@ -190,6 +195,8 @@ public class SignupActivity extends AppCompatActivity {
             repasswordTextInput.getEditText().requestFocus();
             return;
         }
+        /***********************************/
+
         if (userType.equals(getString(R.string.student_user_type))) {
             if (facultyIdTextInput.getEditText().getText().toString().trim().equals("")) {
                 Toast.makeText(SignupActivity.this, getString(R.string.faculty_id_not_valid), Toast.LENGTH_SHORT).show();
@@ -321,22 +328,10 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        signupRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
+        signupRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(signupRequest);
     }
 
@@ -435,22 +430,10 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        signupRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
+        signupRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(signupRequest);
     }
 
@@ -549,22 +532,10 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        signupRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
+        signupRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(signupRequest);
     }
 }

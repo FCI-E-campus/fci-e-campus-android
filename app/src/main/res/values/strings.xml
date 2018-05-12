@@ -17,7 +17,7 @@
     <string name="password_et_hint">Password</string>
     <string name="re_enter_password_et_hint">Re-enter Password</string>
     <string name="faculty_id_et_hint">Faculty ID</string>
-    <string name="date_of_birth_et_hint">Birthdate</string>
+    <string name="date_of_birth_et_hint">Date of birth</string>
     <string name="activation_key_et_hint">Activation Key</string>
 
     <!-- API End Points -->
