@@ -17,7 +17,7 @@
     <string name="password_et_hint">Password</string>
     <string name="re_enter_password_et_hint">Re-enter Password</string>
     <string name="faculty_id_et_hint">Faculty ID</string>
-    <string name="date_of_birth_et_hint">Date of birth</string>
+    <string name="date_of_birth_et_hint">Birthdate</string>
     <string name="activation_key_et_hint">Activation Key</string>
 
     <!-- API End Points -->
@@ -49,5 +49,18 @@
     <string name="saved_user_type_key" translatable="false">user_type</string>
     <string name="saved_username_key" translatable="false">username</string>
     <string name="saved_password_key" translatable="false">password</string>
+    <!-- -->
+
+
+    <!-- Data Validation -->
+    <string name="first_name_not_valid">First Name is mandatory</string>
+    <string name="last_name_not_valid">Last Name is mandatory</string>
+    <string name="email_not_valid">Enter a valid Email</string>
+    <string name="phone_number_not_valid">Phone Number is mandatory</string>
+    <string name="username_not_valid">Username is mandatory</string>
+    <string name="birth_date_not_valid">Choose your birth date</string>
+    <string name="faculty_id_not_valid">Faculty ID is mandatory</string>
+    <string name="password_not_valid">Password should be at least 8 characters</string>
+    <string name="re_password_not_valid">Password doesn\'t match Re-enter password field</string>
     <!-- -->
 </resources>

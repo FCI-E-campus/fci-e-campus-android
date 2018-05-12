@@ -1,13 +1,16 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -23,6 +26,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -47,12 +53,16 @@ public class SignupActivity extends AppCompatActivity {
     TextInputLayout emailTextInput;
     @BindView(R.id.ti_phone_number)
     TextInputLayout phoneNumberTextInput;
-    @BindView(R.id.ti_date_of_birth)
-    TextInputLayout dateOfBirthTextInput;
+    @BindView(R.id.ti_date_of_birth_btn)
+    Button dateOfBirthButton;
+    @BindView(R.id.ti_date_of_birth_text_view)
+    TextView dateOfBirthTextView;
     @BindView(R.id.ti_username)
     TextInputLayout usernameTextInput;
     @BindView(R.id.ti_password)
     TextInputLayout passwordTextInput;
+    @BindView(R.id.ti_reenter_password)
+    TextInputLayout repasswordTextInput;
     @BindView(R.id.ti_faculty_Id)
     TextInputLayout facultyIdTextInput;
     @BindView(R.id.major_dept_radio_group)
@@ -69,6 +79,11 @@ public class SignupActivity extends AppCompatActivity {
     TextView majorDeptTextView;
 
     private String userType;
+    private int year = -1;
+    private int month = -1;
+    private int day = -1;
+    private Date dateOfBirth;
+    private SimpleDateFormat dateFormat;
 
 
     @Override
@@ -91,7 +106,23 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateOfBirthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SignupActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int Year, int monthOfYear, int dayOfMonth) {
+                        dateOfBirthTextView.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + Year);
+                        year = Year;
+                        month = monthOfYear;
+                        day = dayOfMonth;
+                        dateOfBirth = new Date(year - 1900, month, day);
+                    }
+                }, year == -1 ? 2000 : year, month == -1 ? 0 : month, day == -1 ? 1 : day);
+                datePickerDialog.show();
+            }
+        });
         initializeActivityForUser();
 
         Button signupButton = findViewById(R.id.btn_signup);
@@ -118,7 +149,53 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signup() {
+        if (firstNameTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(SignupActivity.this, getString(R.string.first_name_not_valid), Toast.LENGTH_SHORT).show();
+            firstNameTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (lastNameTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(SignupActivity.this, getString(R.string.last_name_not_valid), Toast.LENGTH_SHORT).show();
+            lastNameTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (emailTextInput.getEditText().getText().toString().trim().equals("") ||
+                !Patterns.EMAIL_ADDRESS.matcher(emailTextInput.getEditText().getText().toString().trim()).matches()) {
+            Toast.makeText(SignupActivity.this, getString(R.string.email_not_valid), Toast.LENGTH_SHORT).show();
+            emailTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (phoneNumberTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(SignupActivity.this, getString(R.string.phone_number_not_valid), Toast.LENGTH_SHORT).show();
+            phoneNumberTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (year == -1) {
+            Toast.makeText(SignupActivity.this, getString(R.string.birth_date_not_valid), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (usernameTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(SignupActivity.this, getString(R.string.username_not_valid), Toast.LENGTH_SHORT).show();
+            usernameTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (passwordTextInput.getEditText().getText().toString().equals("") ||
+                passwordTextInput.getEditText().getText().toString().length() < 8) {
+            Toast.makeText(SignupActivity.this, getString(R.string.password_not_valid), Toast.LENGTH_SHORT).show();
+            passwordTextInput.getEditText().requestFocus();
+            return;
+        }
+        if (!passwordTextInput.getEditText().getText().toString().equals(repasswordTextInput.getEditText().getText().toString())) {
+            Toast.makeText(SignupActivity.this, getString(R.string.re_password_not_valid), Toast.LENGTH_SHORT).show();
+            repasswordTextInput.getEditText().requestFocus();
+            return;
+        }
         if (userType.equals(getString(R.string.student_user_type))) {
+            if (facultyIdTextInput.getEditText().getText().toString().trim().equals("")) {
+                Toast.makeText(SignupActivity.this, getString(R.string.faculty_id_not_valid), Toast.LENGTH_SHORT).show();
+                facultyIdTextInput.getEditText().requestFocus();
+                return;
+            }
             studentSignup();
         } else if (teacherTypeRadioGroup.getCheckedRadioButtonId() == R.id.signup_type_professor) {
             Log.d(TAG, "Professor Signup");
@@ -161,7 +238,7 @@ public class SignupActivity extends AppCompatActivity {
             requestBody.put("PHONENUMBER", phoneNumberTextInput.getEditText().getText().toString());
 
             // date of birth
-            requestBody.put("DATEOFBIRTH", dateOfBirthTextInput.getEditText().getText().toString());
+            requestBody.put("DATEOFBIRTH", dateFormat.format(dateOfBirth));
 
             // major dept.
             String majorDept = null;
@@ -291,7 +368,7 @@ public class SignupActivity extends AppCompatActivity {
             requestBody.put("PHONENUMBER", phoneNumberTextInput.getEditText().getText().toString());
 
             // date of birth
-            requestBody.put("DATEOFBIRTH", dateOfBirthTextInput.getEditText().getText().toString());
+            requestBody.put("DATEOFBIRTH", dateFormat.format(dateOfBirth));
 
             // password
             requestBody.put("PROFPASSWORD", passwordTextInput.getEditText().getText().toString());
@@ -405,7 +482,7 @@ public class SignupActivity extends AppCompatActivity {
             requestBody.put("PHONENUMBER", phoneNumberTextInput.getEditText().getText().toString());
 
             // date of birth
-            requestBody.put("DATEOFBIRTH", dateOfBirthTextInput.getEditText().getText().toString());
+            requestBody.put("DATEOFBIRTH", dateFormat.format(dateOfBirth));
 
             // password
             requestBody.put("TAPASSWORD", passwordTextInput.getEditText().getText().toString());
