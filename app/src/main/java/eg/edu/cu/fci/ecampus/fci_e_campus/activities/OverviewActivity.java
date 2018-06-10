@@ -13,11 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AnnouncementFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
 
-public class OverviewActivity extends AppCompatActivity implements CalendarFragment.OnFragmentInteractionListener, OverviewFragment.OnFragmentInteractionListener {
+public class OverviewActivity extends AppCompatActivity implements CalendarFragment.OnFragmentInteractionListener,
+        OverviewFragment.OnFragmentInteractionListener, AnnouncementFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
 
@@ -70,7 +72,7 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
                 fragmentClass = CalendarFragment.class;
                 break;
             case R.id.nav_slideshow:
-                fragmentClass = OverviewFragment.class;
+                fragmentClass = AnnouncementFragment.class;
                 break;
             default:
                 fragmentClass = CalendarFragment.class;
