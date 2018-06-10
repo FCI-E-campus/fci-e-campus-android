@@ -1,5 +1,8 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,7 +13,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AnnouncementFragment;
@@ -27,9 +32,6 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
@@ -68,10 +70,10 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
             case R.id.nav_overview:
                 fragmentClass = OverviewFragment.class;
                 break;
-            case R.id.nav_gallery:
+            case R.id.nav_calendar:
                 fragmentClass = CalendarFragment.class;
                 break;
-            case R.id.nav_slideshow:
+            case R.id.nav_announcements:
                 fragmentClass = AnnouncementFragment.class;
                 break;
             default:
@@ -97,17 +99,47 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    private void logout() {
+        // remove auth data fro shared preferences
+        SharedPreferences authSharedPreferences
+                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = authSharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+
+        // redirect to welcome activity
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

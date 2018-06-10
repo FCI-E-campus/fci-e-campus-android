@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -37,48 +39,31 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.RequestQueueSingleton;
 
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = SignupActivity.class.getSimpleName();
 
-    @BindString(R.string.student_user_type)
-    String studentUserType;
-    @BindString(R.string.teacher_user_type)
-    String teacherUserType;
+    @BindString(R.string.student_user_type) String studentUserType;
+    @BindString(R.string.teacher_user_type) String teacherUserType;
 
-    @BindView(R.id.ti_first_name)
-    TextInputLayout firstNameTextInput;
-    @BindView(R.id.ti_last_name)
-    TextInputLayout lastNameTextInput;
-    @BindView(R.id.ti_email)
-    TextInputLayout emailTextInput;
-    @BindView(R.id.ti_phone_number)
-    TextInputLayout phoneNumberTextInput;
-    @BindView(R.id.ti_date_of_birth)
-    TextInputLayout dateOfBirthTextInputLayout;
-    @BindView(R.id.ib_pick_date)
-    ImageButton pickDateImageButton;
-    @BindView(R.id.ti_username)
-    TextInputLayout usernameTextInput;
-    @BindView(R.id.ti_password)
-    TextInputLayout passwordTextInput;
-    @BindView(R.id.ti_reenter_password)
-    TextInputLayout repasswordTextInput;
-    @BindView(R.id.ti_faculty_Id)
-    TextInputLayout facultyIdTextInput;
-    @BindView(R.id.major_dept_radio_group)
-    RadioGroup majorDeptRadioGroup;
-    @BindView(R.id.minor_dept_radio_group)
-    RadioGroup minorDeptRadioGroup;
-    @BindView(R.id.minor_dept)
-    LinearLayout minorView;
-    @BindView(R.id.signup_teacher_type)
-    LinearLayout teacherTypeView;
-    @BindView(R.id.signup_teacher_type_radio_group)
-    RadioGroup teacherTypeRadioGroup;
-    @BindView(R.id.major_department_tv)
-    TextView majorDeptTextView;
+    @BindView(R.id.ti_first_name) TextInputLayout firstNameTextInput;
+    @BindView(R.id.ti_last_name) TextInputLayout lastNameTextInput;
+    @BindView(R.id.ti_email) TextInputLayout emailTextInput;
+    @BindView(R.id.ti_phone_number) TextInputLayout phoneNumberTextInput;
+    @BindView(R.id.ti_date_of_birth) TextInputLayout dateOfBirthTextInputLayout;
+    @BindView(R.id.ib_pick_date) ImageButton pickDateImageButton;
+    @BindView(R.id.ti_username) TextInputLayout usernameTextInput;
+    @BindView(R.id.ti_password) TextInputLayout passwordTextInput;
+    @BindView(R.id.ti_reenter_password) TextInputLayout repasswordTextInput;
+    @BindView(R.id.ti_faculty_Id) TextInputLayout facultyIdTextInput;
+    @BindView(R.id.major_dept_radio_group) RadioGroup majorDeptRadioGroup;
+    @BindView(R.id.minor_dept_radio_group) RadioGroup minorDeptRadioGroup;
+    @BindView(R.id.minor_dept) LinearLayout minorView;
+    @BindView(R.id.signup_teacher_type) LinearLayout teacherTypeView;
+    @BindView(R.id.signup_teacher_type_radio_group) RadioGroup teacherTypeRadioGroup;
+    @BindView(R.id.major_department_tv) TextView majorDeptTextView;
 
     private String userType;
     private int year = -1;
@@ -112,18 +97,7 @@ public class SignupActivity extends AppCompatActivity {
         pickDateImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(SignupActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int Year, int monthOfYear, int dayOfMonth) {
-                        dateOfBirthTextInputLayout.getEditText()
-                                .setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + Year);
-                        year = Year;
-                        month = monthOfYear;
-                        day = dayOfMonth;
-                        dateOfBirth = new Date(year - 1900, month, day);
-                    }
-                }, year == -1 ? 2000 : year, month == -1 ? 0 : month, day == -1 ? 1 : day);
-                datePickerDialog.show();
+                showDatePicker();
             }
         });
 
@@ -137,6 +111,21 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showDatePicker() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(SignupActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int Year, int monthOfYear, int dayOfMonth) {
+                dateOfBirthTextInputLayout.getEditText()
+                        .setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + Year);
+                year = Year;
+                month = monthOfYear;
+                day = dayOfMonth;
+                dateOfBirth = new Date(year - 1900, month, day);
+            }
+        }, year == -1 ? 2000 : year, month == -1 ? 0 : month, day == -1 ? 1 : day);
+        datePickerDialog.show();
     }
 
     private void initializeActivityForUser() {
@@ -218,7 +207,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void studentSignup() {
-        RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         JSONObject requestBody = new JSONObject();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
@@ -336,7 +325,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void profSignup() {
-        RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         JSONObject requestBody = new JSONObject();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
@@ -438,7 +427,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void taSignup() {
-        RequestQueue requestQueue = Volley.newRequestQueue(SignupActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         JSONObject requestBody = new JSONObject();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()

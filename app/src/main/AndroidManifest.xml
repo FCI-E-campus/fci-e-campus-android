@@ -37,14 +37,21 @@
         </activity>
         <activity
             android:name=".activities.OverviewActivity"
-            android:label="@string/title_activity_overview"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_overview" />
         <activity
             android:name=".activities.ActivationActivity"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
+        </activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities.OverviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OverviewActivity" />>
+
         </activity>
     </application>
 

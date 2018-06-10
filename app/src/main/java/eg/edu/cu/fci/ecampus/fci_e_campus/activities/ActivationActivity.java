@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.RequestQueueSingleton;
 
 public class ActivationActivity extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class ActivationActivity extends AppCompatActivity {
     }
 
     private void profActivation(String key) {
-        RequestQueue requestQueue = Volley.newRequestQueue(ActivationActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         JSONObject requestBody = new JSONObject();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
@@ -142,7 +143,7 @@ public class ActivationActivity extends AppCompatActivity {
     }
 
     private void taActivation(String key) {
-        RequestQueue requestQueue = Volley.newRequestQueue(ActivationActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         JSONObject requestBody = new JSONObject();
 
         Uri uri = Uri.parse(getString(R.string.base_url))

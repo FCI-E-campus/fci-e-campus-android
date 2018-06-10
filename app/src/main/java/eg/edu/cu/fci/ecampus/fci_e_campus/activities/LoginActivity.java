@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.RequestQueueSingleton;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void studentLogin() {
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
                 .appendPath(getString(R.string.student_prefix))
@@ -168,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void profLogin() {
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
                 .appendPath(getString(R.string.professor_prefix))
@@ -245,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void taLogin() {
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
                 .appendPath(getString(R.string.ta_prefix))
