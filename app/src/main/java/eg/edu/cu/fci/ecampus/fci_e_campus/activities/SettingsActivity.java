@@ -84,184 +84,16 @@ public class SettingsActivity extends AppCompatActivity {
             RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
 
             if (userType.equals(getString(R.string.student_user_type))) {
-                // Student
-                Uri uri = Uri.parse(getString(R.string.base_url))
-                        .buildUpon()
-                        .appendPath(getString(R.string.student_prefix))
-                        .appendPath(getString(R.string.change_password_endpoint))
-                        .build();
+                changeStudentPassword(newPasswordEntered, requestQueue);
 
-                Log.d(TAG, uri.toString());
-
-                JSONObject requestBody = new JSONObject();
-                try {
-                    requestBody.put("_token", token);
-                    requestBody.put("STUDUSERNAME", username);
-                    requestBody.put("STUDPASSWORD", newPasswordEntered);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
-                        uri.toString(), requestBody, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if (response.getString("status").equals("success")) {
-                                Toast.makeText(SettingsActivity.this, "Password changed successfully!"
-                                        , Toast.LENGTH_SHORT).show();
-
-                                // update the password in shared preferences
-                                SharedPreferences authSharedPreferences
-                                        = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
-                                        Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = authSharedPreferences.edit();
-                                editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
-                                editor.apply();
-
-                                oldPassword = newPasswordEntered;
-
-                            } else if (response.getString("status").equals("failed")) {
-                                int errorCode = response.getInt("error_code");
-                                String errorMessage = APIUtils.getErrorMsg(errorCode);
-                                Toast.makeText(SettingsActivity.this
-                                        , errorMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle error
-                        Log.d(TAG, error.toString());
-                        Toast.makeText(SettingsActivity.this
-                                , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                requestQueue.add(changePasswordRequest);
             }
             else if (userType.equals(getString(R.string.professor_user_type))) {
-                // Professor
-                Uri uri = Uri.parse(getString(R.string.base_url))
-                        .buildUpon()
-                        .appendPath(getString(R.string.professor_prefix))
-                        .appendPath(getString(R.string.change_password_endpoint))
-                        .build();
+                changeProfPassword(newPasswordEntered, requestQueue);
 
-                JSONObject requestBody = new JSONObject();
-                try {
-                    requestBody.put("_token", token);
-                    requestBody.put("PROFUSERNAME", username);
-                    requestBody.put("PROFPASSWORD", newPasswordEntered);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
-                        uri.toString(), requestBody, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if (response.getString("status").equals("success")) {
-                                Toast.makeText(SettingsActivity.this, "Password changed successfully!"
-                                        , Toast.LENGTH_SHORT).show();
-
-                                // update the password in shared preferences
-                                SharedPreferences authSharedPreferences
-                                        = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
-                                        Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = authSharedPreferences.edit();
-                                editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
-                                editor.apply();
-
-                                oldPassword = newPasswordEntered;
-
-
-                            } else if (response.getString("status").equals("failed")) {
-                                int errorCode = response.getInt("error_code");
-                                String errorMessage = APIUtils.getErrorMsg(errorCode);
-                                Toast.makeText(SettingsActivity.this
-                                        , errorMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle error
-                        Log.d(TAG, error.toString());
-                        Toast.makeText(SettingsActivity.this
-                                , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                requestQueue.add(changePasswordRequest);
             }
             else if (userType.equals(getString(R.string.ta_user_type))) {
-                // TA
-                Uri uri = Uri.parse(getString(R.string.base_url))
-                        .buildUpon()
-                        .appendPath(getString(R.string.ta_prefix))
-                        .appendPath(getString(R.string.change_password_endpoint))
-                        .build();
+                changeTAPassword(newPasswordEntered, requestQueue);
 
-                JSONObject requestBody = new JSONObject();
-                try {
-                    requestBody.put("_token", token);
-                    requestBody.put("TAUSERNAME", username);
-                    requestBody.put("TAPASSWORD", newPasswordEntered);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
-                        uri.toString(), requestBody, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            if (response.getString("status").equals("success")) {
-                                Toast.makeText(SettingsActivity.this, "Password changed successfully!"
-                                        , Toast.LENGTH_SHORT).show();
-
-                                // update the password in shared preferences
-                                SharedPreferences authSharedPreferences
-                                        = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
-                                        Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = authSharedPreferences.edit();
-                                editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
-                                editor.apply();
-
-                                oldPassword = newPasswordEntered;
-
-                            } else if (response.getString("status").equals("failed")) {
-                                int errorCode = response.getInt("error_code");
-                                String errorMessage = APIUtils.getErrorMsg(errorCode);
-                                Toast.makeText(SettingsActivity.this
-                                        , errorMessage, Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle error
-                        Log.d(TAG, error.toString());
-                        Toast.makeText(SettingsActivity.this
-                                , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                requestQueue.add(changePasswordRequest);
             }
         }
         else {
@@ -269,5 +101,199 @@ public class SettingsActivity extends AppCompatActivity {
                     , Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void changeTAPassword(final String newPasswordEntered, RequestQueue requestQueue) {
+        // TA
+        Uri uri = Uri.parse(getString(R.string.base_url))
+                .buildUpon()
+                .appendPath(getString(R.string.ta_prefix))
+                .appendPath(getString(R.string.change_password_endpoint))
+                .build();
+
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("_token", token);
+            requestBody.put("TAUSERNAME", username);
+            requestBody.put("TAPASSWORD", newPasswordEntered);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("status").equals("success")) {
+                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                                , Toast.LENGTH_SHORT).show();
+                        resetPasswordEditTexts();
+
+                        // update the password in shared preferences
+                        SharedPreferences authSharedPreferences
+                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = authSharedPreferences.edit();
+                        editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
+                        editor.apply();
+
+                        oldPassword = newPasswordEntered;
+
+                    } else if (response.getString("status").equals("failed")) {
+                        int errorCode = response.getInt("error_code");
+                        String errorMessage = APIUtils.getErrorMsg(errorCode);
+                        Toast.makeText(SettingsActivity.this
+                                , errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Log.d(TAG, error.toString());
+                Toast.makeText(SettingsActivity.this
+                        , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        requestQueue.add(changePasswordRequest);
+    }
+
+    private void changeProfPassword(final String newPasswordEntered, RequestQueue requestQueue) {
+        // Professor
+        Uri uri = Uri.parse(getString(R.string.base_url))
+                .buildUpon()
+                .appendPath(getString(R.string.professor_prefix))
+                .appendPath(getString(R.string.change_password_endpoint))
+                .build();
+
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("_token", token);
+            requestBody.put("PROFUSERNAME", username);
+            requestBody.put("PROFPASSWORD", newPasswordEntered);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("status").equals("success")) {
+                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                                , Toast.LENGTH_SHORT).show();
+                        resetPasswordEditTexts();
+
+                        // update the password in shared preferences
+                        SharedPreferences authSharedPreferences
+                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = authSharedPreferences.edit();
+                        editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
+                        editor.apply();
+
+                        oldPassword = newPasswordEntered;
+
+
+                    } else if (response.getString("status").equals("failed")) {
+                        int errorCode = response.getInt("error_code");
+                        String errorMessage = APIUtils.getErrorMsg(errorCode);
+                        Toast.makeText(SettingsActivity.this
+                                , errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Log.d(TAG, error.toString());
+                Toast.makeText(SettingsActivity.this
+                        , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        requestQueue.add(changePasswordRequest);
+    }
+
+    private void changeStudentPassword(final String newPasswordEntered, RequestQueue requestQueue) {
+        // Student
+        Uri uri = Uri.parse(getString(R.string.base_url))
+                .buildUpon()
+                .appendPath(getString(R.string.student_prefix))
+                .appendPath(getString(R.string.change_password_endpoint))
+                .build();
+
+        Log.d(TAG, uri.toString());
+
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("_token", token);
+            requestBody.put("STUDUSERNAME", username);
+            requestBody.put("STUDPASSWORD", newPasswordEntered);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest changePasswordRequest = new JsonObjectRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("status").equals("success")) {
+                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                                , Toast.LENGTH_SHORT).show();
+                        resetPasswordEditTexts();
+
+                        // update the password in shared preferences
+                        SharedPreferences authSharedPreferences
+                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = authSharedPreferences.edit();
+                        editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
+                        editor.apply();
+
+                        oldPassword = newPasswordEntered;
+
+                    } else if (response.getString("status").equals("failed")) {
+                        int errorCode = response.getInt("error_code");
+                        String errorMessage = APIUtils.getErrorMsg(errorCode);
+                        Toast.makeText(SettingsActivity.this
+                                , errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Log.d(TAG, error.toString());
+                Toast.makeText(SettingsActivity.this
+                        , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        requestQueue.add(changePasswordRequest);
+    }
+
+    private void resetPasswordEditTexts() {
+        currentPasswordTextInput.getEditText().getText().clear();
+        currentPasswordTextInput.clearFocus();
+
+        newPasswordTextInput.getEditText().getText().clear();
+        newPasswordTextInput.clearFocus();
     }
 }

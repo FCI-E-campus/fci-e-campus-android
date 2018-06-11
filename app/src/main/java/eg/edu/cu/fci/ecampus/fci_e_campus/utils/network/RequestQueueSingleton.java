@@ -18,7 +18,7 @@ public class RequestQueueSingleton {
     private static RequestQueueSingleton mInstance;
     private RequestQueue mRequestQueue;
     private static Context mCtx;
-    private CookieManager manager;
+    private CookieManager cookieManager;
 
     private RequestQueueSingleton(Context context) {
         mCtx = context;
@@ -35,9 +35,9 @@ public class RequestQueueSingleton {
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
 
-            manager = new CookieManager(new PersistentCookieStore(mCtx.getApplicationContext())
+            cookieManager = new CookieManager(new PersistentCookieStore(mCtx.getApplicationContext())
                     , CookiePolicy.ACCEPT_ALL);
-            CookieHandler.setDefault(manager);
+            CookieHandler.setDefault(cookieManager);
 
             // getApplicationContext() is key, it keeps you from leaking the
             // Activity or BroadcastReceiver if someone passes one in.
