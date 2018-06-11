@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.utils;
+package eg.edu.cu.fci.ecampus.fci_e_campus.utils.network;
 
 import java.io.IOException;
 

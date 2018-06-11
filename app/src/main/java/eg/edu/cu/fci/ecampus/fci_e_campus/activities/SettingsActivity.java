@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
-import eg.edu.cu.fci.ecampus.fci_e_campus.utils.RequestQueueSingleton;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
 public class SettingsActivity extends AppCompatActivity {
 

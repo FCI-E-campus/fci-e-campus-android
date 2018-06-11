@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.utils;
+package eg.edu.cu.fci.ecampus.fci_e_campus.utils.network;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.net.CookiePolicy;
 
 /**
  * This class uses singleton design pattern to set up a single
@@ -34,7 +35,8 @@ public class RequestQueueSingleton {
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
 
-            manager = new CookieManager();
+            manager = new CookieManager(new PersistentCookieStore(mCtx.getApplicationContext())
+                    , CookiePolicy.ACCEPT_ALL);
             CookieHandler.setDefault(manager);
 
             // getApplicationContext() is key, it keeps you from leaking the
