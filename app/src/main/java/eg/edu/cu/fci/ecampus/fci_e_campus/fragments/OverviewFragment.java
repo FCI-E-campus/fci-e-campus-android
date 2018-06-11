@@ -69,7 +69,7 @@ public class OverviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        View view = inflater.inflate(R.layout.fragment_overview, container, false);
         String[] values = new String[]{"Android List View",
                 "Adapter implementation",
                 "Simple List View In Android",

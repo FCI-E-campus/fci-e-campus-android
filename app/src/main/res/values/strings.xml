@@ -24,7 +24,7 @@
     <!-- API End Points -->
     <!-- abdallah: http://10.0.2.2/E-campus/public  -->
     <!-- ahmed: http://10.0.3.2/E-campus/public  -->
-    <string name="base_url" translatable="false">http://10.0.2.2/E-campus/public</string>
+    <string name="base_url" translatable="false">http://10.0.3.2/E-campus/public</string>
     <string name="student_prefix" translatable="false">student</string>
     <string name="ta_prefix" translatable="false">ta</string>
     <string name="professor_prefix" translatable="false">professor</string>
