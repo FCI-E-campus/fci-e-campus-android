@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_calendar"
             android:title="Calendar" />
         <item
+            android:id="@+id/nav_my_courses"
+            android:icon="@drawable/ic_my_courses"
+            android:title="My Courses"/>
+        <item
             android:id="@+id/nav_announcements"
             android:icon="@drawable/ic_announcement"
             android:title="Announcements" />

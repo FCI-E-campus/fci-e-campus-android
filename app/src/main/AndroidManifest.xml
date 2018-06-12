@@ -45,13 +45,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
-        <activity android:name=".activities.SettingsActivity"
+        <activity
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activities.OverviewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.OverviewActivity" />>
-
+                android:value=".activities.OverviewActivity" />
+            >
+        </activity>
+        <activity
+            android:name=".activities.JoinCourseActivity"
+            android:label="@string/title_activity_join_course"
+            android:parentActivityName=".activities.OverviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OverviewActivity" />
+        </activity>
+        <activity
+            android:name=".fragments.CourseActivity"
+            android:parentActivityName=".activities.OverviewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.OverviewActivity" />
         </activity>
     </application>
 

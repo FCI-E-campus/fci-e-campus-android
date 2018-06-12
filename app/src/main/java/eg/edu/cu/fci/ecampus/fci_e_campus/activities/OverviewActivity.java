@@ -20,11 +20,13 @@ import android.widget.Toast;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AnnouncementFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MyCoursesFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
 
 public class OverviewActivity extends AppCompatActivity implements CalendarFragment.OnFragmentInteractionListener,
-        OverviewFragment.OnFragmentInteractionListener, AnnouncementFragment.OnFragmentInteractionListener {
+        OverviewFragment.OnFragmentInteractionListener, AnnouncementFragment.OnFragmentInteractionListener,
+        MyCoursesFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
 
@@ -75,6 +77,9 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
                 break;
             case R.id.nav_announcements:
                 fragmentClass = AnnouncementFragment.class;
+                break;
+            case R.id.nav_my_courses:
+                fragmentClass = MyCoursesFragment.class;
                 break;
             default:
                 fragmentClass = CalendarFragment.class;

@@ -1,29 +1,33 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-
+import eg.edu.cu.fci.ecampus.fci_e_campus.activities.JoinCourseActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OverviewFragment.OnFragmentInteractionListener} interface
+ * {@link MyCoursesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link OverviewFragment#newInstance} factory method to
+ * Use the {@link MyCoursesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OverviewFragment extends Fragment {
+public class MyCoursesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +39,19 @@ public class OverviewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public OverviewFragment() {
+    private String token, username, userType;
+
+    private void readUserDataFromSharedPreference() {
+        SharedPreferences sharedPref = getContext().getSharedPreferences(
+                getString(R.string.authentication_shared_preference_file_name),
+                Context.MODE_PRIVATE);
+
+        token = sharedPref.getString(getString(R.string.saved_token_key), null);
+        username = sharedPref.getString(getString(R.string.saved_username_key), null);
+        userType = sharedPref.getString(getString(R.string.saved_user_type_key), null);
+    }
+
+    public MyCoursesFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +61,11 @@ public class OverviewFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment OverviewFragment.
+     * @return A new instance of fragment MyCoursesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static OverviewFragment newInstance(String param1, String param2) {
-        OverviewFragment fragment = new OverviewFragment();
+    public static MyCoursesFragment newInstance(String param1, String param2) {
+        MyCoursesFragment fragment = new MyCoursesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,39 +80,46 @@ public class OverviewFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
+        readUserDataFromSharedPreference();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_my_courses, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_overview, container, false);
-        final String[] values = new String[]{"Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
+        FloatingActionButton fab = view.findViewById(R.id.fab_my_courses);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), JoinCourseActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
+        if (!userType.equals(getString(R.string.student_user_type))) {
+            fab.setVisibility(View.GONE);
+        }
+        final String[] values = new String[]{"Math-3",
+                "Compilers",
+                "Algorithms",
+                "Programming-1",
+                "Database-2",
+                "Machine Learning"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
-        ListView listView1 = view.findViewById(R.id.list1_overview);
+        ListView listView1 = view.findViewById(R.id.list_my_courses);
+        listView1.setAdapter(adapter);
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), values[i], Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), CourseActivity.class);
+                intent.putExtra("course_name", values[i]);
+                startActivity(intent);
             }
         });
-        listView1.setAdapter(adapter);
-
-
-        ListView listView2 = view.findViewById(R.id.list2_overview);
-        listView2.setAdapter(adapter);
         return view;
     }
 

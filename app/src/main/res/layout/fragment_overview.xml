@@ -27,7 +27,7 @@
 
 
         <ListView
-            android:id="@+id/list1"
+            android:id="@+id/list1_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -51,7 +51,7 @@
 
 
         <ListView
-            android:id="@+id/list2"
+            android:id="@+id/list2_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
