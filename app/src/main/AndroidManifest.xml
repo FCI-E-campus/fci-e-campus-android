@@ -63,7 +63,7 @@
                 android:value=".activities.OverviewActivity" />
         </activity>
         <activity
-            android:name=".fragments.CourseActivity"
+            android:name=".activities.CourseActivity"
             android:parentActivityName=".activities.OverviewActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

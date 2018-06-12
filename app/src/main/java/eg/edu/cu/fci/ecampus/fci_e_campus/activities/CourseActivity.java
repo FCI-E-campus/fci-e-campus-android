@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.fragments;
+package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

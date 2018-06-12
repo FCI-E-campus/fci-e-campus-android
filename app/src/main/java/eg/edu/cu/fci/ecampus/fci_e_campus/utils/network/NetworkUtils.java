@@ -11,7 +11,7 @@ import okhttp3.Response;
 /**
  * Common network utilities using OkHttp
  */
-public final class NetworkUtil {
+public final class NetworkUtils {
 
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");

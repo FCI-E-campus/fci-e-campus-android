@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.ti_new_password) TextInputLayout newPasswordTextInput;
     @BindView(R.id.btn_change_password) Button changePasswordButton;
 
-    private String token, username, oldPassword, userType;
+    private String token, username, currentPassword, userType;
 
 
 
@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         token = sharedPref.getString(getString(R.string.saved_token_key), null);
         username = sharedPref.getString(getString(R.string.saved_username_key), null);
-        oldPassword = sharedPref.getString(getString(R.string.saved_password_key), null);
+        currentPassword = sharedPref.getString(getString(R.string.saved_password_key), null);
         userType = sharedPref.getString(getString(R.string.saved_user_type_key), null);
 
         Log.d(TAG, username);
@@ -73,9 +73,9 @@ public class SettingsActivity extends AppCompatActivity {
         String currentPasswordEntered = currentPasswordTextInput.getEditText().getText().toString();
         final String newPasswordEntered = newPasswordTextInput.getEditText().getText().toString();
 
-        if (oldPassword.equals(currentPasswordEntered)) {
+        if (currentPassword.equals(currentPasswordEntered)) {
 
-            if (newPasswordEntered.equals(oldPassword)) {
+            if (newPasswordEntered.equals(currentPassword)) {
                 Toast.makeText(this, "The new password is the same as the current password!"
                         , Toast.LENGTH_SHORT).show();
                 return;
@@ -138,7 +138,7 @@ public class SettingsActivity extends AppCompatActivity {
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
                         editor.apply();
 
-                        oldPassword = newPasswordEntered;
+                        currentPassword = newPasswordEntered;
 
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
@@ -199,7 +199,7 @@ public class SettingsActivity extends AppCompatActivity {
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
                         editor.apply();
 
-                        oldPassword = newPasswordEntered;
+                        currentPassword = newPasswordEntered;
 
 
                     } else if (response.getString("status").equals("failed")) {
@@ -263,7 +263,7 @@ public class SettingsActivity extends AppCompatActivity {
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
                         editor.apply();
 
-                        oldPassword = newPasswordEntered;
+                        currentPassword = newPasswordEntered;
 
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");

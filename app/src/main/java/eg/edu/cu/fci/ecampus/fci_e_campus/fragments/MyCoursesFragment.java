@@ -6,9 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseActivity;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.JoinCourseActivity;
 
 /**
