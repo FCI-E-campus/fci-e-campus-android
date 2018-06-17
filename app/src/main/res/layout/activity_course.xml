@@ -106,6 +106,7 @@
             android:background="?android:attr/listDivider" />
 
         <Button
+            android:id="@+id/view_schedule_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/eight_margin"

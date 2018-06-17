@@ -69,6 +69,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.OverviewActivity" />
         </activity>
+        <activity android:name=".activities.CourseScheduleActivity"
+            android:parentActivityName=".activities.CourseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseActivity" />
+        </activity>
     </application>
 
 </manifest>
