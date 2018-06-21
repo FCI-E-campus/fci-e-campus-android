@@ -129,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = authSharedPreferences.edit();
                         String token = response.getString("token");
                         editor.putString(getString(R.string.saved_token_key), token);
+                        Log.e("token", token);
                         editor.putString(getString(R.string.saved_username_key)
                                 , usernameTextInput.getEditText().getText().toString());
                         editor.putString(getString(R.string.saved_password_key)

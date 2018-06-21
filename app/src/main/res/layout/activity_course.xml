@@ -114,18 +114,21 @@
             android:text="view schedule" />
 
         <Button
+            android:id="@+id/view_resources_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/eight_margin"
             android:text="view resources" />
 
         <Button
+            android:id="@+id/view_tasks_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/eight_margin"
             android:text="view tasks" />
 
         <Button
+            android:id="@+id/open_forum_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="open forum" />

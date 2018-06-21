@@ -63,6 +63,8 @@ public abstract class APIUtils {
                 return "Faculty ID is required";
             case 27:
                 return "Nonexistent department";
+            case 28:
+                return "You are already joined in this course";
             default:
                 return "Error Code: " + errorCode;
         }

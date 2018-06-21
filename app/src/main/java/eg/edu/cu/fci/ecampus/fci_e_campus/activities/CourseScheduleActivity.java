@@ -22,9 +22,15 @@ public class CourseScheduleActivity extends AppCompatActivity {
         LinearLayout parentLayout = findViewById(R.id.course_schedule_activity);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.one_day_layout, null);
-        parentLayout.addView(rowView, parentLayout.getChildCount()-1);
+        parentLayout.addView(rowView, parentLayout.getChildCount() - 1);
 
         TextView day = rowView.findViewById(R.id.day_text_view);
         day.setText("Tomorrow");
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

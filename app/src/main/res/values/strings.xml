@@ -28,11 +28,14 @@
     <string name="base_url" translatable="false">http://10.0.3.2/E-campus/public</string>
     <string name="student_prefix" translatable="false">student</string>
     <string name="ta_prefix" translatable="false">ta</string>
+    <string name="course_prefix" translatable="false">course</string>
     <string name="professor_prefix" translatable="false">professor</string>
     <string name="signup_endpoint" translatable="false">signup</string>
     <string name="login_endpoint" translatable="false">login</string>
     <string name="activate_endpoint" translatable="false">activate</string>
     <string name="change_password_endpoint" translatable="false">updatePass</string>
+    <string name="show_courses_for_student_endpoint" translatable="false">showCoursesForStudent</string>
+    <string name="join_course_endpoint" translatable="false">joinCourse</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -65,8 +68,11 @@
     <string name="faculty_id_not_valid">Faculty ID is mandatory</string>
     <string name="password_not_valid">Password should be at least 8 characters</string>
     <string name="re_password_not_valid">Password doesn\'t match Re-enter password field</string>
+    <string name="course_code_not_valid">Enter Course Code</string>
+    <string name="pass_code_not_valid">Enter Pass Code</string>
     <!-- -->
 
+    <string name="no_internet">No Internet Connection.</string>
     <string name="action_logout_title">Logout</string>
     <string name="action_settings_title">Settings</string>
     <string name="my_course_text_view">Your Courses:</string>

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eg.edu.cu.fci.ecampus.fci_e_campus">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -69,12 +70,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.OverviewActivity" />
         </activity>
-        <activity android:name=".activities.CourseScheduleActivity"
+        <activity
+            android:name=".activities.CourseScheduleActivity"
             android:parentActivityName=".activities.CourseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
+        <activity
+            android:name=".activities.CourseMaterialsActivity"
+            android:parentActivityName=".activities.CourseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseActivity" />
+        </activity>
+        <activity android:name=".activities.CourseTasksActivity"></activity>
     </application>
 
 </manifest>
