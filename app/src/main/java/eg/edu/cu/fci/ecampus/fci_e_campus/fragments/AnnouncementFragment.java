@@ -1,34 +1,48 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.AnnouncementsAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.Announcement;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.CustomJsonRequest;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AnnouncementFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AnnouncementFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AnnouncementFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = AnnouncementFragment.class.getSimpleName();
 
-    private OnFragmentInteractionListener mListener;
+    @BindView(R.id.rv_announcements) private RecyclerView announcementsRecyclerView;
+    @BindView(R.id.pb_announcements) private ProgressBar loadingProgressBar;
+    @BindView(R.id.tv_no_announcements_msg) private TextView noAnnouncementsMsg;
+
+    private Announcement [] announcements;
+    private AnnouncementsAdapter announcementsAdapter;
 
     public AnnouncementFragment() {
         // Required empty public constructor
@@ -36,74 +50,98 @@ public class AnnouncementFragment extends Fragment {
 
     /**
      * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * this fragment.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment AnnouncementFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static AnnouncementFragment newInstance(String param1, String param2) {
+    public static AnnouncementFragment newInstance() {
         AnnouncementFragment fragment = new AnnouncementFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_announcement, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_announcement, container, false);
+        ButterKnife.bind(this, fragmentView);
+
+        configureAnnouncementsRecyclerView();
+
+        return fragmentView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    private void configureAnnouncementsRecyclerView() {
+        announcementsRecyclerView.setHasFixedSize(true);
+
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        announcementsRecyclerView.setLayoutManager(layoutManager);
+
+        announcementsAdapter = new AnnouncementsAdapter(announcements);
+        announcementsRecyclerView.setAdapter(announcementsAdapter);
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Uri uri = Uri.parse(getString(R.string.base_url))
+                .buildUpon()
+                .appendPath(getString(R.string.announcements_path))
+                .appendPath(getString(R.string.show_announcements_endpoint))
+                .build();
+
+        JSONObject requestBody = new JSONObject();
+        String token = getAuthenticationToken();
+        try {
+            requestBody.put("_token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        CustomJsonRequest getAnnouncementsRequest = new CustomJsonRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+                RequestQueueSingleton.getInstance(getContext()).addToRequestQueue(getAnnouncementsRequest);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    private String getAuthenticationToken() {
+        SharedPreferences sharedPref = getContext().getSharedPreferences(
+                getString(R.string.authentication_shared_preference_file_name),
+                Context.MODE_PRIVATE);
+
+        String token = sharedPref.getString(getString(R.string.saved_token_key), null);
+
+        Log.d(TAG, token);
+
+        return token;
     }
 }

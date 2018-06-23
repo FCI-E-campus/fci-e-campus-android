@@ -25,8 +25,7 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
 
 public class OverviewActivity extends AppCompatActivity implements CalendarFragment.OnFragmentInteractionListener,
-        OverviewFragment.OnFragmentInteractionListener, AnnouncementFragment.OnFragmentInteractionListener,
-        MyCoursesFragment.OnFragmentInteractionListener {
+        OverviewFragment.OnFragmentInteractionListener, MyCoursesFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
 
