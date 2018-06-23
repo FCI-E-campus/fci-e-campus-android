@@ -162,7 +162,7 @@ public class MyCoursesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), CourseActivity.class);
-                intent.putExtra("course_name", coursesCode.get(i));
+                intent.putExtra("course_code", coursesCode.get(i));
                 startActivity(intent);
             }
         });

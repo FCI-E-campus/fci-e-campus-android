@@ -2,15 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blue"
     android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginRight="@dimen/eight_margin"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_down_button" />
 
     <TextView
         android:id="@+id/tasks_list_header"
@@ -19,7 +14,14 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="ERP Project - Phase 3" />
+
+    <ImageView
+        android:id="@+id/tasks_header_image_view"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginRight="@dimen/eight_margin" />
 
 </LinearLayout>

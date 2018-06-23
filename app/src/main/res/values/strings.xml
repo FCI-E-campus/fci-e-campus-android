@@ -79,4 +79,6 @@
     <string name="action_settings_title">Settings</string>
     <string name="my_course_text_view">Your Courses:</string>
     <string name="msg_no_announcements">There\'re no announcements yet!</string>
+    <string name="forum_answered">Answered</string>
+    <string name="forum_not_answered">Not Answered</string>
 </resources>

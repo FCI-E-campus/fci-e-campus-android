@@ -84,7 +84,34 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
-        <activity android:name=".activities.CourseTasksActivity"></activity>
+        <activity
+            android:name=".activities.CourseTasksActivity"
+            android:parentActivityName=".activities.CourseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CourseForumActivity"
+            android:parentActivityName=".activities.CourseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseActivity" />
+        </activity>
+        <activity
+            android:name=".activities.AddPostActivity"
+            android:parentActivityName=".activities.CourseForumActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseForumActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ForumPostActivity"
+            android:parentActivityName=".activities.CourseForumActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CourseForumActivity" />
+        </activity>
     </application>
 
 </manifest>
