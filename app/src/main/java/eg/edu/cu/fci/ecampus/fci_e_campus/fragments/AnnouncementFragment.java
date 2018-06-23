@@ -14,12 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,9 +39,9 @@ public class AnnouncementFragment extends Fragment {
 
     private static final String TAG = AnnouncementFragment.class.getSimpleName();
 
-    @BindView(R.id.rv_announcements) private RecyclerView announcementsRecyclerView;
-    @BindView(R.id.pb_announcements) private ProgressBar loadingProgressBar;
-    @BindView(R.id.tv_no_announcements_msg) private TextView noAnnouncementsMsg;
+    @BindView(R.id.rv_announcements) RecyclerView announcementsRecyclerView;
+    @BindView(R.id.pb_announcements) ProgressBar loadingProgressBar;
+    @BindView(R.id.tv_no_announcements_msg) TextView noAnnouncementsMsg;
 
     private Announcement [] announcements;
     private AnnouncementsAdapter announcementsAdapter;
@@ -83,6 +85,7 @@ public class AnnouncementFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         announcementsRecyclerView.setLayoutManager(layoutManager);
 
+        announcements = new Announcement[0];
         announcementsAdapter = new AnnouncementsAdapter(announcements);
         announcementsRecyclerView.setAdapter(announcementsAdapter);
     }
@@ -106,21 +109,52 @@ public class AnnouncementFragment extends Fragment {
             e.printStackTrace();
         }
 
-        CustomJsonRequest getAnnouncementsRequest = new CustomJsonRequest(Request.Method.POST,
-                uri.toString(), requestBody, new Response.Listener<JSONArray>() {
+        JsonObjectRequest getAnnouncementsRequest = new JsonObjectRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
 
+                loadingProgressBar.setVisibility(View.INVISIBLE);
 
+                try {
+                    if (response.getString("status").equals("success")) {
+                        Gson gson = new Gson();
+                        Log.d(TAG, response.getJSONArray("result").toString());
+                        announcements = gson.fromJson(response.getJSONArray("result").toString()
+                                , Announcement[].class);
+
+                        if (announcements.length != 0) {
+                            announcementsAdapter.notifyDataSetChanged();
+                        }
+                        else {
+                            noAnnouncementsMsg.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                    else {
+                        Toast.makeText(AnnouncementFragment.this.getContext()
+                                , "Error loading announcements!", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(AnnouncementFragment.this.getContext()
+                            , "Error loading announcements!", Toast.LENGTH_SHORT).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, error.toString());
 
+                loadingProgressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(AnnouncementFragment.this.getContext()
+                        , "Error loading announcements!", Toast.LENGTH_SHORT).show();
             }
         });
 
-                RequestQueueSingleton.getInstance(getContext()).addToRequestQueue(getAnnouncementsRequest);
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        RequestQueueSingleton.getInstance(getContext()).addToRequestQueue(getAnnouncementsRequest);
     }
 
     @Override
