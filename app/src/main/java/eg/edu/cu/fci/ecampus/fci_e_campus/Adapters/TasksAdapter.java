@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 
 /**
  * Created by ahmed on 6/21/2018.
@@ -21,9 +23,9 @@ public class TasksAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<String> listHeader;
-    private HashMap<String, ArrayList<String>> listChild;
+    private HashMap<String, Task> listChild;
 
-    public TasksAdapter(Context context, ArrayList<String> listHeader, HashMap<String, ArrayList<String>> listChild) {
+    public TasksAdapter(Context context, ArrayList<String> listHeader, HashMap<String, Task> listChild) {
         this.context = context;
         this.listHeader = listHeader;
         this.listChild = listChild;
@@ -36,7 +38,7 @@ public class TasksAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return listChild.get(listHeader.get(groupPosition)).size();
+        return 1;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class TasksAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return listChild.get(listHeader.get(groupPosition)).get(childPosition);
+        return listChild.get(listHeader.get(groupPosition));
     }
 
     @Override
@@ -71,26 +73,31 @@ public class TasksAdapter extends BaseExpandableListAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.tasks_list_group, null);
         }
+        ImageView imageView = view.findViewById(R.id.tasks_header_image_view);
+        int imageResourceId = isLastChild ? R.drawable.ic_up_button : R.drawable.ic_down_button;
+        imageView.setImageResource(imageResourceId);
 
-        TextView lblListHeader = view.findViewById(R.id.tasks_list_header);
-        //lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
-
+        TextView listGroup = view.findViewById(R.id.tasks_list_header);
+        listGroup.setText(headerTitle);
+        view.setPadding(36, 36, 36, 36);
         return view;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View view, ViewGroup viewGroup) {
 
-        String childText = (String) getChild(groupPosition, childPosition);
+        Task childTask = (Task) getChild(groupPosition, childPosition);
 
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.tasks_list_child, null);
         }
 
-        TextView txtListChild = view.findViewById(R.id.lblListItem);
+        TextView taskDescription = view.findViewById(R.id.tasks_description_list_child);
+        taskDescription.setText(childTask.getDescription());
 
-        txtListChild.setText(childText);
+        TextView taskDate = view.findViewById(R.id.tasks_date_list_child);
+        taskDate.setText(childTask.getCreatorUsername());
+        view.setPadding(24, 24, 24, 24);
         return view;
     }
 

@@ -16,7 +16,7 @@ public class CourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        courseName = getIntent().getStringExtra("course_name");
+        courseName = getIntent().getStringExtra("course_code");
         setTitle(courseName);
         Button viewSchedule = findViewById(R.id.view_schedule_button);
         viewSchedule.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +41,16 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseTasksActivity.class);
+                intent.putExtra("course_title",courseName);
+                startActivity(intent);
+            }
+        });
+        Button openForum = findViewById(R.id.open_forum_button);
+        openForum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CourseActivity.this, CourseForumActivity.class);
+                intent.putExtra("course_title",courseName);
                 startActivity(intent);
             }
         });
