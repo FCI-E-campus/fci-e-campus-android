@@ -11,14 +11,25 @@
         android:id="@+id/rv_announcements"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        tools:itemCount="5"
+        tools:listitem="@layout/item_announcement">
 
     </android.support.v7.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/pb_announcements"
         style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/progress_bar_dimension"
+        android:layout_height="@dimen/progress_bar_dimension"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_no_announcements_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:text="@string/msg_no_announcements"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 </FrameLayout>
