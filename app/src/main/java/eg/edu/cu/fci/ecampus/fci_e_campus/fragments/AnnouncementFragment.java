@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -43,7 +44,6 @@ public class AnnouncementFragment extends Fragment {
     @BindView(R.id.pb_announcements) ProgressBar loadingProgressBar;
     @BindView(R.id.tv_no_announcements_msg) TextView noAnnouncementsMsg;
 
-    private Announcement [] announcements;
     private AnnouncementsAdapter announcementsAdapter;
 
     public AnnouncementFragment() {
@@ -81,13 +81,16 @@ public class AnnouncementFragment extends Fragment {
     private void configureAnnouncementsRecyclerView() {
         announcementsRecyclerView.setHasFixedSize(true);
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         announcementsRecyclerView.setLayoutManager(layoutManager);
 
-        announcements = new Announcement[0];
+        Announcement [] announcements = new Announcement[0];
         announcementsAdapter = new AnnouncementsAdapter(announcements);
         announcementsRecyclerView.setAdapter(announcementsAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),
+                layoutManager.getOrientation());
+        announcementsRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
 
@@ -120,11 +123,12 @@ public class AnnouncementFragment extends Fragment {
                     if (response.getString("status").equals("success")) {
                         Gson gson = new Gson();
                         Log.d(TAG, response.getJSONArray("result").toString());
-                        announcements = gson.fromJson(response.getJSONArray("result").toString()
-                                , Announcement[].class);
+                        Announcement [] announcements = gson
+                                .fromJson(response.getJSONArray("result").toString()
+                                        , Announcement[].class);
 
                         if (announcements.length != 0) {
-                            announcementsAdapter.notifyDataSetChanged();
+                            announcementsAdapter.swapAnnouncements(announcements);
                         }
                         else {
                             noAnnouncementsMsg.setVisibility(View.VISIBLE);

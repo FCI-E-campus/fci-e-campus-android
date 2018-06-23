@@ -10,12 +10,12 @@ public class Announcement {
     @SerializedName("ADMINUSERNAME") private String adminUserName;
     @SerializedName("ANNOUNCEMENTTITLE") private String title;
     @SerializedName("ANNOUNCEMENTBODY") private String body;
-    @SerializedName("DATEPUBLISHED") private Date publishDate;
+    @SerializedName("DATEPUBLISHED") private String publishDate;
 
     public Announcement() {
     }
 
-    public Announcement(String id, String adminUserName, String title, String body, Date publishDate) {
+    public Announcement(String id, String adminUserName, String title, String body, String publishDate) {
         this.id = id;
         this.adminUserName = adminUserName;
         this.title = title;
@@ -55,11 +55,11 @@ public class Announcement {
         this.body = body;
     }
 
-    public Date getPublishDate() {
+    public String getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
+    public void setPublishDate(String publishDate) {
         this.publishDate = publishDate;
     }
 

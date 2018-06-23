@@ -47,6 +47,11 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
         return announcements.length;
     }
 
+    public void swapAnnouncements(Announcement[] announcements) {
+        this.announcements = announcements;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_title) TextView titleTextView;
         @BindView(R.id.tv_body) TextView bodyTextView;
