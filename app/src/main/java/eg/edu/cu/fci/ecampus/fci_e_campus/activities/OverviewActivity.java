@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -49,7 +50,7 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
         fragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.content_frame, fragment).commit();
-        setTitle("Overview");
+        setTitle(getString(R.string.title_activity_overview));
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -91,8 +92,10 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame, fragment);
+//        fragmentTransaction.addToBackStack(null);  // allow the user to navigate backward
+        fragmentTransaction.commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);

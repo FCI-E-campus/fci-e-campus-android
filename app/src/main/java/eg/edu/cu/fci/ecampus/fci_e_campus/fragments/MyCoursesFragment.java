@@ -24,35 +24,19 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import java.util.ArrayList;
 import java.util.Vector;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseActivity;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.JoinCourseActivity;
-import eg.edu.cu.fci.ecampus.fci_e_campus.activities.LoginActivity;
-import eg.edu.cu.fci.ecampus.fci_e_campus.activities.OverviewActivity;
-import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.CustomJsonRequest;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MyCoursesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MyCoursesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MyCoursesFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -187,29 +171,29 @@ public class MyCoursesFragment extends Fragment {
             e.printStackTrace();
         }
 
-        CustomJsonRequest getCoursesRequest = new CustomJsonRequest(Request.Method.POST
-                , uri.toString(), requestBody, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject course = response.getJSONObject(i);
-                        coursesTitle.add(course.getString("COURSETITLE"));
-                        coursesCode.add(course.getString("COURSECODE"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext()
-                        , error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        requestQueue.add(getCoursesRequest);
+//        CustomJsonRequest getCoursesRequest = new CustomJsonRequest(Request.Method.POST
+//                , uri.toString(), requestBody, new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                for (int i = 0; i < response.length(); i++) {
+//                    try {
+//                        JSONObject course = response.getJSONObject(i);
+//                        coursesTitle.add(course.getString("COURSETITLE"));
+//                        coursesCode.add(course.getString("COURSECODE"));
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(getContext()
+//                        , error.toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        requestQueue.add(getCoursesRequest);
     }
 
     private void fillCourses() {
