@@ -9,4 +9,8 @@
     tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseScheduleActivity">
 
 
+    <ListView
+        android:id="@+id/schedule_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
