@@ -24,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +35,9 @@ import java.util.Vector;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseActivity;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.JoinCourseActivity;
+import eg.edu.cu.fci.ecampus.fci_e_campus.activities.LoginActivity;
+import eg.edu.cu.fci.ecampus.fci_e_campus.activities.OverviewActivity;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.CustomJsonRequest;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
@@ -136,6 +140,7 @@ public class MyCoursesFragment extends Fragment {
         coursesTitle = new Vector<>();
         coursesCode = new Vector<>();
         fillCourses();
+        getCourses();
         progressBar.setVisibility(View.GONE);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
@@ -158,42 +163,51 @@ public class MyCoursesFragment extends Fragment {
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
                 .appendPath(getString(R.string.course_prefix))
-                .appendPath(getString(R.string.show_courses_for_student_endpoint))
+                .appendPath("showCoursesOnTheSystem")
                 .build();
 
         JSONObject requestBody = new JSONObject();
         try {
-            requestBody.put("_token", "9Jdy4m4cVxa9YihZLakbHeBWII2gaYm0fgFNFEdj");
+            requestBody.put("_token", "oO1BaXoORQrxDQSHl2iWBp1RwlSKlB9d0cxSLvqF");
             Log.e("_token:", token);
-            requestBody.put("STUDUSERNAME", username);
-            Log.e("username:", username);
+            /*requestBody.put("STUDUSERNAME", username);
+            Log.e("username:", username);*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        JsonObjectRequest allCourses = new JsonObjectRequest(Request.Method.POST
+                , uri.toString(), requestBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("status").equals("success")) {
+                        JSONArray coursesJsonArray = response.getJSONArray("result");
+                        for (int i = 0; i < coursesJsonArray.length(); i++) {
+                            Log.e("coursecode" + i, coursesJsonArray.getJSONObject(i).getString("COURSECODE"));
+                        }
+                    } else if (response.getString("status").equals("failed")) {
+                        int errorCode = response.getInt("error_code");
+                        String errorMessage = APIUtils.getErrorMsg(errorCode);
+                        Toast.makeText(getContext()
+                                , errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getContext()
+                            , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+                }
 
-//        CustomJsonRequest getCoursesRequest = new CustomJsonRequest(Request.Method.POST
-//                , uri.toString(), requestBody, new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                for (int i = 0; i < response.length(); i++) {
-//                    try {
-//                        JSONObject course = response.getJSONObject(i);
-//                        coursesTitle.add(course.getString("COURSETITLE"));
-//                        coursesCode.add(course.getString("COURSECODE"));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getContext()
-//                        , error.toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        requestQueue.add(getCoursesRequest);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Toast.makeText(getContext()
+                        , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestQueue.add(allCourses);
     }
 
     private void fillCourses() {
