@@ -53,8 +53,11 @@ public class MyCoursesFragment extends Fragment {
 
     private Vector<String> coursesTitle;
     private Vector<String> coursesCode;
+    private ArrayAdapter<String> adapter;
+    private ListView coursesListView;
     private ProgressBar progressBar;
     private TextView emptyStateTextView;
+    private TextView yourCoursesTextView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -100,6 +103,9 @@ public class MyCoursesFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         readUserDataFromSharedPreference();
+        coursesTitle = new Vector<>();
+        coursesCode = new Vector<>();
+        getCourses();
     }
 
     @Override
@@ -109,7 +115,7 @@ public class MyCoursesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_courses, container, false);
 
         progressBar = view.findViewById(R.id.my_courses_progress_bar);
-        emptyStateTextView = view.findViewById(R.id.my_courses_empty_view);
+        emptyStateTextView = view.findViewById(R.id.empty_title_text);
         TextView yourCoursesTextView = view.findViewById(R.id.your_course_text_view);
 
         //Check Connectivity
@@ -137,17 +143,10 @@ public class MyCoursesFragment extends Fragment {
         if (!userType.equals(getString(R.string.student_user_type))) {//If the user is Prof or TA
             fab.setVisibility(View.GONE);
         }
-        coursesTitle = new Vector<>();
-        coursesCode = new Vector<>();
-        fillCourses();
-        getCourses();
-        progressBar.setVisibility(View.GONE);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, coursesTitle);
-        ListView listView1 = view.findViewById(R.id.list_my_courses);
-        listView1.setAdapter(adapter);
-        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        emptyStateTextView.setVisibility(View.GONE);
+        coursesListView = view.findViewById(R.id.list_my_courses);
+        coursesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), CourseActivity.class);
@@ -163,19 +162,17 @@ public class MyCoursesFragment extends Fragment {
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
                 .appendPath(getString(R.string.course_prefix))
-                .appendPath("showCoursesOnTheSystem")
+                .appendPath(getString(R.string.show_courses_for_student_endpoint))
                 .build();
 
         JSONObject requestBody = new JSONObject();
         try {
-            requestBody.put("_token", "oO1BaXoORQrxDQSHl2iWBp1RwlSKlB9d0cxSLvqF");
-            Log.e("_token:", token);
-            /*requestBody.put("STUDUSERNAME", username);
-            Log.e("username:", username);*/
+            requestBody.put("_token", token);
+            requestBody.put("STUDUSERNAME", username);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest allCourses = new JsonObjectRequest(Request.Method.POST
+        JsonObjectRequest allCoursesRequest = new JsonObjectRequest(Request.Method.POST
                 , uri.toString(), requestBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -183,8 +180,19 @@ public class MyCoursesFragment extends Fragment {
                     if (response.getString("status").equals("success")) {
                         JSONArray coursesJsonArray = response.getJSONArray("result");
                         for (int i = 0; i < coursesJsonArray.length(); i++) {
-                            Log.e("coursecode" + i, coursesJsonArray.getJSONObject(i).getString("COURSECODE"));
+                            coursesTitle.add(coursesJsonArray.getJSONObject(i).getString("COURSETITLE"));
+                            coursesCode.add(coursesJsonArray.getJSONObject(i).getString("COURSECODE"));
                         }
+                        adapter = new ArrayAdapter<>(getActivity(),
+                                android.R.layout.simple_list_item_1, android.R.id.text1, coursesTitle);
+
+                        coursesListView.setAdapter(adapter);
+                        progressBar.setVisibility(View.GONE);
+                        if (coursesTitle.size() < 1) {
+                            emptyStateTextView.setVisibility(View.VISIBLE);
+                            yourCoursesTextView.setVisibility(View.GONE);
+                        }
+
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -207,7 +215,7 @@ public class MyCoursesFragment extends Fragment {
             }
         });
 
-        requestQueue.add(allCourses);
+        requestQueue.add(allCoursesRequest);
     }
 
     private void fillCourses() {

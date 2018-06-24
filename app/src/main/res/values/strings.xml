@@ -81,4 +81,5 @@
     <string name="msg_no_announcements">There\'re no announcements yet!</string>
     <string name="forum_answered">Answered</string>
     <string name="forum_not_answered">Not Answered</string>
+    <string name="empty_text_my_courses_fragment">You aren\'t registered in any course</string>
 </resources>

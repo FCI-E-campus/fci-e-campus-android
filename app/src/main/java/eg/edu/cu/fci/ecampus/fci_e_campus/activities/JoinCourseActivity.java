@@ -104,7 +104,7 @@ public class JoinCourseActivity extends AppCompatActivity {
                                 , "Joined successful!", Toast.LENGTH_SHORT).show();
                         onSupportNavigateUp();
                     } else if (response.getString("status").equals("failed")) {
-                        int errorCode = response.getInt("error_msg");
+                        int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
                         Toast.makeText(JoinCourseActivity.this
                                 , errorMessage, Toast.LENGTH_SHORT).show();

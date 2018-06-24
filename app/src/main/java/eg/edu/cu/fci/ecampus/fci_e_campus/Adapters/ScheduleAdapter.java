@@ -36,8 +36,11 @@ public class ScheduleAdapter extends ArrayAdapter<Slot> {
         TextView slotType = listItemView.findViewById(R.id.slot_type);
         slotType.setText(currentSlot.getType());
 
+        String hours = String.format("%02d", currentSlot.getStartTime().getHours());
+        String minutes = String.format("%02d", currentSlot.getStartTime().getMinutes());
+        String time = currentSlot.getDay() + " " + hours + ":" + minutes;
         TextView slotTime = listItemView.findViewById(R.id.slot_time);
-        slotTime.setText(currentSlot.getDay() + " " + currentSlot.getStartTime().getHours() + ":" + currentSlot.getStartTime().getMinutes());
+        slotTime.setText(time);
 
         TextView slotLocation = listItemView.findViewById(R.id.slot_location);
         slotLocation.setText(currentSlot.getLocation());

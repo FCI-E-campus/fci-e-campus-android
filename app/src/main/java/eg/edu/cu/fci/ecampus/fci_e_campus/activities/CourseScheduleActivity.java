@@ -34,7 +34,7 @@ public class CourseScheduleActivity extends AppCompatActivity {
     }
 
     private void prepareData() {
-        Time time = new Time(9, 0, 0);
+        Time time = new Time(10, 30, 0);
         Slot slot = new Slot("Sunday", time, 1, 2, "Hall 1", "Cs120");
         slots = new ArrayList<>();
         slots.add(slot);

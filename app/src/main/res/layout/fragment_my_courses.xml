@@ -26,13 +26,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/my_courses_empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium" />
-
     <ProgressBar
         android:id="@+id/my_courses_progress_bar"
         style="@style/Widget.AppCompat.ProgressBar"
@@ -40,6 +33,16 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/empty_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="16dp"
+        android:text="@string/empty_text_my_courses_fragment"
+        android:textAppearance="?android:textAppearanceMedium" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_my_courses"
