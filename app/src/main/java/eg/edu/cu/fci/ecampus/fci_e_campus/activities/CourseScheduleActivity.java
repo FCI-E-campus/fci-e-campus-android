@@ -6,26 +6,40 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import java.sql.Time;
+import java.util.ArrayList;
 
+import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.ScheduleAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
 
 public class CourseScheduleActivity extends AppCompatActivity {
+
+    private ScheduleAdapter scheduleAdapter;
+    private ArrayList<Slot> slots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_schedule);
 
-        LinearLayout parentLayout = findViewById(R.id.course_schedule_activity);
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.one_day_layout, null);
-        parentLayout.addView(rowView, parentLayout.getChildCount() - 1);
+        ListView listView = findViewById(R.id.schedule_list_view);
+        prepareData();
+        scheduleAdapter = new ScheduleAdapter(this, slots);
+        listView.setAdapter(scheduleAdapter);
 
-        TextView day = rowView.findViewById(R.id.day_text_view);
-        day.setText("Tomorrow");
+    }
+
+    private void prepareData() {
+        Time time = new Time(9, 0, 0);
+        Slot slot = new Slot("Sunday", time, 1, 2, "Hall 1", "Cs120");
+        slots = new ArrayList<>();
+        slots.add(slot);
+        slots.add(slot);
+        slots.add(slot);
     }
 
     @Override

@@ -17,6 +17,9 @@ public class CourseMaterialsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_materials);
 
+        String courseTitle = getIntent().getStringExtra("course_title");
+        setTitle(courseTitle + " - Materials");
+
         Material x = new Material();
         x.setName("Lecture 1");
         x.setUploaderUsername("Noura Abdelhameed");

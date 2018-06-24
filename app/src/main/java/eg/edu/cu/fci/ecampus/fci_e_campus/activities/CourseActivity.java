@@ -23,6 +23,7 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseScheduleActivity.class);
+                intent.putExtra("course_title",courseName);
                 startActivity(intent);
             }
         });
@@ -32,6 +33,7 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseMaterialsActivity.class);
+                intent.putExtra("course_title",courseName);
                 startActivity(intent);
             }
         });
