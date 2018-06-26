@@ -36,6 +36,7 @@
     <string name="change_password_endpoint" translatable="false">updatePass</string>
     <string name="show_courses_for_student_endpoint" translatable="false">showCoursesForStudent</string>
     <string name="join_course_endpoint" translatable="false">joinCourse</string>
+    <string name="show_course_endpoint" translatable="false">showCourse</string>
     <string name="announcements_path">announcement</string>
     <string name="show_announcements_endpoint">showAnnouncements</string>
     <!-- -->
@@ -72,6 +73,7 @@
     <string name="re_password_not_valid">Password doesn\'t match Re-enter password field</string>
     <string name="course_code_not_valid">Enter Course Code</string>
     <string name="pass_code_not_valid">Enter Pass Code</string>
+    <string name="group_number_not_valid">Enter Group Number</string>
     <!-- -->
 
     <string name="no_internet">No Internet Connection.</string>

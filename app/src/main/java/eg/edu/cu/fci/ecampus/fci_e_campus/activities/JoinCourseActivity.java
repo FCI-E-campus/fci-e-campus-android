@@ -33,6 +33,8 @@ public class JoinCourseActivity extends AppCompatActivity {
     TextInputLayout courseCodeTextInput;
     @BindView(R.id.pass_code_text_input)
     TextInputLayout passCodeTextInput;
+    @BindView(R.id.group_number_text_input)
+    TextInputLayout groupNumberTextInput;
     @BindView(R.id.join_button)
     Button joinButton;
 
@@ -72,6 +74,11 @@ public class JoinCourseActivity extends AppCompatActivity {
             passCodeTextInput.getEditText().requestFocus();
             return;
         }
+        if (groupNumberTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(JoinCourseActivity.this, getString(R.string.group_number_not_valid), Toast.LENGTH_SHORT).show();
+            groupNumberTextInput.getEditText().requestFocus();
+            return;
+        }
         sendRequest();
     }
 
@@ -88,12 +95,13 @@ public class JoinCourseActivity extends AppCompatActivity {
             requestBody.put("_token", token);
             requestBody.put("Username", username);
             requestBody.put("CourseCode", courseCodeTextInput.getEditText().getText().toString());
+            requestBody.put("GROUPID", Integer.parseInt(groupNumberTextInput.getEditText().getText().toString()));
             requestBody.put("PassCode", passCodeTextInput.getEditText().getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST
+        Log.e("requestBody", requestBody.toString());
+        JsonObjectRequest joinRequest = new JsonObjectRequest(Request.Method.POST
                 , uri.toString(), requestBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -102,7 +110,10 @@ public class JoinCourseActivity extends AppCompatActivity {
                     if (response.getString("status").equals("success")) {
                         Toast.makeText(JoinCourseActivity.this
                                 , "Joined successful!", Toast.LENGTH_SHORT).show();
-                        onSupportNavigateUp();
+                        Intent returnIntent = new Intent();
+                        setResult(RESULT_OK, returnIntent);
+                        finish();
+                        //onSupportNavigateUp();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -125,12 +136,15 @@ public class JoinCourseActivity extends AppCompatActivity {
             }
         });
 
-        requestQueue.add(loginRequest);
+        requestQueue.add(joinRequest);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        Intent returnIntent = new Intent();
+        setResult(RESULT_CANCELED, returnIntent);
+        finish();
+        //onBackPressed();
         return true;
     }
 }

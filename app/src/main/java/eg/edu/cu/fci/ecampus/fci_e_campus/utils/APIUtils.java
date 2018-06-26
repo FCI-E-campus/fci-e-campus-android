@@ -64,6 +64,8 @@ public abstract class APIUtils {
             case 27:
                 return "Nonexistent department";
             case 28:
+                return "Invalid Pass code";
+            case 29:
                 return "You are already joined in this course";
             default:
                 return "Error Code: " + errorCode;
