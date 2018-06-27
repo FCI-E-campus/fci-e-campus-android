@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AllTasksFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_all_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_task"
+        tools:itemCount="3"/>
+
+    <ProgressBar
+        android:id="@+id/pb_all_tasks"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/progress_bar_dimension"
+        android:layout_height="@dimen/progress_bar_dimension"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_no_tasks_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/msg_no_tasks"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+</FrameLayout>

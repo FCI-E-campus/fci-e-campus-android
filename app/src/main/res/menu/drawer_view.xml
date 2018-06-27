@@ -11,6 +11,10 @@
             android:icon="@drawable/ic_calendar"
             android:title="Calendar" />
         <item
+            android:id="@+id/nav_all_tasks"
+            android:icon="@drawable/ic_task"
+            android:title="All Tasks" />
+        <item
             android:id="@+id/nav_my_courses"
             android:icon="@drawable/ic_book"
             android:title="My Courses"/>
@@ -18,5 +22,9 @@
             android:id="@+id/nav_announcements"
             android:icon="@drawable/ic_announcement"
             android:title="Announcements" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map"
+            android:title="Faculty Map" />
     </group>
 </menu>

@@ -19,8 +19,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AllTasksFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AnnouncementFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MapFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MyCoursesFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
@@ -75,14 +77,20 @@ public class OverviewActivity extends AppCompatActivity implements CalendarFragm
             case R.id.nav_calendar:
                 fragmentClass = CalendarFragment.class;
                 break;
+            case R.id.nav_all_tasks:
+                fragmentClass = AllTasksFragment.class;
+                break;
             case R.id.nav_announcements:
                 fragmentClass = AnnouncementFragment.class;
                 break;
             case R.id.nav_my_courses:
                 fragmentClass = MyCoursesFragment.class;
                 break;
+            case R.id.nav_map:
+                fragmentClass = MapFragment.class;
+                break;
             default:
-                fragmentClass = CalendarFragment.class;
+                fragmentClass = OverviewFragment.class;
         }
 
         try {
