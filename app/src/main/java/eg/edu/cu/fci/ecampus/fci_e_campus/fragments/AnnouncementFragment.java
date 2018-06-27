@@ -100,7 +100,7 @@ public class AnnouncementFragment extends Fragment {
 
         Uri uri = Uri.parse(getString(R.string.base_url))
                 .buildUpon()
-                .appendPath(getString(R.string.announcements_path))
+                .appendPath(getString(R.string.announcements_prefix))
                 .appendPath(getString(R.string.show_announcements_endpoint))
                 .build();
 

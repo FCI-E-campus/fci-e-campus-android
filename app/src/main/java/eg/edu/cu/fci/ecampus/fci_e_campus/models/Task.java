@@ -10,9 +10,11 @@ public class Task {
     private String description;
     @SerializedName("date_created") private Date createdDate;
     @SerializedName("due_date") private Date dueDate;
-    String weight;
+    private String weight;
     @SerializedName("creator_username") private String creatorUsername;
-    @SerializedName("creator_type") String creatorType;
+    @SerializedName("creator_type") private String creatorType;
+
+    private String courseCode;
 
     public Task() {
     }
@@ -82,5 +84,13 @@ public class Task {
 
     public void setCreatorType(String creatorType) {
         this.creatorType = creatorType;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

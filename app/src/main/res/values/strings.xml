@@ -37,8 +37,9 @@
     <string name="show_courses_for_student_endpoint" translatable="false">showCoursesForStudent</string>
     <string name="join_course_endpoint" translatable="false">joinCourse</string>
     <string name="show_course_endpoint" translatable="false">showCourse</string>
-    <string name="announcements_path">announcement</string>
+    <string name="announcements_prefix">announcement</string>
     <string name="show_announcements_endpoint">showAnnouncements</string>
+    <string name="get_all_tasks_endpoint">getAllTasks</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -81,6 +82,7 @@
     <string name="action_settings_title">Settings</string>
     <string name="my_course_text_view">Your Courses:</string>
     <string name="msg_no_announcements">There\'re no announcements yet!</string>
+    <string name="msg_no_tasks">There\'re no tasks yet.</string>
     <string name="forum_answered">Answered</string>
     <string name="forum_not_answered">Not Answered</string>
     <string name="empty_text_my_courses_fragment">You aren\'t registered in any course</string>
