@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MapFragment">
 
-    <TextView
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/pv_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MapFragment"
-        android:textSize="18sp" />
+        android:background="@android:color/white"
+        android:contentDescription="Map Image"
+        android:scaleType="center" />
 
 </FrameLayout>
