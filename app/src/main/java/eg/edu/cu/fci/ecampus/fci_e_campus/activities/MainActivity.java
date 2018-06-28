@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,CalendarFragment.OnFragmentInteractionListener,
         OverviewFragment.OnFragmentInteractionListener, MyCoursesFragment.OnFragmentInteractionListener{
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
 
     @Override
@@ -49,8 +52,17 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // hide all tasks item from navigationView if TA or Prof (not student)
+        String userType = getUserTypeFromSharedPref();
+        Log.d(TAG, userType);
+        if (!userType.equals(getString(R.string.student_user_type))) {
+            MenuItem navAllTasks = navigationView.getMenu().findItem(R.id.nav_all_tasks);
+            navAllTasks.setVisible(false);
+            navAllTasks.setEnabled(false);
+        }
 
         // open the overview fragment (the default fragment)
         OverviewFragment fragment = new OverviewFragment();
@@ -146,6 +158,14 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
         Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private String getUserTypeFromSharedPref() {
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.authentication_shared_preference_file_name),
+                Context.MODE_PRIVATE);
+
+        return sharedPref.getString(getString(R.string.saved_user_type_key), null);
     }
 
     @Override
