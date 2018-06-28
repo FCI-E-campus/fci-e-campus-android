@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/material_list_view"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseMaterialsActivity">
+    android:layout_margin="@dimen/fab_margin">
 
-</ListView>
+    <ListView
+        android:id="@+id/material_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseMaterialsActivity" />
+
+
+    <ProgressBar
+        android:id="@+id/materials_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/materials_empty_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="16dp"
+        android:text="@string/empty_text_materials_activity"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+
+</RelativeLayout>

@@ -30,16 +30,21 @@
     <string name="ta_prefix" translatable="false">ta</string>
     <string name="course_prefix" translatable="false">course</string>
     <string name="professor_prefix" translatable="false">professor</string>
+    <string name="material_prefix" translatable="false">material</string>
     <string name="signup_endpoint" translatable="false">signup</string>
     <string name="login_endpoint" translatable="false">login</string>
     <string name="activate_endpoint" translatable="false">activate</string>
     <string name="change_password_endpoint" translatable="false">updatePass</string>
     <string name="show_courses_for_student_endpoint" translatable="false">showCoursesForStudent</string>
+    <string name="show_courses_for_ta_endpoint" translatable="false">showCoursesForTA</string>
+    <string name="show_courses_for_prof_endpoint" translatable="false">showCoursesForProf</string>
     <string name="join_course_endpoint" translatable="false">joinCourse</string>
     <string name="show_course_endpoint" translatable="false">showCourse</string>
     <string name="announcements_prefix">announcement</string>
     <string name="show_announcements_endpoint">showAnnouncements</string>
     <string name="get_all_tasks_endpoint">getAllTasks</string>
+    <string name="show_official_materials_endpoint">showOfficialMaterials</string>
+    <string name="show_tasks_endpoint">showAllTasksForSpecificCourse</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -86,4 +91,6 @@
     <string name="forum_answered">Answered</string>
     <string name="forum_not_answered">Not Answered</string>
     <string name="empty_text_my_courses_fragment">You aren\'t registered in any course</string>
+    <string name="empty_text_materials_activity">No materials for this course yet</string>
+    <string name="empty_text_tasks_activity">No tasks for this course yet</string>
 </resources>

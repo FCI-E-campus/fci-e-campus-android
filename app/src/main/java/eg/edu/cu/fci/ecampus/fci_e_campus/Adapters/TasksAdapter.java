@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 /**
  * Created by ahmed on 6/21/2018.
@@ -96,7 +97,7 @@ public class TasksAdapter extends BaseExpandableListAdapter {
         taskDescription.setText(childTask.getDescription());
 
         TextView taskDate = view.findViewById(R.id.tasks_date_list_child);
-        taskDate.setText(childTask.getCreatorUsername());
+        taskDate.setText(DateUtils.convert(childTask.getDueDate()));
         view.setPadding(24, 24, 24, 24);
         return view;
     }

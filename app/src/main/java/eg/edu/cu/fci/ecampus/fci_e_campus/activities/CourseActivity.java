@@ -38,6 +38,7 @@ public class CourseActivity extends AppCompatActivity {
     private TextView courseStaffTextView;
 
     private String courseCode;
+    private String courseTitle;
     private Course course;
 
     private String token;
@@ -61,14 +62,16 @@ public class CourseActivity extends AppCompatActivity {
 
         readUserDataFromSharedPreference();
         courseCode = getIntent().getStringExtra("course_code");
-        setTitle(getIntent().getStringExtra("course_title").toUpperCase());
+        courseTitle = getIntent().getStringExtra("course_title");
+        setTitle(courseTitle.toUpperCase());
         getCourse();
         Button viewSchedule = findViewById(R.id.view_schedule_button);
         viewSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseScheduleActivity.class);
-                intent.putExtra("course_title", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                intent.putExtra("course_code", courseCode);
                 startActivity(intent);
             }
         });
@@ -78,7 +81,8 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseMaterialsActivity.class);
-                intent.putExtra("course_title", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                intent.putExtra("course_code", courseCode);
                 startActivity(intent);
             }
         });
@@ -88,7 +92,8 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseTasksActivity.class);
-                intent.putExtra("course_title", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                intent.putExtra("course_code", courseCode);
                 startActivity(intent);
             }
         });
@@ -97,7 +102,8 @@ public class CourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CourseActivity.this, CourseForumActivity.class);
-                intent.putExtra("course_title", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                intent.putExtra("course_code", courseCode);
                 startActivity(intent);
             }
         });

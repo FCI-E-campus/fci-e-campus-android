@@ -10,13 +10,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,29 +25,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
-import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.CoursesAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.CourseActivity;
 import eg.edu.cu.fci.ecampus.fci_e_campus.activities.JoinCourseActivity;
-import eg.edu.cu.fci.ecampus.fci_e_campus.activities.LoginActivity;
-import eg.edu.cu.fci.ecampus.fci_e_campus.activities.OverviewActivity;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.CourseShow;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
-import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.CustomJsonRequest;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
-import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class MyCoursesFragment extends Fragment {
@@ -124,7 +113,7 @@ public class MyCoursesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_courses, container, false);
 
         progressBar = view.findViewById(R.id.my_courses_progress_bar);
-        emptyStateTextView = view.findViewById(R.id.empty_title_text);
+        emptyStateTextView = view.findViewById(R.id.my_courses_empty_title_text);
         yourCoursesTextView = view.findViewById(R.id.your_course_text_view);
 
         //Check Connectivity
@@ -182,16 +171,37 @@ public class MyCoursesFragment extends Fragment {
 
     private void getCourses() {
         RequestQueue requestQueue = RequestQueueSingleton.getInstance(getContext()).getRequestQueue();
-        Uri uri = Uri.parse(getString(R.string.base_url))
-                .buildUpon()
-                .appendPath(getString(R.string.course_prefix))
-                .appendPath(getString(R.string.show_courses_for_student_endpoint))
-                .build();
+        Uri uri;
+        if (userType.equals(getString(R.string.student_user_type))) {
+            uri = Uri.parse(getString(R.string.base_url))
+                    .buildUpon()
+                    .appendPath(getString(R.string.course_prefix))
+                    .appendPath(getString(R.string.show_courses_for_student_endpoint))
+                    .build();
+        } else if (userType.equals(getString(R.string.ta_user_type))) {
+            uri = Uri.parse(getString(R.string.base_url))
+                    .buildUpon()
+                    .appendPath(getString(R.string.course_prefix))
+                    .appendPath(getString(R.string.show_courses_for_ta_endpoint))
+                    .build();
+        } else {
+            uri = Uri.parse(getString(R.string.base_url))
+                    .buildUpon()
+                    .appendPath(getString(R.string.course_prefix))
+                    .appendPath(getString(R.string.show_courses_for_prof_endpoint))
+                    .build();
+        }
 
         JSONObject requestBody = new JSONObject();
         try {
             requestBody.put("_token", token);
-            requestBody.put("STUDUSERNAME", username);
+            if (userType.equals(getString(R.string.student_user_type))) {
+                requestBody.put("STUDUSERNAME", username);
+            } else if (userType.equals(getString(R.string.ta_user_type))) {
+                requestBody.put("TAUSERNAME", username);
+            } else {
+                requestBody.put("PROFUSERNAME", username);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

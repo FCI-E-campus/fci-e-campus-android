@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Material;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 /**
  * Created by ahmed on 6/21/2018.
@@ -39,7 +40,7 @@ public class MaterialsAdapter extends ArrayAdapter<Material> {
         uploaderTextView.setText(currentMaterial.getUploaderUsername());
 
         TextView dateTextView = listItemView.findViewById(R.id.material_date);
-        dateTextView.setText(currentMaterial.getDescription());
+        dateTextView.setText(DateUtils.convert(currentMaterial.getDate()));
 
         return listItemView;
     }
