@@ -23,8 +23,6 @@
     <string name="activation_key_et_hint">Activation Key</string>
 
     <!-- API End Points -->
-    <!-- abdallah: http://10.0.2.2/E-campus/public  -->
-    <!-- ahmed: http://10.0.3.2/E-campus/public  -->
     <string name="base_url" translatable="false">http://e-campus.herokuapp.com</string>
     <string name="student_prefix" translatable="false">student</string>
     <string name="ta_prefix" translatable="false">ta</string>
@@ -84,7 +82,6 @@
 
     <string name="no_internet">No Internet Connection.</string>
     <string name="action_logout_title">Logout</string>
-    <string name="action_settings_title">Settings</string>
     <string name="my_course_text_view">Your Courses:</string>
     <string name="msg_no_announcements">There\'re no announcements yet!</string>
     <string name="msg_no_tasks">There\'re no tasks yet.</string>
@@ -93,4 +90,8 @@
     <string name="empty_text_my_courses_fragment">You aren\'t registered in any course</string>
     <string name="empty_text_materials_activity">No materials for this course yet</string>
     <string name="empty_text_tasks_activity">No tasks for this course yet</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

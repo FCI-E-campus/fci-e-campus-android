@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="eg.edu.cu.fci.ecampus.fci_e_campus">
+    package="eg.edu.cu.fci.ecampus.fci_e_campus"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activities.WelcomeActivity"
             android:label="@string/app_launcher_name"
@@ -23,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.WelcomeActivity">
@@ -30,6 +33,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
+
         <activity
             android:name=".activities.SignupActivity"
             android:parentActivityName=".activities.WelcomeActivity">
@@ -37,9 +41,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
-        <activity
-            android:name=".activities.OverviewActivity"
-            android:label="@string/title_activity_overview" />
+
         <activity
             android:name=".activities.ActivationActivity"
             android:parentActivityName=".activities.WelcomeActivity">
@@ -47,30 +49,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.WelcomeActivity" />
         </activity>
+
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.OverviewActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.OverviewActivity" />
-            >
+                android:value=".activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".activities.JoinCourseActivity"
             android:label="@string/title_activity_join_course"
-            android:parentActivityName=".activities.OverviewActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.OverviewActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".activities.CourseActivity"
-            android:parentActivityName=".activities.OverviewActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.OverviewActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".activities.CourseScheduleActivity"
             android:parentActivityName=".activities.CourseActivity">
@@ -78,6 +83,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
+
         <activity
             android:name=".activities.CourseMaterialsActivity"
             android:parentActivityName=".activities.CourseActivity">
@@ -85,6 +91,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
+
         <activity
             android:name=".activities.CourseTasksActivity"
             android:parentActivityName=".activities.CourseActivity">
@@ -92,6 +99,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
+
         <activity
             android:name=".activities.CourseForumActivity"
             android:parentActivityName=".activities.CourseActivity">
@@ -99,6 +107,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseActivity" />
         </activity>
+
         <activity
             android:name=".activities.AddPostActivity"
             android:parentActivityName=".activities.CourseForumActivity">
@@ -106,6 +115,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseForumActivity" />
         </activity>
+
         <activity
             android:name=".activities.ForumPostActivity"
             android:parentActivityName=".activities.CourseForumActivity">
@@ -113,6 +123,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CourseForumActivity" />
         </activity>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

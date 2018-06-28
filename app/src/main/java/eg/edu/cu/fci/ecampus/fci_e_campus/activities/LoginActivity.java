@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.apply();
 
                         // redirect to overview activity
-                        Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.getString("status").equals("failed")) {
@@ -210,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.apply();
 
                         // redirect to overview activity
-                        Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.getString("status").equals("failed")) {
@@ -287,7 +287,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.apply();
 
                         // redirect to overview activity
-                        Intent intent = new Intent(LoginActivity.this, OverviewActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.getString("status").equals("failed")) {

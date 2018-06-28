@@ -113,7 +113,7 @@ public class ActivationActivity extends AppCompatActivity {
                         editor.apply();
 
                         // redirect to overview activity
-                        Intent intent = new Intent(ActivationActivity.this, OverviewActivity.class);
+                        Intent intent = new Intent(ActivationActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.getString("status").equals("failed")) {
@@ -180,7 +180,7 @@ public class ActivationActivity extends AppCompatActivity {
                         editor.apply();
 
                         // redirect to overview activity
-                        Intent intent = new Intent(ActivationActivity.this, OverviewActivity.class);
+                        Intent intent = new Intent(ActivationActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (response.getString("status").equals("failed")) {

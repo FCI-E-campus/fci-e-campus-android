@@ -33,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
             if (token != null) {
                 // user already logged in
                 Log.d(TAG, token);
-                Intent intent = new Intent(this, OverviewActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
