@@ -67,6 +67,12 @@ public abstract class APIUtils {
                 return "Invalid Pass code";
             case 29:
                 return "You are already joined in this course";
+            case 30:
+                return "Student didn't join any courses.";
+            case 31:
+                return "Professor didn't join any courses.";
+            case 32:
+                return "TA didn't join any courses.";
             default:
                 return "Error Code: " + errorCode;
         }
