@@ -8,14 +8,12 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,10 +34,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.CoursesAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.MaterialsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.CourseShow;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Material;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;

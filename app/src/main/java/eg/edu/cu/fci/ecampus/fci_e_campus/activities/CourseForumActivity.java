@@ -1,9 +1,9 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Date;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.ForumAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.ForumAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Forum;
 

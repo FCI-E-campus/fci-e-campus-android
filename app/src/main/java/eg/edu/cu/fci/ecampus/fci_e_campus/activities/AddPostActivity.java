@@ -1,7 +1,7 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 

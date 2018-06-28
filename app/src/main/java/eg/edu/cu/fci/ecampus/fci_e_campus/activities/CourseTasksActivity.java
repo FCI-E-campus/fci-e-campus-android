@@ -5,12 +5,11 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,12 +28,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.MaterialsAdapter;
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.TasksAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Material;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;

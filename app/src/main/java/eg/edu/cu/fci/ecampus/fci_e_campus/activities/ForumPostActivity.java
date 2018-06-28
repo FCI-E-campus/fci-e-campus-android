@@ -1,14 +1,14 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.CommentsAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.CommentsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Comment;
 

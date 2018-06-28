@@ -1,18 +1,13 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.ArrayList;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.ScheduleAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.ScheduleAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
 

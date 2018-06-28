@@ -2,8 +2,6 @@ package eg.edu.cu.fci.ecampus.fci_e_campus.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Announcement {
 
     @SerializedName("ANNOUNCEMENTID") private String id;

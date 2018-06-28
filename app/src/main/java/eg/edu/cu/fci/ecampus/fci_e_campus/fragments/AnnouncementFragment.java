@@ -18,13 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +31,6 @@ import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.AnnouncementsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Announcement;
-import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.CustomJsonRequest;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
 public class AnnouncementFragment extends Fragment {
