@@ -22,11 +22,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -120,8 +125,44 @@ public class AllTasksFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 loadingProgressBar.setVisibility(View.INVISIBLE);
 
+                try {
+                    if (response.getString("status").equals("success")) {
+                        JSONArray result = response.getJSONArray("result");
+                        for (int i = 0; i<result.length(); i++) {
+                            JSONObject courseTasksJsonObj = result.getJSONObject(i);
+                            Iterator<String> keysIter = courseTasksJsonObj.keys();
+                            if (keysIter.hasNext()) {
+                                String courseCode =  keysIter.next();
+                                JSONArray tasksJsonArray = courseTasksJsonObj.getJSONArray(courseCode);
+                                Gson gson = new Gson();
+                                Task [] tasks = gson.fromJson(tasksJsonArray.toString(), Task[].class);
+                                // add the course code to the tasks
+                                for (Task t : tasks) {
+                                    t.setCourseCode(courseCode);
+                                }
 
-                Log.d(TAG, response.toString());
+                                allTasks.addAll(Arrays.asList(tasks));
+                                if (allTasks.size() > 0) {
+                                    allTasksAdapter.notifyDataSetChanged();
+                                }
+                                else {
+                                    noTasksMsgTextView.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        Toast.makeText(AllTasksFragment.this.getContext()
+                                , getString(R.string.error_loading_all_tasks), Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(AllTasksFragment.this.getContext()
+                            , getString(R.string.error_loading_all_tasks), Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         }
         , new Response.ErrorListener() {
@@ -131,7 +172,7 @@ public class AllTasksFragment extends Fragment {
 
                 loadingProgressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(AllTasksFragment.this.getContext()
-                        , "Error loading tasks!", Toast.LENGTH_SHORT).show();
+                        , getString(R.string.error_loading_all_tasks), Toast.LENGTH_SHORT).show();
             }
         });
 
