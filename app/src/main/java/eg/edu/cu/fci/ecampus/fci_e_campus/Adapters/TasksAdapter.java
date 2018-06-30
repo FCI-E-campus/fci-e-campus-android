@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.adapters;
+package eg.edu.cu.fci.ecampus.fci_e_campus.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

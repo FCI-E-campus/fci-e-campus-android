@@ -32,7 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.AllTasksAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.AllTasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 

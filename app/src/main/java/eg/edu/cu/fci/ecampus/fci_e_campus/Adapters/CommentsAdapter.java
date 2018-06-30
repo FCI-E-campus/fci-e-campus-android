@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.adapters;
+package eg.edu.cu.fci.ecampus.fci_e_campus.Adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;

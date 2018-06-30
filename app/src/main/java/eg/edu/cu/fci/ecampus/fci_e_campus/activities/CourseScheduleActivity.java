@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -25,13 +24,10 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.ForumAdapter;
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.ScheduleAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.ScheduleAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Forum;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;

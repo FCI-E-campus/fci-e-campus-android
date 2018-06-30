@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.AnnouncementsAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.AnnouncementsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Announcement;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 

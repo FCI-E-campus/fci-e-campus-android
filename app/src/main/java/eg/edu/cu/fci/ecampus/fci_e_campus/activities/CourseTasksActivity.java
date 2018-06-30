@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
+import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
