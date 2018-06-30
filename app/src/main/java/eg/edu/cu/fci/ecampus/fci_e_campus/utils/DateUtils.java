@@ -14,6 +14,16 @@ public final class DateUtils {
         return formatter.parse(dateString);
     }
 
+    public static Date convertSlot(String startTimeString) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+        return formatter.parse(startTimeString);
+    }
+
+    public static String convertSlot(Date startTime) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        return formatter.format(startTime);
+    }
+
     public static String convert(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, d");
         return formatter.format(date);

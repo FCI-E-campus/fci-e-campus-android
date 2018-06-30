@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
@@ -33,13 +34,15 @@ public class ScheduleAdapter extends ArrayAdapter<Slot> {
         Slot currentSlot = getItem(position);
 
         TextView slotType = listItemView.findViewById(R.id.slot_type);
-        slotType.setText(currentSlot.getType());
+        slotType.setText(currentSlot.getType()+"");
 
-        String hours = String.format("%02d", currentSlot.getStartTime().getHours());
-        String minutes = String.format("%02d", currentSlot.getStartTime().getMinutes());
-        String time = currentSlot.getDay() + " " + hours + ":" + minutes;
+
         TextView slotTime = listItemView.findViewById(R.id.slot_time);
-        slotTime.setText(time);
+        try {
+            slotTime.setText(currentSlot.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         TextView slotLocation = listItemView.findViewById(R.id.slot_location);
         slotLocation.setText(currentSlot.getLocation());

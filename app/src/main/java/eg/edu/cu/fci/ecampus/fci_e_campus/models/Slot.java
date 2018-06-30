@@ -1,23 +1,39 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.models;
 
+import android.util.Log;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.sql.Time;
+import java.text.ParseException;
+import java.util.Date;
+
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 /**
  * Created by ahmed on 6/24/2018.
  */
 
 public class Slot {
+    @SerializedName("DAY")
     private String day;
-    private Time startTime;
+    @SerializedName("STARTTIME")
+    private String startTimeString;
+    private Date startTime;
+    @SerializedName("GROUPID")
     private int groupNumber;
-    private int slotType;
+    @SerializedName("SLOTTYPE")
+    private String slotType;
+    @SerializedName("PLACE")
     private String location;
+    @SerializedName("COURSECODE")
     private String courseCode;
 
     public Slot() {
+        this.startTime = new Date();
     }
 
-    public Slot(String day, Time startTime, int groupNumber, int slotType, String location, String courseCode) {
+    public Slot(String day, Time startTime, int groupNumber, String slotType, String location, String courseCode) {
         this.day = day;
         this.startTime = startTime;
         this.groupNumber = groupNumber;
@@ -34,11 +50,16 @@ public class Slot {
         this.day = day;
     }
 
-    public Time getStartTime() {
+    public Date getStartTime() {
+        try {
+            this.startTime = DateUtils.convertSlot(this.startTimeString);
+        } catch (ParseException e) {
+            Log.e("Parse Exception", e.toString());
+        }
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
@@ -50,11 +71,11 @@ public class Slot {
         this.groupNumber = groupNumber;
     }
 
-    public int getSlotType() {
+    public String getSlotType() {
         return slotType;
     }
 
-    public void setSlotType(int slotType) {
+    public void setSlotType(String slotType) {
         this.slotType = slotType;
     }
 
@@ -74,13 +95,26 @@ public class Slot {
         this.courseCode = courseCode;
     }
 
+    public String getStartTimeString() {
+        return startTimeString;
+    }
+
+    public void setStartTimeString(String startTimeString) {
+        this.startTimeString = startTimeString;
+    }
+
+    public String getTime() throws ParseException {
+        return day.substring(0, 1).toUpperCase() + day.substring(1) + " " + DateUtils.convertSlot(getStartTime());
+    }
+
     public String getType() {
-        if (slotType == 1) {
-            return "Lecture";
-        } else if (slotType == 2) {
-            return "Lab";
-        } else {
-            return "Section";
+        switch (slotType) {
+            case "lec":
+                return "Lecture";
+            case "lab":
+                return "Lab";
+            default:
+                return "Section";
         }
     }
 }

@@ -52,6 +52,7 @@
     <string name="answer_post_endpoint">answered</string>
     <string name="not_answer_post_endpoint">notAnswered</string>
     <string name="add_post_endpoint">addPost</string>
+    <string name="show_schedule_endpoint">showCourseSchedule</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -106,6 +107,7 @@
     <string name="empty_text_materials_activity">No materials for this course yet</string>
     <string name="empty_text_tasks_activity">No tasks for this course yet</string>
     <string name="empty_text_forum_activity">No posts for this course yet</string>
+    <string name="empty_text_schedule_activity">No schedule for this course yet</string>
     <string name="empty_comments_forum_post_activity">No comments for this post yet</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
