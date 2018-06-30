@@ -124,7 +124,7 @@ public class AnnouncementFragment extends Fragment {
                                 .fromJson(response.getJSONArray("result").toString()
                                         , Announcement[].class);
 
-                        if (announcements.length != 0) {
+                        if (announcements.length > 0) {
                             announcementsAdapter.swapAnnouncements(announcements);
                         }
                         else {

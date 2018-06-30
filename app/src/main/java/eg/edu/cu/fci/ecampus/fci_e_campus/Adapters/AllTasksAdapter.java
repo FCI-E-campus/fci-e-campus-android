@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,8 +43,10 @@ public class AllTasksAdapter extends RecyclerView.Adapter<AllTasksAdapter.ViewHo
         holder.courseCodeTextView.setText(task.getCourseCode());
         holder.taskNameTextView.setText(task.getName());
         holder.taskDescriptionTextView.setText(task.getDescription());
-        holder.dateCreatedTextView.setText(task.getCreatedDate().toString());
-        holder.dueDateTextView.setText(task.getDueDate().toString());
+        holder.dateCreatedTextView.setText(
+                new SimpleDateFormat("yyyy-MM-dd").format(task.getCreatedDate()));
+        holder.dueDateTextView.setText(
+                new SimpleDateFormat("yyyy-MM-dd hh:mm a").format(task.getDueDate()));
         holder.creatorUserNameTextView.setText(task.getCreatorUsername());
         holder.taskWeightTextView.setText(task.getWeight());
     }
@@ -68,6 +72,12 @@ public class AllTasksAdapter extends RecyclerView.Adapter<AllTasksAdapter.ViewHo
         }
     }
 
+    public void addTasks(Task [] tasks) {
+        allTasks.addAll(Arrays.asList(tasks));
+        if (allTasks.size() > 0) {
+            notifyDataSetChanged();
+        }
+    }
 
 
 }
