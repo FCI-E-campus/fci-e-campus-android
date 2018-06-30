@@ -29,6 +29,8 @@
     <string name="course_prefix" translatable="false">course</string>
     <string name="professor_prefix" translatable="false">professor</string>
     <string name="material_prefix" translatable="false">material</string>
+    <string name="post_prefix" translatable="false">post</string>
+    <string name="forum_prefix" translatable="false">forum</string>
     <string name="signup_endpoint" translatable="false">signup</string>
     <string name="login_endpoint" translatable="false">login</string>
     <string name="activate_endpoint" translatable="false">activate</string>
@@ -44,6 +46,12 @@
     <string name="show_official_materials_endpoint">showOfficialMaterials</string>
     <string name="show_tasks_endpoint">showAllTasksForSpecificCourse</string>
     <string name="add_task_endpoint">addTask</string>
+    <string name="show_forum_endpoint">getAllForumPostsForSpecificCourse</string>
+    <string name="post_comments_endpoint">showSpecificPostComments</string>
+    <string name="add_comment_endpoint">addComment</string>
+    <string name="answer_post_endpoint">answered</string>
+    <string name="not_answer_post_endpoint">notAnswered</string>
+    <string name="add_post_endpoint">addPost</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -83,6 +91,8 @@
     <string name="task_description_not_valid">Enter Task Description</string>
     <string name="task_date_not_valid">Enter Due Date</string>
     <string name="task_time_not_valid">Enter Due Time</string>
+    <string name="post_header_not_valid">Enter Post Header</string>
+    <string name="post_body_not_valid">Enter Post Body</string>
     <!-- -->
 
     <string name="no_internet">No Internet Connection.</string>
@@ -95,6 +105,8 @@
     <string name="empty_text_my_courses_fragment">You aren\'t registered in any course</string>
     <string name="empty_text_materials_activity">No materials for this course yet</string>
     <string name="empty_text_tasks_activity">No tasks for this course yet</string>
+    <string name="empty_text_forum_activity">No posts for this course yet</string>
+    <string name="empty_comments_forum_post_activity">No comments for this post yet</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Forum;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 /**
  * Created by ahmed on 6/23/2018.
@@ -41,13 +42,12 @@ public class ForumAdapter extends ArrayAdapter<Forum> {
         TextView forumBody = listItemView.findViewById(R.id.forum_body);
         forumBody.setText(currentForum.getBody());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM");
 
         TextView forumDate = listItemView.findViewById(R.id.forum_date);
-        forumDate.setText(dateFormat.format(currentForum.getDate()));
+        forumDate.setText(currentForum.getConvertedDate());
 
         ImageView forumAnswered = listItemView.findViewById(R.id.forum_answered_image_view);
-        if (!currentForum.isAnswered()) {
+        if (currentForum.isAnswered() == 0) {
             forumAnswered.setVisibility(View.GONE);
         }
         return listItemView;

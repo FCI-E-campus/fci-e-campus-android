@@ -11,6 +11,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <ProgressBar
+        android:id="@+id/forum_progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="@dimen/progress_bar_dimension"
+        android:layout_height="@dimen/progress_bar_dimension"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/forum_empty_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="16dp"
+        android:text="@string/empty_text_forum_activity"
+        android:textAppearance="?android:textAppearanceMedium" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_course_forum"
         android:layout_width="wrap_content"

@@ -39,10 +39,8 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
         TextView commentText = listItemView.findViewById(R.id.comment_text_view);
         commentText.setText(currentComment.getText());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM");
-
         TextView commentDate = listItemView.findViewById(R.id.comment_date);
-        commentDate.setText(simpleDateFormat.format(currentComment.getDate()));
+        commentDate.setText(currentComment.getConvertedDate());
 
         return listItemView;
     }

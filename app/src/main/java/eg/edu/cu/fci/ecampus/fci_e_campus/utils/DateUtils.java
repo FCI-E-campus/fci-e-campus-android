@@ -18,4 +18,14 @@ public final class DateUtils {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, d");
         return formatter.format(date);
     }
+
+    public static String convertForumPost(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("d MMM");
+        return formatter.format(date);
+    }
+
+    public static String convertPostComment(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("d MMM, h:mm a");
+        return formatter.format(date);
+    }
 }

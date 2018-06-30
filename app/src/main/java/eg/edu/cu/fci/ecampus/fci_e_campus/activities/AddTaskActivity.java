@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
@@ -23,19 +22,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.Adapters.MaterialsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Material;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
@@ -51,7 +44,6 @@ public class AddTaskActivity extends AppCompatActivity {
     private Button publishButton;
 
     private int year = -1, month = -1, day = -1;
-    private int hour = -1, minute = -1;
     private String date, time;
 
     private void readUserDataFromSharedPreference() {
