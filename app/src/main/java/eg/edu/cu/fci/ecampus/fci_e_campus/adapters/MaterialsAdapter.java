@@ -1,4 +1,4 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.Adapters;
+package eg.edu.cu.fci.ecampus.fci_e_campus.adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
