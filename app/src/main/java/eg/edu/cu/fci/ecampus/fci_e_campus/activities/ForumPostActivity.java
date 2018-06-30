@@ -104,10 +104,14 @@ public class ForumPostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (forum.isAnswered() == 1) {
+                    Toast.makeText(ForumPostActivity.this
+                            , "Post has been marked as not answered", Toast.LENGTH_SHORT).show();
                     forum.setAnswered(0);
                     notAnswerPost();
                     answeredImageView.setImageResource(R.drawable.ic_answered_forum);
                 } else {
+                    Toast.makeText(ForumPostActivity.this
+                            , "Post has been marked as answered", Toast.LENGTH_SHORT).show();
                     forum.setAnswered(1);
                     answerPost();
                     answeredImageView.setImageResource(R.drawable.ic_not_answered);
@@ -214,7 +218,6 @@ public class ForumPostActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("request", requestBody.toString());
         JsonObjectRequest answerRequest = new JsonObjectRequest(Request.Method.POST
                 , uri.toString(), requestBody, new Response.Listener<JSONObject>() {
             @Override
@@ -233,7 +236,6 @@ public class ForumPostActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(ForumPostActivity.this
                             , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
-                    Log.e("error", e.toString());
                 }
 
 
@@ -242,7 +244,6 @@ public class ForumPostActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // Handle error
-                Log.e("error", error.toString());
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(ForumPostActivity.this
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
