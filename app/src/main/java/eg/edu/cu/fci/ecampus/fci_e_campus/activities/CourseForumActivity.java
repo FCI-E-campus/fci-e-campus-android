@@ -26,7 +26,7 @@ public class CourseForumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_forum);
 
         String courseTitle = getIntent().getStringExtra("course_title");
-        setTitle(courseTitle + " - Forum");
+        setTitle(courseTitle.toUpperCase() + " - Forum");
 
         ListView listView = findViewById(R.id.course_forum_list_view);
         prepareListData();

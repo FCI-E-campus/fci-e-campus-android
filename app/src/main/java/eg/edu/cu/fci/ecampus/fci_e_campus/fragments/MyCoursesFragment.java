@@ -219,6 +219,7 @@ public class MyCoursesFragment extends Fragment {
                         progressBar.setVisibility(View.GONE);
                         coursesListView.setAdapter(courseAdapter);
                         yourCoursesTextView.setVisibility(View.VISIBLE);
+                        emptyStateTextView.setVisibility(View.INVISIBLE);
                         if (courses.size() < 1) {
                             emptyStateTextView.setVisibility(View.VISIBLE);
                             yourCoursesTextView.setVisibility(View.GONE);

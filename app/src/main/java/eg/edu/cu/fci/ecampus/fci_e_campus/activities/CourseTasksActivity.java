@@ -1,6 +1,7 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -90,7 +91,10 @@ public class CourseTasksActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(CourseTasksActivity.this, AddTaskActivity.class);
+                intent.putExtra("course_code", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                startActivityForResult(intent, 1);
             }
         });
         getTasks();
@@ -191,5 +195,15 @@ public class CourseTasksActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                getTasks();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

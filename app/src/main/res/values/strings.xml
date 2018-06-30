@@ -43,6 +43,7 @@
     <string name="get_all_tasks_endpoint">getAllTasks</string>
     <string name="show_official_materials_endpoint">showOfficialMaterials</string>
     <string name="show_tasks_endpoint">showAllTasksForSpecificCourse</string>
+    <string name="add_task_endpoint">addTask</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -78,6 +79,10 @@
     <string name="course_code_not_valid">Enter Course Code</string>
     <string name="pass_code_not_valid">Enter Pass Code</string>
     <string name="group_number_not_valid">Enter Group Number</string>
+    <string name="task_header_not_valid">Enter Task Name</string>
+    <string name="task_description_not_valid">Enter Task Description</string>
+    <string name="task_date_not_valid">Enter Due Date</string>
+    <string name="task_time_not_valid">Enter Due Time</string>
     <!-- -->
 
     <string name="no_internet">No Internet Connection.</string>

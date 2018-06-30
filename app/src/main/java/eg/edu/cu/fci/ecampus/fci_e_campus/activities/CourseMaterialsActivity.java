@@ -86,8 +86,17 @@ public class CourseMaterialsActivity extends AppCompatActivity {
         courseTitle = getIntent().getStringExtra("course_title");
         setTitle(courseTitle.toUpperCase() + " - Materials");
 
-        getMaterials();
-
+        //getMaterials();
+        prepare();
+        materialsAdapter = new MaterialsAdapter(CourseMaterialsActivity.this, materials);
+        progressBar.setVisibility(View.GONE);
+        materialsListView.setAdapter(materialsAdapter);
+        materialsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                checkForPermission(materials.get(i).getName(), materials.get(i).getLink(), materials.get(i).getDescription());
+            }
+        });
     }
 
     public void getMaterials() {
@@ -153,6 +162,22 @@ public class CourseMaterialsActivity extends AppCompatActivity {
         });
 
         requestQueue.add(materialsRequest);
+    }
+
+    public void prepare() {
+        materials = new ArrayList<>();
+        Material temp = new Material();
+        temp.setName("Lecture 1");
+        temp.setUploaderUsername("Nora Abdelhameed");
+        temp.setDateString("2018-04-15 12:00:00");
+        temp.setLink("https://firebasestorage.googleapis.com/v0/b/push-notification-575cf.appspot.com" +
+                "/o/photos%2F143803?alt=media&token=d39b8510-b45b-441d-9c7e-a0d6e50eb458");
+        Material temp1 = new Material();
+        temp1.setName("Lecture 2");
+        temp1.setUploaderUsername("Nora Abdelhameed");
+        temp1.setDateString("2018-04-15 12:00:00");
+        materials.add(temp);
+        materials.add(temp1);
     }
 
     public String lastName;
