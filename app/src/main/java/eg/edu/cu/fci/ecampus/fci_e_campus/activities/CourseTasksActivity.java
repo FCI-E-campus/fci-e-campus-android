@@ -1,5 +1,6 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,8 +37,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import droidninja.filepicker.FilePickerBuilder;
+import droidninja.filepicker.FilePickerConst;
 import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.Course;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
@@ -46,6 +56,7 @@ public class CourseTasksActivity extends AppCompatActivity {
     private ArrayList<Task> tasks;
     private ProgressBar progressBar;
     private TextView emptyStateTextView;
+
 
 
     private void readUserDataFromSharedPreference() {
@@ -83,6 +94,8 @@ public class CourseTasksActivity extends AppCompatActivity {
             return;
         }
         //Connected to Internet
+
+
 
         FloatingActionButton fab = findViewById(R.id.fab_tasks);
         if (userType.equals(getString(R.string.student_user_type))) {
@@ -199,10 +212,12 @@ public class CourseTasksActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                getTasks();
-            }
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    getTasks();
+                }
+                break;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

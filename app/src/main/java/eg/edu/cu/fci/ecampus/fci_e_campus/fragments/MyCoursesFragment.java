@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -225,12 +226,13 @@ public class MyCoursesFragment extends Fragment {
                             yourCoursesTextView.setVisibility(View.GONE);
                         }
                     } else if (response.getString("status").equals("failed")) {
-                        int errorCode = response.getInt("error_code");
+                        int errorCode = response.getInt("error_msg");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
                         Toast.makeText(getContext()
                                 , errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
+                    Log.e("Hahaha",e.toString());
                     Toast.makeText(getContext()
                             , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
                 }
@@ -241,6 +243,7 @@ public class MyCoursesFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // Handle error
+                Log.e("Hahaha",error.toString());
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext()
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();

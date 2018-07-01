@@ -73,30 +73,32 @@ public class OverviewFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
-        final String[] values = new String[]{"Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
+        final String[] values1 = new String[]{"Lecture:Algorithms",
+                "Lab:Database",
+                "Lecture:Compilers"
         };
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        final String[] values2 = new String[]{"Lab:Machine Learning",
+                "Section:Statistics",
+                "Lab:Analysis",
+                "Lecture:Concepts"
+        };
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, values1);
 
         ListView listView1 = view.findViewById(R.id.list1_overview);
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getContext(), values[i], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), values1[i], Toast.LENGTH_SHORT).show();
             }
         });
-        listView1.setAdapter(adapter);
+        listView1.setAdapter(adapter1);
 
 
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1, android.R.id.text1, values2);
         ListView listView2 = view.findViewById(R.id.list2_overview);
-        listView2.setAdapter(adapter);
+        listView2.setAdapter(adapter2);
         return view;
     }
 

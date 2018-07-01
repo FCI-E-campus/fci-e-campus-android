@@ -2,6 +2,7 @@ package eg.edu.cu.fci.ecampus.fci_e_campus.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -36,6 +37,12 @@ public final class DateUtils {
 
     public static String convertPostComment(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("d MMM, h:mm a");
+        return formatter.format(date);
+    }
+
+    public static String getCurrentTime(){
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         return formatter.format(date);
     }
 }

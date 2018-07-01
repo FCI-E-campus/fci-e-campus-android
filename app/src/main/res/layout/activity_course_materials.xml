@@ -30,5 +30,14 @@
         android:text="@string/empty_text_materials_activity"
         android:textAppearance="?android:textAppearanceMedium" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_materials"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_join_course" />
+
 
 </RelativeLayout>

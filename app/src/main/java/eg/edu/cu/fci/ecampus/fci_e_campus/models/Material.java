@@ -17,7 +17,7 @@ public class Material {
     @SerializedName("MATERIALNAME") private String name;
     @SerializedName("MATERIALDESCRIPTION") private String description;
     @SerializedName("MATERIALFILEPATH") private String link;
-    @SerializedName("UPLOADERID") private String uploaderUsername;
+    @SerializedName("UPLOADERUSERNAME") private String uploaderUsername;
     @SerializedName("DATEADDED") private String dateString;
     private Date date;
     @SerializedName("MATERIALTYPE") private String type;
@@ -95,4 +95,9 @@ public class Material {
     public void setDateString(String dateString) {
         this.dateString = dateString;
     }
+
+    public String getTime(){
+        return DateUtils.convert(getDate());
+    }
+
 }

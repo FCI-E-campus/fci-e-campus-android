@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "201522996635",
+    "firebase_url": "https://fci-e-campus.firebaseio.com",
+    "project_id": "fci-e-campus",
+    "storage_bucket": "fci-e-campus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201522996635:android:a98cd93ce09672d5",
+        "android_client_info": {
+          "package_name": "eg.edu.cu.fci.ecampus.fci_e_campus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201522996635-ctek4u0n344e4dpiddq44d9q2lakoii7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eg.edu.cu.fci.ecampus.fci_e_campus",
+            "certificate_hash": "cff1be92f3bab2df82f032b1e2431092d6febbd9"
+          }
+        },
+        {
+          "client_id": "201522996635-v94omoso2fs71nvo45grhs8a4r4qc65u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoaCY8LAV0F7J9P7flbK8RTi0dtSRc1jk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201522996635-v94omoso2fs71nvo45grhs8a4r4qc65u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

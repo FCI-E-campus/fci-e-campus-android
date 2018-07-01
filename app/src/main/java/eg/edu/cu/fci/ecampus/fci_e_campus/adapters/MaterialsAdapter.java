@@ -40,7 +40,7 @@ public class MaterialsAdapter extends ArrayAdapter<Material> {
         uploaderTextView.setText(currentMaterial.getUploaderUsername());
 
         TextView dateTextView = listItemView.findViewById(R.id.material_date);
-        dateTextView.setText(DateUtils.convert(currentMaterial.getDate()));
+        dateTextView.setText(currentMaterial.getTime());
 
         return listItemView;
     }

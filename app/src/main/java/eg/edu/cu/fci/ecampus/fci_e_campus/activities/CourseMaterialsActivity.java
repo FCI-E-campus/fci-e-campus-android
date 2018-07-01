@@ -3,6 +3,7 @@ package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -86,15 +88,29 @@ public class CourseMaterialsActivity extends AppCompatActivity {
         courseTitle = getIntent().getStringExtra("course_title");
         setTitle(courseTitle.toUpperCase() + " - Materials");
 
-        //getMaterials();
-        prepare();
+        getMaterials();
+        /*prepare();
         materialsAdapter = new MaterialsAdapter(CourseMaterialsActivity.this, materials);
         progressBar.setVisibility(View.GONE);
-        materialsListView.setAdapter(materialsAdapter);
+        materialsListView.setAdapter(materialsAdapter);*/
         materialsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 checkForPermission(materials.get(i).getName(), materials.get(i).getLink(), materials.get(i).getDescription());
+            }
+        });
+
+        FloatingActionButton fab = findViewById(R.id.fab_materials);
+        if (userType.equals(getString(R.string.student_user_type))) {
+            fab.setVisibility(View.GONE);
+        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CourseMaterialsActivity.this, AddMaterialActivity.class);
+                intent.putExtra("course_code", courseCode);
+                intent.putExtra("course_title", courseTitle);
+                startActivityForResult(intent, 1);
             }
         });
     }
@@ -245,6 +261,18 @@ public class CourseMaterialsActivity extends AppCompatActivity {
                 }
                 return;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    getMaterials();
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

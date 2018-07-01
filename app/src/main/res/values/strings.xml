@@ -53,6 +53,7 @@
     <string name="not_answer_post_endpoint">notAnswered</string>
     <string name="add_post_endpoint">addPost</string>
     <string name="show_schedule_endpoint">showCourseSchedule</string>
+    <string name="upload_material_endpoint">uploadOfficialMaterials</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -94,6 +95,9 @@
     <string name="task_time_not_valid">Enter Due Time</string>
     <string name="post_header_not_valid">Enter Post Header</string>
     <string name="post_body_not_valid">Enter Post Body</string>
+    <string name="material_header_not_valid">Enter Material Header</string>
+    <string name="material_description_not_valid">Enter Material Description</string>
+    <string name="material_file_not_valid">Choose File to Upload</string>
     <!-- -->
 
     <string name="no_internet">No Internet Connection.</string>
