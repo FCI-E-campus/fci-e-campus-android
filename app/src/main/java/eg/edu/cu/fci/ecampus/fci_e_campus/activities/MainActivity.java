@@ -29,7 +29,7 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MyCoursesFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,CalendarFragment.OnFragmentInteractionListener,
+        implements NavigationView.OnNavigationItemSelectedListener ,
         OverviewFragment.OnFragmentInteractionListener, MyCoursesFragment.OnFragmentInteractionListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
