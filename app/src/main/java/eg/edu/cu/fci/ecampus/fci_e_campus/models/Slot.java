@@ -15,31 +15,54 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
  */
 
 public class Slot {
-    @SerializedName("DAY")
-    private String day;
-    @SerializedName("STARTTIME")
-    private String startTimeString;
+    @SerializedName("SLOTID") private int slotId;
+    @SerializedName("DAY") private String day;
+    @SerializedName("STARTTIME") private String startTimeString;
     private Date startTime;
-    @SerializedName("GROUPID")
-    private int groupNumber;
-    @SerializedName("SLOTTYPE")
-    private String slotType;
-    @SerializedName("PLACE")
-    private String location;
-    @SerializedName("COURSECODE")
-    private String courseCode;
+    @SerializedName("DURATION") private int duration;
+    @SerializedName("GROUPID") private int groupNumber;
+    @SerializedName("SLOTTYPE") private String slotType;
+    @SerializedName("PLACE") private String location;
+    @SerializedName("COURSECODE") private String courseCode;
 
     public Slot() {
         this.startTime = new Date();
     }
 
-    public Slot(String day, Time startTime, int groupNumber, String slotType, String location, String courseCode) {
+    public Slot(String day, Time startTime, int groupNumber, String slotType
+            , String location, String courseCode) {
         this.day = day;
         this.startTime = startTime;
         this.groupNumber = groupNumber;
         this.slotType = slotType;
         this.location = location;
         this.courseCode = courseCode;
+    }
+
+    public Slot(String day, String startTimeString, int groupNumber, String slotType
+            , String location, String courseCode) {
+        this.day = day;
+        this.startTimeString = startTimeString;
+        this.groupNumber = groupNumber;
+        this.slotType = slotType;
+        this.location = location;
+        this.courseCode = courseCode;
+    }
+
+    public int getSlotId() {
+        return slotId;
+    }
+
+    public void setSlotId(int slotId) {
+        this.slotId = slotId;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public String getDay() {

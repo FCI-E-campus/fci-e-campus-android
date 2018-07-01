@@ -44,10 +44,13 @@ dependencies {
     //PhotoView
     implementation 'com.github.chrisbanes:PhotoView:2.0.0'
 
-    compile 'com.google.firebase:firebase-core:16.0.1'
-    compile 'com.google.firebase:firebase-database:16.0.1'
-    compile 'com.google.firebase:firebase-storage:16.0.1'
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
 
-    compile 'com.droidninja:filepicker:2.1.5'
+    // FilePicker
+    implementation 'com.droidninja:filepicker:2.1.5'
+    implementation 'com.android.support:cardview-v7:27.1.1'
 }
 apply plugin: 'com.google.gms.google-services'
