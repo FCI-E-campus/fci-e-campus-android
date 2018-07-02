@@ -94,10 +94,6 @@ public class AllTasksFragment extends Fragment {
         allTasks = new ArrayList<>();
         allTasksAdapter = new AllTasksAdapter(allTasks);
         allTasksRecyclerView.setAdapter(allTasksAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),
-                layoutManager.getOrientation());
-        allTasksRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     @Override

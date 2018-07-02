@@ -9,8 +9,8 @@
         android:id="@+id/rv_all_tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_task"
-        tools:itemCount="3"/>
+        tools:itemCount="3"
+        tools:listitem="@layout/item_task" />
 
     <ProgressBar
         android:id="@+id/pb_all_tasks"

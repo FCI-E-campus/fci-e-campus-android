@@ -1,199 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
 
-    <LinearLayout
-        android:id="@+id/ll_course_info"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/ic_book" />
+        <LinearLayout
+            android:id="@+id/ll_course_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="16dp"
-            android:layout_height="match_parent" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:srcCompat="@drawable/ic_book" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_course_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="CS123" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_course_code"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_task_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="CS123" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_task_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_course_info"
-        tools:text="Assignment 1" />
-
-    <TextView
-        android:id="@+id/tv_task_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_task_name"
-        tools:text="Long text here Long text here Long text here Long text here Long text here Long text here Long text here Long text here Long text here " />
-
-    <LinearLayout
-        android:id="@+id/ll_extra_info"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_task_description">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_course_info"
+            tools:text="Assignment 1" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_task_description"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Created by:"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="8dp"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tv_creator_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:textSize="18sp"
-            tools:text="nora" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_task_name"
+            tools:text="Long text here Long text here Long text here Long text here Long text here Long text here Long text here Long text here Long text here " />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_extra_info"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Weight:"
-            android:textSize="18sp" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_task_description">
 
-        <Space
-            android:layout_width="8dp"
-            android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created by:"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_weight"
-            android:layout_width="wrap_content"
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_creator_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="nora" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="5" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_creation_date"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="5" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_extra_info">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created on:"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
-    <LinearLayout
-        android:id="@+id/ll_creation_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_extra_info">
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_date_created"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="2018-06-27" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_due_date"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Created on:"
-            android:textAllCaps="false"
-            android:textSize="18sp" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_creation_date">
 
-        <Space
-            android:layout_width="8dp"
-            android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Due Date:"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/tv_date_created"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="2018-06-27" />
-    </LinearLayout>
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_due_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_creation_date">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Due Date:"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="8dp"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tv_due_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="18sp"
-            tools:text="2018-07-4" />
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_due_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="18sp"
+                tools:text="2018-07-4" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
