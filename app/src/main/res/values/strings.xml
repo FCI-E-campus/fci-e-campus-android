@@ -95,6 +95,7 @@
     <string name="group_number_not_valid">Enter Group Number</string>
     <string name="task_header_not_valid">Enter Task Name</string>
     <string name="task_description_not_valid">Enter Task Description</string>
+    <string name="task_weight_not_valid">Enter Task Weight</string>
     <string name="task_date_not_valid">Enter Due Date</string>
     <string name="task_time_not_valid">Enter Due Time</string>
     <string name="post_header_not_valid">Enter Post Header</string>

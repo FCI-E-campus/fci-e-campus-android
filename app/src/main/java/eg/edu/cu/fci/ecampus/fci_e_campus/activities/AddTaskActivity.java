@@ -26,10 +26,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
 public class AddTaskActivity extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private String token, username, userType, courseCode, courseTitle;
     private TextInputLayout taskHeaderTextInput;
     private TextInputLayout taskDescriptionTextInput;
+    private TextInputLayout taskWeightTextInput;
     private ImageButton pickDateImageButton;
     private ImageButton pickTimeImageButton;
     private TextInputLayout dueDateTextInputLayout;
@@ -69,6 +73,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         taskHeaderTextInput = findViewById(R.id.task_header_text_input);
         taskDescriptionTextInput = findViewById(R.id.task_description_text_input);
+        taskWeightTextInput = findViewById(R.id.task_weight_text_input);
 
         pickDateImageButton = findViewById(R.id.add_task_pick_date);
         pickTimeImageButton = findViewById(R.id.add_task_pick_time);
@@ -111,6 +116,11 @@ public class AddTaskActivity extends AppCompatActivity {
             taskDescriptionTextInput.getEditText().requestFocus();
             return;
         }
+        if (taskWeightTextInput.getEditText().getText().toString().trim().equals("")) {
+            Toast.makeText(AddTaskActivity.this, getString(R.string.task_weight_not_valid), Toast.LENGTH_SHORT).show();
+            taskWeightTextInput.getEditText().requestFocus();
+            return;
+        }
         if (dueDateTextInputLayout.getEditText().getText().toString().trim().equals("")) {
             Toast.makeText(AddTaskActivity.this, getString(R.string.task_date_not_valid), Toast.LENGTH_SHORT).show();
             dueDateTextInputLayout.getEditText().requestFocus();
@@ -142,21 +152,21 @@ public class AddTaskActivity extends AppCompatActivity {
         }
 
         JSONObject requestBody = new JSONObject();
-        Calendar c = Calendar.getInstance();
-        int currentYear = c.get(Calendar.YEAR);
-        int currentMonth = c.get(Calendar.MONTH);
-        int currentDay = c.get(Calendar.DAY_OF_MONTH);
-        String currentDate = currentYear + "-" + String.format("%02d", currentMonth) +
-                "-" + String.format("%02d", currentDay) + " 00:00:00";
         try {
             requestBody.put("_token", token);
             requestBody.put("COURSECODE", courseCode);
-            requestBody.put("CREATORID", 1);
             requestBody.put("TASKNAME", taskHeaderTextInput.getEditText().getText().toString());
             requestBody.put("DESCRIPTION", taskDescriptionTextInput.getEditText().getText().toString());
+            Log.e("time", time);
             requestBody.put("DUEDATE", date + " " + time);
-            requestBody.put("DATECREATED", currentDate);
-            requestBody.put("WEIGHT", 1);
+            requestBody.put("DATECREATED", DateUtils.getCurrentDate());
+            requestBody.put("WEIGHT", taskWeightTextInput.getEditText().getText().toString());
+            requestBody.put("USERNAME", username);
+            if (userType.equals(getString(R.string.ta_user_type))) {
+                requestBody.put("USERTYPE", "ta");
+            } else {
+                requestBody.put("USERTYPE", "prof");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -208,7 +218,8 @@ public class AddTaskActivity extends AppCompatActivity {
                 year = Year;
                 month = monthOfYear;
                 day = dayOfMonth;
-                date = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
+                Date d = new Date(year - 1900, month, day);
+                date = DateUtils.convertCreatedDate(d);
             }
         }, year == -1 ? calendar.get(Calendar.YEAR) : year, month == -1 ? calendar.get(Calendar.MONTH) : month, day == -1 ? calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) : day);
         datePickerDialog.show();
@@ -218,7 +229,7 @@ public class AddTaskActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(AddTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfHour) {
-                String AM_PM;
+                /*String AM_PM;
 
                 if (hourOfDay < 12) {
                     AM_PM = "AM";
@@ -226,10 +237,22 @@ public class AddTaskActivity extends AppCompatActivity {
                     AM_PM = "PM";
                 }
                 hourOfDay %= 12;
-                hourOfDay = hourOfDay == 0 ? 12 : hourOfDay;
-                time = String.format("%02d", hourOfDay) + ":" + String.format("%02d", minuteOfHour) + ":00";
-                dueTimeTextInputLayout.getEditText()
-                        .setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minuteOfHour) + " " + AM_PM);
+                hourOfDay = hourOfDay == 0 ? 12 : hourOfDay;*/
+                Date timeDate = new Date();
+                try {
+                    timeDate = DateUtils.convertSlot(hourOfDay + ":" + minuteOfHour + ":00");
+                    time = DateUtils.convertAddTask(timeDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                try {
+                    dueTimeTextInputLayout.getEditText()
+                            .setText(DateUtils.convertSlot(timeDate));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         }, 12, 0, false);
         timePickerDialog.show();

@@ -18,12 +18,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Course;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.Professor;
+import eg.edu.cu.fci.ecampus.fci_e_campus.models.TA;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
@@ -37,6 +42,8 @@ public class CourseActivity extends AppCompatActivity {
     private String courseCode;
     private String courseTitle;
     private Course course;
+    private ArrayList<Professor> professors;
+    private ArrayList<TA> tas;
 
     private String token;
 
@@ -56,6 +63,7 @@ public class CourseActivity extends AppCompatActivity {
         courseNameTextView = findViewById(R.id.course_name);
         courseCodeTextView = findViewById(R.id.course_code);
         courseDescriptionTextView = findViewById(R.id.course_description);
+        courseStaffTextView = findViewById(R.id.course_staff);
 
         readUserDataFromSharedPreference();
         courseCode = getIntent().getStringExtra("course_code");
@@ -131,6 +139,16 @@ public class CourseActivity extends AppCompatActivity {
                     if (response.getString("status").equals("success")) {
                         Gson gson = new Gson();
                         course = gson.fromJson(response.getJSONObject("result").getJSONObject("Course").toString(), Course.class);
+                        professors = gson.fromJson(response.getJSONObject("result").getJSONArray("prof").toString(), new TypeToken<ArrayList<Professor>>() {
+                        }.getType());
+                        tas = gson.fromJson(response.getJSONObject("result").getJSONArray("ta").toString(), new TypeToken<ArrayList<TA>>() {
+                        }.getType());
+                        for(Professor professor:professors){
+                            courseStaffTextView.append("Prof."+professor.getFirstName()+" "+professor.getLastName()+"\n\n");
+                        }
+                        for(TA ta:tas){
+                            courseStaffTextView.append("TA."+ta.getFirstName()+" "+ta.getLastName()+"\n\n");
+                        }
                         course.setCode(courseCode);
                         courseNameTextView.setText(course.getTitle());
                         courseCodeTextView.setText(course.getCode());

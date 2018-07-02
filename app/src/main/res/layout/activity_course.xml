@@ -100,7 +100,7 @@
                 android:id="@+id/course_staff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prof.Mohammed Nasef\n\nTA.Mohammed Samir\n\nTA.Nora Abdelhameed" />
+                tools:text="Prof.Mohammed Nasef\n\nTA.Mohammed Samir\n\nTA.Nora Abdelhameed" />
 
         </LinearLayout>
 

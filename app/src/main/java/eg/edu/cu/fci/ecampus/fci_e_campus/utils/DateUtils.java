@@ -25,6 +25,11 @@ public final class DateUtils {
         return formatter.format(startTime);
     }
 
+    public static String convertAddTask(Date startTime) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("kk:mm:ss");
+        return formatter.format(startTime);
+    }
+
     public static String convert(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE, d");
         return formatter.format(date);
@@ -53,6 +58,12 @@ public final class DateUtils {
     public static String getCurrentTime(){
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        return formatter.format(date);
+    }
+
+    public static String getCurrentDate(){
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(date);
     }
 }

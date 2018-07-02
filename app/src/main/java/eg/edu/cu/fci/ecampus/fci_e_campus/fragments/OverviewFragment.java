@@ -183,8 +183,8 @@ public class OverviewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //getSlots();
-        prepare();
+        getSlots();
+        //prepare();
     }
 
     private void getSlots() {
