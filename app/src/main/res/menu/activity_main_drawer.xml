@@ -10,9 +10,9 @@
             android:icon="@drawable/ic_home"
             android:title="Overview" />
         <item
-            android:id="@+id/nav_calendar"
+            android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_calendar"
-            android:title="Calendar" />
+            android:title="Schedule" />
         <item
             android:id="@+id/nav_all_tasks"
             android:icon="@drawable/ic_task"

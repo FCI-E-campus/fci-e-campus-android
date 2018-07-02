@@ -22,9 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.gms.common.util.ArrayUtils;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,22 +30,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.DayScheduleAdapter;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Announcement;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
 
-public class CalendarFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
-    private static final String TAG = CalendarFragment.class.getSimpleName();
+    private static final String TAG = ScheduleFragment.class.getSimpleName();
 
     @BindView(R.id.rv_sunday) RecyclerView sundayRecyclerView;
     @BindView(R.id.tv_msg_empty_sunday) TextView emptySundayMsgTextView;
@@ -82,7 +77,7 @@ public class CalendarFragment extends Fragment {
     private String username;
     private String userType;
 
-    public CalendarFragment() {
+    public ScheduleFragment() {
         // Required empty public constructor
     }
 
@@ -90,10 +85,10 @@ public class CalendarFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment.
      *
-     * @return A new instance of fragment CalendarFragment.
+     * @return A new instance of fragment ScheduleFragment.
      */
-    public static CalendarFragment newInstance() {
-        CalendarFragment fragment = new CalendarFragment();
+    public static ScheduleFragment newInstance() {
+        ScheduleFragment fragment = new ScheduleFragment();
         return fragment;
     }
 
@@ -108,7 +103,7 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentRootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+        View fragmentRootView = inflater.inflate(R.layout.fragment_schedule, container, false);
         ButterKnife.bind(this, fragmentRootView);
 
         configureRecyclerViews();

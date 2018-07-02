@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment">
+    tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.fragments.ScheduleFragment">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsc_schedules"

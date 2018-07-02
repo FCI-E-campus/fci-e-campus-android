@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AllTasksFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.AnnouncementFragment;
-import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.CalendarFragment;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.ScheduleFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MapFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MyCoursesFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_overview:
                 fragment = new OverviewFragment();
                 break;
-            case R.id.nav_calendar:
-                fragment = new CalendarFragment();
+            case R.id.nav_schedule:
+                fragment = new ScheduleFragment();
                 break;
             case R.id.nav_all_tasks:
                 fragment = new AllTasksFragment();
