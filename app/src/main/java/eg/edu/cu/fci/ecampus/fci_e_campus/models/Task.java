@@ -124,4 +124,12 @@ public class Task {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
+    public String getConvertedCreatedDate(){
+        return DateUtils.convertCreatedDate(getCreatedDate());
+    }
+
+    public String getConvertedDueDate(){
+        return DateUtils.convertDueDate(getDueDate());
+    }
 }

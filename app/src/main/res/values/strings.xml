@@ -57,6 +57,7 @@
     <string name="show_student_schedule_endpoint" translatable="false">showStudentSchedule</string>
     <string name="show_prof_schedule_endpoint" translatable="false">showProfSchedule</string>
     <string name="show_ta_schedule_endpoint" translatable="false">showTASchedule</string>
+    <string name="overview_endpoint" translatable="false">overview</string>
     <!-- -->
 
     <!-- Database constants-->
@@ -116,6 +117,8 @@
     <string name="empty_text_forum_activity">No posts for this course yet</string>
     <string name="empty_text_schedule_activity">No schedule for this course yet</string>
     <string name="empty_comments_forum_post_activity">No comments for this post yet</string>
+    <string name="empty_today_overview_activity">Seems to be free today.</string>
+    <string name="empty_tomorrow_overview_activity">Seems to be free tomorrow</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
