@@ -140,4 +140,19 @@ public class Slot {
                 return "Section";
         }
     }
+
+    @Override
+    public String toString() {
+        return "Slot{" +
+                "slotId=" + slotId +
+                ", day='" + day + '\'' +
+                ", startTimeString='" + startTimeString + '\'' +
+                ", startTime=" + startTime +
+                ", duration=" + duration +
+                ", groupNumber=" + groupNumber +
+                ", slotType='" + slotType + '\'' +
+                ", location='" + location + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                '}';
+    }
 }

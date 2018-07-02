@@ -20,6 +20,10 @@ public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.
 
     private List<Slot> daySlots;
 
+    public DayScheduleAdapter(List<Slot> daySlots) {
+        this.daySlots = daySlots;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,7 +42,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.
         holder.slotTypeTextView.setText(slot.getSlotType());
         holder.startTimeTextView.setText(slot.getStartTimeString());
         holder.groupNumberTextView.setText(slot.getGroupNumber());
-        holder.durationTextView.setText(slot.getDuration());
+        holder.durationTextView.setText(String.format("Duration: %1$d min.", slot.getDuration()));
         holder.locationTextView.setText(slot.getLocation());
     }
 
