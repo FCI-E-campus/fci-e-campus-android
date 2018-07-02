@@ -20,4 +20,11 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
+    <!-- Weekday colors -->
+    <color name="monday">#99cc00</color>
+    <color name="tuesday">#ff0000</color>
+    <color name="wednesday">#FFFF00</color>
+    <color name="thusday">#33CCCC</color>
+    <color name="sunday">#ff9918</color>
 </resources>

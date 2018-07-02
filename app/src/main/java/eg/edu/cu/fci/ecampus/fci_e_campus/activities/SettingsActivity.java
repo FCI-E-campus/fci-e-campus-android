@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
 
-        readUserDataFromSharedPreference();
+        readUserDataFromSharedPreferences();
 
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void readUserDataFromSharedPreference() {
+    private void readUserDataFromSharedPreferences() {
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.authentication_shared_preference_file_name),
                 Context.MODE_PRIVATE);
