@@ -41,11 +41,8 @@ public class AddTaskActivity extends AppCompatActivity {
     private TextInputLayout taskHeaderTextInput;
     private TextInputLayout taskDescriptionTextInput;
     private TextInputLayout taskWeightTextInput;
-    private ImageButton pickDateImageButton;
-    private ImageButton pickTimeImageButton;
     private TextInputLayout dueDateTextInputLayout;
     private TextInputLayout dueTimeTextInputLayout;
-    private Button publishButton;
 
     private int year = -1, month = -1, day = -1;
     private String date, time;
@@ -75,13 +72,13 @@ public class AddTaskActivity extends AppCompatActivity {
         taskDescriptionTextInput = findViewById(R.id.task_description_text_input);
         taskWeightTextInput = findViewById(R.id.task_weight_text_input);
 
-        pickDateImageButton = findViewById(R.id.add_task_pick_date);
-        pickTimeImageButton = findViewById(R.id.add_task_pick_time);
+        ImageButton pickDateImageButton = findViewById(R.id.add_task_pick_date);
+        ImageButton pickTimeImageButton = findViewById(R.id.add_task_pick_time);
 
         dueDateTextInputLayout = findViewById(R.id.add_task_due_date);
         dueTimeTextInputLayout = findViewById(R.id.add_task_due_time);
 
-        publishButton = findViewById(R.id.add_task_publish_button);
+        Button publishButton = findViewById(R.id.add_task_publish_button);
 
         pickDateImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,15 +226,6 @@ public class AddTaskActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(AddTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int hourOfDay, int minuteOfHour) {
-                /*String AM_PM;
-
-                if (hourOfDay < 12) {
-                    AM_PM = "AM";
-                } else {
-                    AM_PM = "PM";
-                }
-                hourOfDay %= 12;
-                hourOfDay = hourOfDay == 0 ? 12 : hourOfDay;*/
                 Date timeDate = new Date();
                 try {
                     timeDate = DateUtils.convertSlot(hourOfDay + ":" + minuteOfHour + ":00");
@@ -245,8 +233,6 @@ public class AddTaskActivity extends AppCompatActivity {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
-
                 try {
                     dueTimeTextInputLayout.getEditText()
                             .setText(DateUtils.convertSlot(timeDate));

@@ -101,6 +101,7 @@
                 android:value=".activities.CourseForumActivity" />
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".activities.ForumPostActivity"
             android:parentActivityName=".activities.CourseForumActivity">
             <meta-data

@@ -169,19 +169,6 @@ public class CourseForumActivity extends AppCompatActivity {
         requestQueue.add(forumRequest);
     }
 
-    private void prepareListData() {
-        Date date = new Date(100, 0, 15);
-        Forum forum1 = new Forum("Lexical Analyzer", "some long text here, some long text here, some long text here, some long text here, some long text here, some long text here," +
-                " some long text here, some long text here, some long text here", date, "ahmedotto", 1);
-        Forum forum2 = new Forum("Lexical Analyzer", "some long text here, some long text here, some long text here, some long text here, some long text here, some long text here," +
-                " some long text here, some long text here, some long text here", date, "ahmedotto", 0);
-        Forum forum3 = new Forum("Lexical Analyzer", "some long text here, some long text here, some long text here, some long text here, some long text here, some long text here," +
-                " some long text here, some long text here, some long text here", date, "ahmedotto", 1);
-        forums = new ArrayList<>();
-        forums.add(forum1);
-        forums.add(forum2);
-        forums.add(forum3);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

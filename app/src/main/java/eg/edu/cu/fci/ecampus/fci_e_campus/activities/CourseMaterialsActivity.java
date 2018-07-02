@@ -181,22 +181,6 @@ public class CourseMaterialsActivity extends AppCompatActivity {
         requestQueue.add(materialsRequest);
     }
 
-    public void prepare() {
-        materials = new ArrayList<>();
-        Material temp = new Material();
-        temp.setName("Lecture 1");
-        temp.setUploaderUsername("Nora Abdelhameed");
-        temp.setDateString("2018-04-15 12:00:00");
-        temp.setLink("https://firebasestorage.googleapis.com/v0/b/push-notification-575cf.appspot.com" +
-                "/o/photos%2F143803?alt=media&token=d39b8510-b45b-441d-9c7e-a0d6e50eb458");
-        Material temp1 = new Material();
-        temp1.setName("Lecture 2");
-        temp1.setUploaderUsername("Nora Abdelhameed");
-        temp1.setDateString("2018-04-15 12:00:00");
-        materials.add(temp);
-        materials.add(temp1);
-    }
-
     public String lastName;
     public String lastUrl;
     public String lastDescription;
@@ -234,6 +218,8 @@ public class CourseMaterialsActivity extends AppCompatActivity {
     }
 
     public void download(String name, String url, String description) {
+        Toast.makeText(CourseMaterialsActivity.this, "Please wait until the file to be downloaded",
+                Toast.LENGTH_SHORT).show();
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setDescription(description);
         request.setTitle(name);

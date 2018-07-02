@@ -97,7 +97,7 @@ public class Material {
     }
 
     public String getTime(){
-        return DateUtils.convert(getDate());
+        return DateUtils.convertCreatedDate(getDate());
     }
 
 }

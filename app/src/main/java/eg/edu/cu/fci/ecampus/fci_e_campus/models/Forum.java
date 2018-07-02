@@ -98,6 +98,6 @@ public class Forum implements Serializable {
     }
 
     public String getConvertedDate() {
-        return DateUtils.convertForumPost(getDate());
+        return DateUtils.convertCreatedDate(getDate());
     }
 }

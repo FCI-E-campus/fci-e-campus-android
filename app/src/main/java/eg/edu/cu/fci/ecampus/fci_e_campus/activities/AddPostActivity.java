@@ -30,7 +30,6 @@ public class AddPostActivity extends AppCompatActivity {
     private String token, username, userType, courseCode, courseTitle;
     private TextInputLayout postHeaderTextInput;
     private TextInputLayout postBodyTextInput;
-    private Button publishButton;
 
     private void readUserDataFromSharedPreference() {
         SharedPreferences sharedPref = this.getSharedPreferences(
@@ -55,7 +54,7 @@ public class AddPostActivity extends AppCompatActivity {
 
         postHeaderTextInput = findViewById(R.id.post_header_text_input);
         postBodyTextInput = findViewById(R.id.post_body_text_input);
-        publishButton = findViewById(R.id.add_post_publish_button);
+        Button publishButton = findViewById(R.id.add_post_publish_button);
 
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
