@@ -37,6 +37,7 @@ import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.DayScheduleAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
 
@@ -259,7 +260,16 @@ public class ScheduleFragment extends Fragment {
                 }
             }
             else {
-                showErrorToastMsg();
+                if (response.has("status")) {
+                    if (response.getString("status").equals("failed")) {
+                        String errorCode = response.getString("error_code");
+                        Toast.makeText(getContext(), APIUtils.getErrorMsg(Integer.parseInt(errorCode))
+                                , Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    showErrorToastMsg();
+                }
             }
 
         } catch (JSONException e) {

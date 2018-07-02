@@ -70,9 +70,9 @@ public abstract class APIUtils {
             case 30:
                 return "Student didn't join any courses.";
             case 31:
-                return "Professor didn't join any courses.";
+                return "You are not assigned to any courses.";
             case 32:
-                return "TA didn't join any courses.";
+                return "You are not assigned to any courses.";
             default:
                 return "Error Code: " + errorCode;
         }
