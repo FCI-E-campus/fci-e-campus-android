@@ -245,7 +245,8 @@ public class ScheduleFragment extends Fragment {
                 JSONArray result = response.getJSONArray("result");
                 for (int i = 0; i<result.length(); i++) {
                     JSONObject courseScheduleJsonObj = result.getJSONObject(i);
-                    JSONArray labsJsonArray = courseScheduleJsonObj.getJSONArray("labs");
+                    String courseTitle = courseScheduleJsonObj.getString("COURSETITLE");
+                    JSONArray labsJsonArray = courseScheduleJsonObj.getJSONArray("lab");
                     JSONArray lecturesJsonArray = courseScheduleJsonObj.getJSONArray("lecture");
 
                     Gson gson = new Gson();
@@ -255,6 +256,10 @@ public class ScheduleFragment extends Fragment {
                     List<Slot> slots = new ArrayList<>();
                     slots.addAll(Arrays.asList(labsSlots));
                     slots.addAll(Arrays.asList(lecturesSlots));
+
+                    for (Slot s: slots) {
+                        s.setCourseTitle(courseTitle);
+                    }
 
                     showSlotsInRecyclerViews(slots);
                 }

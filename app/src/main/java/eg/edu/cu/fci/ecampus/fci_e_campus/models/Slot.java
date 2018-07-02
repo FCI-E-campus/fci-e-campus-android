@@ -25,6 +25,8 @@ public class Slot {
     @SerializedName("PLACE") private String location;
     @SerializedName("COURSECODE") private String courseCode;
 
+    private String courseTitle;
+
     public Slot() {
         this.startTime = new Date();
     }
@@ -126,6 +128,14 @@ public class Slot {
         this.startTimeString = startTimeString;
     }
 
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
+    }
+
     public String getTime() throws ParseException {
         return day.substring(0, 1).toUpperCase() + day.substring(1) + " " + DateUtils.convertSlot(getStartTime());
     }
@@ -153,6 +163,7 @@ public class Slot {
                 ", slotType='" + slotType + '\'' +
                 ", location='" + location + '\'' +
                 ", courseCode='" + courseCode + '\'' +
+                ", courseTitle='" + courseTitle + '\'' +
                 '}';
     }
 }

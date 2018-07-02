@@ -7,12 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Slot;
+import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.ViewHolder> {
 
@@ -38,9 +40,14 @@ public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Slot slot = daySlots.get(position);
 
-        holder.courseCodeTextView.setText(slot.getCourseCode());
+        holder.courseTitleTextView.setText(slot.getCourseTitle());
         holder.slotTypeTextView.setText(slot.getSlotType());
-        holder.startTimeTextView.setText(slot.getStartTimeString());
+        try {
+            holder.startTimeTextView.setText(DateUtils.convertSlot(slot.getStartTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            holder.startTimeTextView.setText(slot.getStartTimeString());
+        }
         holder.groupNumberTextView.setText(slot.getGroupNumber());
         holder.durationTextView.setText(String.format("Duration: %1$d min.", slot.getDuration()));
         holder.locationTextView.setText(String.format("Location: %1$s", slot.getLocation()));
@@ -54,7 +61,7 @@ public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_course_code) TextView courseCodeTextView;
+        @BindView(R.id.tv_course_title) TextView courseTitleTextView;
         @BindView(R.id.tv_slot_type) TextView slotTypeTextView;
         @BindView(R.id.tv_start_time) TextView startTimeTextView;
         @BindView(R.id.tv_group_number) TextView groupNumberTextView;
