@@ -359,7 +359,7 @@
                         android:gravity="center"
                         android:text="Thursday"
                         android:textAllCaps="true"
-                        android:textColor="@color/thusday"
+                        android:textColor="@color/thursday"
                         android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
