@@ -114,8 +114,8 @@ public class ActivationActivity extends AppCompatActivity {
 
                         // redirect to overview activity
                         Intent intent = new Intent(ActivationActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -181,8 +181,8 @@ public class ActivationActivity extends AppCompatActivity {
 
                         // redirect to overview activity
                         Intent intent = new Intent(ActivationActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);

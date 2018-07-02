@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                 startActivity(intent);
-                finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
@@ -139,8 +138,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         // redirect to overview activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -211,8 +210,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         // redirect to overview activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -224,7 +223,6 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra(getString(R.string.saved_password_key), passwordTextInput.getEditText().getText().toString());
                             intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                             startActivity(intent);
-                            finish();
                         }
                     }
                 } catch (JSONException e) {
@@ -288,8 +286,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         // redirect to overview activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        finish();
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
@@ -301,7 +299,6 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra(getString(R.string.saved_password_key), passwordTextInput.getEditText().getText().toString());
                             intent.putExtra(WelcomeActivity.EXTRA_USER_TYPE, userType);
                             startActivity(intent);
-                            finish();
                         }
                     }
                 } catch (JSONException e) {

@@ -46,7 +46,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 intent.putExtra(EXTRA_USER_TYPE, getString(R.string.student_user_type));
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -57,7 +56,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 intent.putExtra(EXTRA_USER_TYPE, getString(R.string.teacher_user_type));
                 startActivity(intent);
-                finish();
             }
         });
     }

@@ -18,7 +18,8 @@
         <activity
             android:name=".activities.WelcomeActivity"
             android:label="@string/app_launcher_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +28,7 @@
         </activity>
         <activity
             android:name=".activities.LoginActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -34,6 +36,7 @@
         </activity>
         <activity
             android:name=".activities.SignupActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,6 +44,7 @@
         </activity>
         <activity
             android:name=".activities.ActivationActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".activities.WelcomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
