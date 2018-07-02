@@ -11,7 +11,8 @@
     <RelativeLayout
         android:id="@+id/today_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:paddingBottom="@dimen/eight_margin">
 
@@ -23,6 +24,7 @@
             android:gravity="center"
             android:padding="4dp"
             android:text="Today"
+            android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -30,7 +32,7 @@
         <ListView
             android:id="@+id/today_list_overview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/today_text_view" />
 
         <ProgressBar
@@ -56,7 +58,8 @@
     <RelativeLayout
         android:id="@+id/tomorrow_relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:paddingBottom="@dimen/eight_margin">
 
@@ -68,6 +71,7 @@
             android:gravity="center"
             android:padding="4dp"
             android:text="Tomorrow"
+            android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -75,7 +79,7 @@
         <ListView
             android:id="@+id/tomorrow_list_overview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/tomorrow_text_view" />
 
         <ProgressBar

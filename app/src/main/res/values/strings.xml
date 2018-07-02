@@ -107,7 +107,7 @@
 
     <string name="no_internet">No Internet Connection.</string>
     <string name="action_logout_title">Logout</string>
-    <string name="my_course_text_view">Your Courses:</string>
+    <string name="my_course_text_view">Your courses:</string>
     <string name="msg_no_announcements">There\'re no announcements yet!</string>
     <string name="msg_no_tasks">There\'re no tasks yet.</string>
     <string name="forum_answered">Answered</string>
@@ -119,7 +119,7 @@
     <string name="empty_text_schedule_activity">No schedule for this course yet</string>
     <string name="empty_comments_forum_post_activity">No comments for this post yet</string>
     <string name="empty_today_overview_activity">Seems to be free today.</string>
-    <string name="empty_tomorrow_overview_activity">Seems to be free tomorrow</string>
+    <string name="empty_tomorrow_overview_activity">Seems to be free tomorrow.</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
