@@ -82,6 +82,9 @@ public class AllTasksFragment extends Fragment {
 
         configureAllTasksRecyclerView();
 
+        loadingProgressBar.setVisibility(View.VISIBLE);
+        noTasksMsgTextView.setVisibility(View.INVISIBLE);
+
         return fragmentView;
     }
 
@@ -123,25 +126,32 @@ public class AllTasksFragment extends Fragment {
                 try {
                     if (response.getString("status").equals("success")) {
                         JSONArray result = response.getJSONArray("result");
-                        for (int i = 0; i<result.length(); i++) {
-                            JSONObject courseTasksJsonObj = result.getJSONObject(i);
-                            Iterator<String> keysIter = courseTasksJsonObj.keys();
-                            if (keysIter.hasNext()) {
-                                String courseCode =  keysIter.next();
-                                JSONArray tasksJsonArray = courseTasksJsonObj.getJSONArray(courseCode);
-                                Gson gson = new Gson();
-                                Task [] tasks = gson.fromJson(tasksJsonArray.toString(), Task[].class);
-                                // add the course code to the tasks
-                                for (Task t : tasks) {
-                                    t.setCourseCode(courseCode);
-                                }
+                        if (result.length() == 0) {
+                            noTasksMsgTextView.setVisibility(View.VISIBLE);
+                            Toast.makeText(AllTasksFragment.this.getContext()
+                                    , "You didn't join any courses.", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            for (int i = 0; i<result.length(); i++) {
+                                JSONObject courseTasksJsonObj = result.getJSONObject(i);
+                                Iterator<String> keysIter = courseTasksJsonObj.keys();
+                                if (keysIter.hasNext()) {
+                                    String courseCode =  keysIter.next();
+                                    JSONArray tasksJsonArray = courseTasksJsonObj.getJSONArray(courseCode);
+                                    Gson gson = new Gson();
+                                    Task [] tasks = gson.fromJson(tasksJsonArray.toString(), Task[].class);
+                                    // add the course code to the tasks
+                                    for (Task t : tasks) {
+                                        t.setCourseCode(courseCode);
+                                    }
 
-                                allTasks.addAll(Arrays.asList(tasks));
-                                if (allTasks.size() > 0) {
-                                    allTasksAdapter.notifyDataSetChanged();
-                                }
-                                else {
-                                    noTasksMsgTextView.setVisibility(View.VISIBLE);
+                                    allTasks.addAll(Arrays.asList(tasks));
+                                    if (allTasks.size() > 0) {
+                                        allTasksAdapter.notifyDataSetChanged();
+                                    }
+                                    else {
+                                        noTasksMsgTextView.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             }
                         }
@@ -171,7 +181,6 @@ public class AllTasksFragment extends Fragment {
             }
         });
 
-        loadingProgressBar.setVisibility(View.VISIBLE);
         RequestQueueSingleton.getInstance(getContext()).addToRequestQueue(getAllTasksRequest);
     }
 
@@ -182,8 +191,5 @@ public class AllTasksFragment extends Fragment {
 
         token = sharedPref.getString(getString(R.string.saved_token_key), null);
         username = sharedPref.getString(getString(R.string.saved_username_key), null);
-
-        Log.d(TAG, token);
-        Log.d(TAG, username);
     }
 }
