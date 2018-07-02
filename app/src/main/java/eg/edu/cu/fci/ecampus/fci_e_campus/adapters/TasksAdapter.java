@@ -14,7 +14,6 @@ import java.util.HashMap;
 
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
-import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 
 /**
  * Created by ahmed on 6/21/2018.

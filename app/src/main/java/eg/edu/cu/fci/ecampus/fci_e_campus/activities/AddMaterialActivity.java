@@ -5,10 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,20 +23,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.DateUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;

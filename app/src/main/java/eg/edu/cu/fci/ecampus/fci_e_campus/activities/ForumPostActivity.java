@@ -28,8 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.CommentsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.CommentsAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Comment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Forum;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;

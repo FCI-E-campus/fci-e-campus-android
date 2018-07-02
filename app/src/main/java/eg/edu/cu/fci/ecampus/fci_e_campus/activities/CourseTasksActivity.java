@@ -1,6 +1,5 @@
 package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,12 +21,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,11 +30,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import droidninja.filepicker.FilePickerBuilder;
-import droidninja.filepicker.FilePickerConst;
-import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
-import eg.edu.cu.fci.ecampus.fci_e_campus.models.Course;
+import eg.edu.cu.fci.ecampus.fci_e_campus.adapters.TasksAdapter;
 import eg.edu.cu.fci.ecampus.fci_e_campus.models.Task;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
