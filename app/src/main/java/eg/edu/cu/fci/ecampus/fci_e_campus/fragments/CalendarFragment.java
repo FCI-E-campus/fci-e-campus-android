@@ -170,7 +170,39 @@ public class CalendarFragment extends Fragment {
     }
 
     private void fetchProfSchedule() {
+        Uri uri = Uri.parse(getString(R.string.base_url))
+                .buildUpon()
+                .appendPath(getString(R.string.professor_prefix))
+                .appendPath(getString(R.string.show_prof_schedule_endpoint))
+                .build();
 
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("_token", token);
+            requestBody.put("PROFUSERNAME", username);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getScheduleRequest = new JsonObjectRequest(Request.Method.POST,
+                uri.toString(), requestBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                loadingSchedulesProgrsessBar.setVisibility(View.INVISIBLE);
+                parseScheduleResponse(response);
+                schedulesNestedScrollView.setVisibility(View.VISIBLE);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, error.toString());
+
+                loadingSchedulesProgrsessBar.setVisibility(View.INVISIBLE);
+                showErrorToastMsg();
+            }
+        });
+
+        RequestQueueSingleton.getInstance(getContext()).addToRequestQueue(getScheduleRequest);
     }
 
     private void fetchTaSchedule() {

@@ -55,6 +55,8 @@
     <string name="show_schedule_endpoint" translatable="false">showCourseSchedule</string>
     <string name="upload_material_endpoint" translatable="false">uploadOfficialMaterials</string>
     <string name="show_student_schedule_endpoint" translatable="false">showStudentSchedule</string>
+    <string name="show_prof_schedule_endpoint" translatable="false">showProfSchedule</string>
+    <string name="show_ta_schedule_endpoint" translatable="false"></string>
     <!-- -->
 
     <!-- Database constants-->
