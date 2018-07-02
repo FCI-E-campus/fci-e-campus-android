@@ -114,7 +114,8 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NavDrawerNoActionBar" />
+            android:theme="@style/AppTheme.NavDrawerNoActionBar"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".activities.AddTaskActivity"
             android:parentActivityName=".activities.CourseTasksActivity">
