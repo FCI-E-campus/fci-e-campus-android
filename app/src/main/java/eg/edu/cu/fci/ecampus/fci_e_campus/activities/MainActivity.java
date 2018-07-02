@@ -27,6 +27,7 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MapFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.MyCoursesFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.ScheduleFragment;
+import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,
@@ -121,11 +122,8 @@ public class MainActivity extends AppCompatActivity
                 fragment = new MapFragment();
                 break;
             case R.id.nav_settings:
-                // open SettingsActivity
-                Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
+                fragment = new SettingsFragment();
+                break;
             default:
                 fragment = new OverviewFragment();
         }

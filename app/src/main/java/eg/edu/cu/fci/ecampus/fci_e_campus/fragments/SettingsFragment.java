@@ -1,13 +1,18 @@
-package eg.edu.cu.fci.ecampus.fci_e_campus.activities;
+package eg.edu.cu.fci.ecampus.fci_e_campus.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,13 +27,14 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import eg.edu.cu.fci.ecampus.fci_e_campus.R;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.APIUtils;
 import eg.edu.cu.fci.ecampus.fci_e_campus.utils.network.RequestQueueSingleton;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsFragment extends Fragment {
 
-    private static final String TAG = SettingsActivity.class.getSimpleName();
+    private static final String TAG = SettingsFragment.class.getSimpleName();
 
     @BindView(R.id.ti_current_password) TextInputLayout currentPasswordTextInput;
     @BindView(R.id.ti_new_password) TextInputLayout newPasswordTextInput;
@@ -36,26 +42,40 @@ public class SettingsActivity extends AppCompatActivity {
 
     private String token, username, currentPassword, userType;
 
+    public SettingsFragment() {
+        // Required empty public constructor
+    }
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment.
+     *
+     * @return A new instance of fragment SettingsFragment.
+     */
+    public static SettingsFragment newInstance() {
+        SettingsFragment fragment = new SettingsFragment();
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        ButterKnife.bind(this);
-
         readUserDataFromSharedPreferences();
+    }
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changePassword();
-            }
-        });
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
+            , @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View fragmentView = inflater.inflate(R.layout.fragment_settings, container, false);
+        ButterKnife.bind(this, fragmentView);
+
+        return fragmentView;
     }
 
     private void readUserDataFromSharedPreferences() {
-        SharedPreferences sharedPref = getSharedPreferences(
+        SharedPreferences sharedPref = getContext().getSharedPreferences(
                 getString(R.string.authentication_shared_preference_file_name),
                 Context.MODE_PRIVATE);
 
@@ -63,12 +83,10 @@ public class SettingsActivity extends AppCompatActivity {
         username = sharedPref.getString(getString(R.string.saved_username_key), null);
         currentPassword = sharedPref.getString(getString(R.string.saved_password_key), null);
         userType = sharedPref.getString(getString(R.string.saved_user_type_key), null);
-
-        Log.d(TAG, username);
-        Log.d(TAG, token);
     }
 
-    private void changePassword() {
+    @OnClick(R.id.btn_change_password)
+    void changePassword() {
 
         String currentPasswordEntered = currentPasswordTextInput.getEditText().getText().toString();
         final String newPasswordEntered = newPasswordTextInput.getEditText().getText().toString();
@@ -76,12 +94,12 @@ public class SettingsActivity extends AppCompatActivity {
         if (currentPassword.equals(currentPasswordEntered)) {
 
             if (newPasswordEntered.equals(currentPassword)) {
-                Toast.makeText(this, "The new password is the same as the current password!"
+                Toast.makeText(getContext(), "The new password is the same as the current password!"
                         , Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
+            RequestQueue requestQueue = RequestQueueSingleton.getInstance(getContext()).getRequestQueue();
 
             if (userType.equals(getString(R.string.student_user_type))) {
                 changeStudentPassword(newPasswordEntered, requestQueue);
@@ -97,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(this, "The current password you entered is incorrect!"
+            Toast.makeText(getContext(), "The current password you entered is incorrect!"
                     , Toast.LENGTH_SHORT).show();
         }
 
@@ -126,13 +144,13 @@ public class SettingsActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getString("status").equals("success")) {
-                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                        Toast.makeText(SettingsFragment.this.getContext(), "Password changed successfully!"
                                 , Toast.LENGTH_SHORT).show();
                         resetPasswordEditTexts();
 
                         // update the password in shared preferences
                         SharedPreferences authSharedPreferences
-                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                = getContext().getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = authSharedPreferences.edit();
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
@@ -143,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity {
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
-                        Toast.makeText(SettingsActivity.this
+                        Toast.makeText(SettingsFragment.this.getContext()
                                 , errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -155,7 +173,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 // Handle error
                 Log.d(TAG, error.toString());
-                Toast.makeText(SettingsActivity.this
+                Toast.makeText(SettingsFragment.this.getContext()
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
 
             }
@@ -187,13 +205,13 @@ public class SettingsActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getString("status").equals("success")) {
-                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                        Toast.makeText(SettingsFragment.this.getContext(), "Password changed successfully!"
                                 , Toast.LENGTH_SHORT).show();
                         resetPasswordEditTexts();
 
                         // update the password in shared preferences
                         SharedPreferences authSharedPreferences
-                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                = getContext().getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = authSharedPreferences.edit();
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
@@ -205,7 +223,7 @@ public class SettingsActivity extends AppCompatActivity {
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
-                        Toast.makeText(SettingsActivity.this
+                        Toast.makeText(SettingsFragment.this.getContext()
                                 , errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -217,7 +235,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 // Handle error
                 Log.d(TAG, error.toString());
-                Toast.makeText(SettingsActivity.this
+                Toast.makeText(SettingsFragment.this.getContext()
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
 
             }
@@ -251,13 +269,13 @@ public class SettingsActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getString("status").equals("success")) {
-                        Toast.makeText(SettingsActivity.this, "Password changed successfully!"
+                        Toast.makeText(SettingsFragment.this.getContext(), "Password changed successfully!"
                                 , Toast.LENGTH_SHORT).show();
                         resetPasswordEditTexts();
 
                         // update the password in shared preferences
                         SharedPreferences authSharedPreferences
-                                = getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
+                                = getContext().getSharedPreferences(getString(R.string.authentication_shared_preference_file_name),
                                 Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = authSharedPreferences.edit();
                         editor.putString(getString(R.string.saved_password_key), newPasswordEntered);
@@ -268,7 +286,7 @@ public class SettingsActivity extends AppCompatActivity {
                     } else if (response.getString("status").equals("failed")) {
                         int errorCode = response.getInt("error_code");
                         String errorMessage = APIUtils.getErrorMsg(errorCode);
-                        Toast.makeText(SettingsActivity.this
+                        Toast.makeText(SettingsFragment.this.getContext()
                                 , errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -280,7 +298,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 // Handle error
                 Log.d(TAG, error.toString());
-                Toast.makeText(SettingsActivity.this
+                Toast.makeText(SettingsFragment.this.getContext()
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
 
             }
