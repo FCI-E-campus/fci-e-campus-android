@@ -271,7 +271,6 @@ public class ScheduleFragment extends Fragment {
                     showErrorToastMsg();
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
 

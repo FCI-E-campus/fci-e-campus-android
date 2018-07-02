@@ -68,7 +68,7 @@ public abstract class APIUtils {
             case 29:
                 return "You are already joined in this course";
             case 30:
-                return "Student didn't join any courses.";
+                return "You didn't join any courses.";
             case 31:
                 return "You are not assigned to any courses.";
             case 32:
