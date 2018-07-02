@@ -58,7 +58,6 @@ public class CourseTasksActivity extends AppCompatActivity {
     private TextView emptyStateTextView;
 
 
-
     private void readUserDataFromSharedPreference() {
         SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.authentication_shared_preference_file_name),
@@ -94,7 +93,6 @@ public class CourseTasksActivity extends AppCompatActivity {
             return;
         }
         //Connected to Internet
-
 
 
         FloatingActionButton fab = findViewById(R.id.fab_tasks);

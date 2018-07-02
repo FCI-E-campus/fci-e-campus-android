@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -89,14 +90,30 @@ public class TasksAdapter extends BaseExpandableListAdapter {
         Task childTask = (Task) getChild(groupPosition, childPosition);
 
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.tasks_list_child, null);
+            view = LayoutInflater.from(context).inflate(R.layout.item_task, null);
         }
 
-        TextView taskDescription = view.findViewById(R.id.tasks_description_list_child);
-        taskDescription.setText(childTask.getDescription());
+        LinearLayout header = view.findViewById(R.id.ll_course_info);
+        header.setVisibility(View.GONE);
 
-        TextView taskDate = view.findViewById(R.id.tasks_date_list_child);
-        taskDate.setText(DateUtils.convert(childTask.getDueDate()));
+        TextView taskNameTextView = view.findViewById(R.id.tv_task_name);
+        taskNameTextView.setVisibility(View.GONE);
+
+        TextView taskDescriptionTextView = view.findViewById(R.id.tv_task_description);
+        taskDescriptionTextView.setText(childTask.getDescription());
+
+        TextView creatorTextView = view.findViewById(R.id.tv_creator_username);
+        creatorTextView.setText(childTask.getCreatorUsername());
+
+        TextView weightTextView = view.findViewById(R.id.tv_weight);
+        weightTextView.setText(childTask.getWeight());
+
+        TextView createdDateTextView = view.findViewById(R.id.tv_date_created);
+        createdDateTextView.setText(childTask.getConvertedCreatedDate());
+
+        TextView dueDateTextView = view.findViewById(R.id.tv_due_date);
+        dueDateTextView.setText(childTask.getConvertedDueDate());
+
         view.setPadding(24, 24, 24, 24);
         return view;
     }

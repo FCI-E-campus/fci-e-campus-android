@@ -16,12 +16,12 @@ public final class DateUtils {
     }
 
     public static Date convertSlot(String startTimeString) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("k:mm:ss");
         return formatter.parse(startTimeString);
     }
 
     public static String convertSlot(Date startTime) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
         return formatter.format(startTime);
     }
 
@@ -37,6 +37,16 @@ public final class DateUtils {
 
     public static String convertPostComment(Date date) {
         SimpleDateFormat formatter = new SimpleDateFormat("d MMM, h:mm a");
+        return formatter.format(date);
+    }
+
+    public static String convertCreatedDate(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(date);
+    }
+
+    public static String convertDueDate(Date date){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
         return formatter.format(date);
     }
 

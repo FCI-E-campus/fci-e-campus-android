@@ -8,14 +8,15 @@
     tools:context="eg.edu.cu.fci.ecampus.fci_e_campus.fragments.OverviewFragment">
 
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/today_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingBottom="8dp">
+        android:paddingBottom="@dimen/eight_margin">
 
         <TextView
+            android:id="@+id/today_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/aluminum"
@@ -27,19 +28,40 @@
 
 
         <ListView
-            android:id="@+id/list1_overview"
+            android:id="@+id/today_list_overview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/today_text_view" />
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/today_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="@dimen/progress_bar_dimension"
+            android:layout_height="@dimen/progress_bar_dimension"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
 
-    <LinearLayout
+        <TextView
+            android:id="@+id/today_empty_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="16dp"
+            android:text="@string/empty_today_overview_activity"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tomorrow_relative_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:paddingBottom="@dimen/eight_margin">
 
         <TextView
+            android:id="@+id/tomorrow_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/aluminum"
@@ -51,10 +73,29 @@
 
 
         <ListView
-            android:id="@+id/list2_overview"
+            android:id="@+id/tomorrow_list_overview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tomorrow_text_view" />
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/tomorrow_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="@dimen/progress_bar_dimension"
+            android:layout_height="@dimen/progress_bar_dimension"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/tomorrow_empty_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="16dp"
+            android:text="@string/empty_tomorrow_overview_activity"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+    </RelativeLayout>
 
 </LinearLayout>

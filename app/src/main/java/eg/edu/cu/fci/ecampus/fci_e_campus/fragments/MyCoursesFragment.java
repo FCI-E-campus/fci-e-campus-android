@@ -232,7 +232,7 @@ public class MyCoursesFragment extends Fragment {
                                 , errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
-                    Log.e("Hahaha",e.toString());
+                    Log.e("Hahaha", e.toString());
                     Toast.makeText(getContext()
                             , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
                 }
@@ -243,7 +243,7 @@ public class MyCoursesFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // Handle error
-                Log.e("Hahaha",error.toString());
+                Log.e("Hahaha", error.toString());
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext()
                         , "An error has occurred. Please try again!", Toast.LENGTH_SHORT).show();
