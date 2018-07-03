@@ -34,7 +34,7 @@ public class ScheduleAdapter extends ArrayAdapter<Slot> {
         Slot currentSlot = getItem(position);
 
         TextView slotType = listItemView.findViewById(R.id.slot_type);
-        slotType.setText(currentSlot.getType()+"");
+        slotType.setText(currentSlot.getType());
 
 
         TextView slotTime = listItemView.findViewById(R.id.slot_time);
@@ -48,7 +48,11 @@ public class ScheduleAdapter extends ArrayAdapter<Slot> {
         slotLocation.setText(currentSlot.getLocation());
 
         TextView slotGroup = listItemView.findViewById(R.id.slot_group);
-        slotGroup.setText(currentSlot.getGroupNumber());
+        if (currentSlot.getType().equals("Lecture")) {
+            slotGroup.setVisibility(View.GONE);
+        } else {
+            slotGroup.setText(currentSlot.getGroupNumber());
+        }
 
         return listItemView;
     }
