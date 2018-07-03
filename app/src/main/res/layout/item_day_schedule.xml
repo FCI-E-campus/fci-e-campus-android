@@ -48,7 +48,7 @@
         tools:text="08:00 AM" />
 
     <TextView
-        android:id="@+id/tv_group_number"
+        android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -57,7 +57,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_course_title"
-        tools:text="Group: 1" />
+        tools:text="Location: Lab 6" />
 
     <TextView
         android:id="@+id/tv_duration"
@@ -68,14 +68,14 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_group_number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_group_number"
+        app:layout_constraintStart_toEndOf="@+id/tv_location"
         tools:text="120 min." />
 
     <TextView
-        android:id="@+id/tv_location"
+        android:id="@+id/tv_group_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -88,6 +88,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_group_number"
-        tools:text="Location: Lab 6" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_location"
+        tools:text="Group: 1" />
 </android.support.constraint.ConstraintLayout>

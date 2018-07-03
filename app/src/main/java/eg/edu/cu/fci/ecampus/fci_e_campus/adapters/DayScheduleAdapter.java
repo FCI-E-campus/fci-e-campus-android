@@ -48,7 +48,13 @@ public class DayScheduleAdapter extends RecyclerView.Adapter<DayScheduleAdapter.
             e.printStackTrace();
             holder.startTimeTextView.setText(slot.getStartTimeString());
         }
-        holder.groupNumberTextView.setText(slot.getGroupNumber());
+        if (!slot.getSlotType().equals("lec")) {
+            holder.groupNumberTextView.setText(slot.getGroupNumber());
+        }
+        else {
+            holder.groupNumberTextView.setVisibility(View.INVISIBLE);
+        }
+
         holder.durationTextView.setText(String.format("Duration: %1$d min.", slot.getDuration()));
         holder.locationTextView.setText(String.format("Location: %1$s", slot.getLocation()));
     }
