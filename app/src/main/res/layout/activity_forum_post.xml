@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <TextView
@@ -36,6 +37,7 @@
         android:id="@+id/forum_post_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:textColor="@color/colorSecondaryTex"
         android:textSize="18sp"
         tools:text="In computer science qw e tr sd asd cxv vcbfdg fdg asd asdhasdhoi jiojjasdjojaosjd asdj ija sdjio jaisasojd any of it maybe can beat some text, lexical analysis, lexing wqeqw or tokenization is the process of converting a sequence of characters into a sequence of tokens. asd asd asd asd asd asd asd " />
@@ -43,6 +45,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <TextView
@@ -73,7 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/eight_margin"
-        android:layout_marginTop="@dimen/eight_margin">
+        android:layout_marginTop="@dimen/eight_margin"
+        android:layout_weight="1">
 
         <ListView
             android:id="@+id/forum_post_comments_list_view"
@@ -104,6 +108,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:background="#eeeeee"
         android:orientation="horizontal">
 
