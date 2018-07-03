@@ -62,11 +62,13 @@ public class MainActivity extends AppCompatActivity
             navAllTasks.setEnabled(false);
         }
 
-        // open the overview fragment (the default fragment)
-        OverviewFragment fragment = new OverviewFragment();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, fragment).commit();
-        setTitle(getString(R.string.title_activity_overview));
+        if (savedInstanceState == null) {
+            // open the overview fragment (the default fragment)
+            OverviewFragment fragment = new OverviewFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, fragment).commit();
+            setTitle(getString(R.string.title_activity_overview));
+        }
     }
 
     @Override
