@@ -38,8 +38,8 @@
                 android:id="@+id/tv_course_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 tools:text="CS123" />
         </LinearLayout>
 

@@ -30,8 +30,7 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.ScheduleFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,
-        OverviewFragment.OnFragmentInteractionListener, MyCoursesFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -130,9 +128,9 @@ public class MainActivity extends AppCompatActivity
                 fragment = new OverviewFragment();
         }
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
 
         // Set action bar title
         setTitle(item.getTitle());
@@ -163,10 +161,5 @@ public class MainActivity extends AppCompatActivity
                 Context.MODE_PRIVATE);
 
         return sharedPref.getString(getString(R.string.saved_user_type_key), null);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }

@@ -15,9 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/my_course_text_view"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
 
         <ListView
             android:id="@+id/list_my_courses"
@@ -41,7 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:fontFamily="sans-serif-medium"
-        android:paddingTop="16dp"
         android:text="@string/empty_text_my_courses_fragment"
         android:textAppearance="?android:textAppearanceMedium" />
 
