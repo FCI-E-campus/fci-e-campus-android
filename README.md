@@ -1,9 +1,9 @@
 # FCI E-campus: Timetable & Materials Organizer.
 [![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](https://github.com/FCI-E-campus/fci-e-campus-android/blob/master/LICENSE)
+
 ![Logo](https://github.com/FCI-E-campus/fci-e-campus-docs/raw/master/Logo%20%26%20Icon/FCI%20E-campus%20logo%20256x256.png)
 
-This project aims to create a mobile application that will help students & staff at Faculty of Computers and Information, Cairo University.
-
+This project aims to create a mobile application that will help students & staff at Faculty of Computers and Information, Cairo University.  
 * Our app helps students stay organized by providing them with their schedule, depending on what courses they have registered.
 * It also gives them a recap of new announcements, upcoming tasks, quizzes and assignments deliveries to help them keep track with their courses.
 * The app will organize downloading and uploading materials.
