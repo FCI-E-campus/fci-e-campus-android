@@ -14,7 +14,7 @@ For more information about the project check our [documentation repo](https://gi
 
 *This repository contains the Android client code.*  
 
-## Download the app
+## Download the App
 <a href="https://play.google.com/store/apps/details?id=eg.edu.cu.fci.ecampus.fci_e_campus"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80"/></a>
 
 ## License
