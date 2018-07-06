@@ -1,4 +1,5 @@
 # FCI E-campus: Timetable & Materials Organizer.
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=eg.edu.cu.fci.ecampus.fci_e_campus)
 <p align="center">
     <img src="https://github.com/FCI-E-campus/fci-e-campus-docs/raw/master/Logo%20%26%20Icon/FCI%20E-campus%20logo%20256x256.png" alt="Logo">
 </p>
