@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,7 +30,7 @@ import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.ScheduleFragment;
 import eg.edu.cu.fci.ecampus.fci_e_campus.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentManager.OnBackStackChangedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -64,8 +66,9 @@ public class MainActivity extends AppCompatActivity
             OverviewFragment fragment = new OverviewFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, fragment).commit();
-            setTitle(getString(R.string.title_activity_overview));
+            setTitle(R.string.title_fragment_overview);
         }
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
     }
 
     @Override
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
         Fragment fragment = null;
@@ -128,10 +131,8 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
                 .commit();
-
-        // Set action bar title
-        setTitle(item.getTitle());
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -159,5 +160,32 @@ public class MainActivity extends AppCompatActivity
                 Context.MODE_PRIVATE);
 
         return sharedPref.getString(getString(R.string.saved_user_type_key), null);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        if (currentFragment instanceof  OverviewFragment) {
+            setTitle(R.string.title_fragment_overview);
+        }
+        else if (currentFragment instanceof ScheduleFragment) {
+            setTitle(R.string.title_fragment_schedule);
+        }
+        else if (currentFragment instanceof AllTasksFragment) {
+            setTitle(R.string.title_fragment_all_tasks);
+        }
+        else if (currentFragment instanceof MyCoursesFragment) {
+            setTitle(R.string.title_fragment_my_courses);
+        }
+        else if (currentFragment instanceof AnnouncementFragment) {
+            setTitle(R.string.title_fragment_announcements);
+        }
+        else if (currentFragment instanceof MapFragment) {
+            setTitle(R.string.title_fragment_map);
+        }
+        else if (currentFragment instanceof SettingsFragment) {
+            setTitle(R.string.title_fragment_settings);
+        }
     }
 }
