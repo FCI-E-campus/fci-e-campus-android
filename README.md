@@ -1,9 +1,8 @@
 # FCI E-campus: Timetable & Materials Organizer.
-<a href="https://play.google.com/store/apps/details?id=eg.edu.cu.fci.ecampus.fci_e_campus"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80"/></a>
-
+[![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)](https://github.com/FCI-E-campus/fci-e-campus-android/blob/master/LICENSE)
 ![Logo](https://github.com/FCI-E-campus/fci-e-campus-docs/raw/master/Logo%20%26%20Icon/FCI%20E-campus%20logo%20256x256.png)
 
-This project aims to create a mobile application that will help students & staff at Faculty of Computers and Information, Cairo University stay organized.
+This project aims to create a mobile application that will help students & staff at Faculty of Computers and Information, Cairo University.
 
 * Our app helps students stay organized by providing them with their schedule, depending on what courses they have registered.
 * It also gives them a recap of new announcements, upcoming tasks, quizzes and assignments deliveries to help them keep track with their courses.
@@ -14,8 +13,8 @@ For more information about the project check our [documentation repo](https://gi
 
 *This repository contains the Android client code.*  
 
-## Development tools
-* [Android studio IDE](https://developer.android.com/studio/index.html)
+## Download the app
+<a href="https://play.google.com/store/apps/details?id=eg.edu.cu.fci.ecampus.fci_e_campus"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="80"/></a>
 
 ## License
 This project is licensed under the [GPLv3](https://github.com/FCI-E-campus/fci-e-campus-android/blob/master/LICENSE) license.
