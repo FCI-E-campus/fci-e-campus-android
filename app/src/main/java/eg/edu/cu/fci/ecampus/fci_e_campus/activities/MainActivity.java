@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.drawer_layout) DrawerLayout drawer;
+    @BindView(R.id.nav_view) NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // hide all tasks item from navigationView if TA or Prof (not student)
@@ -168,24 +168,31 @@ public class MainActivity extends AppCompatActivity
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
         if (currentFragment instanceof  OverviewFragment) {
             setTitle(R.string.title_fragment_overview);
+            navigationView.getMenu().findItem(R.id.nav_overview).setChecked(true);
         }
         else if (currentFragment instanceof ScheduleFragment) {
             setTitle(R.string.title_fragment_schedule);
+            navigationView.getMenu().findItem(R.id.nav_schedule).setChecked(true);
         }
         else if (currentFragment instanceof AllTasksFragment) {
             setTitle(R.string.title_fragment_all_tasks);
+            navigationView.getMenu().findItem(R.id.nav_all_tasks).setChecked(true);
         }
         else if (currentFragment instanceof MyCoursesFragment) {
             setTitle(R.string.title_fragment_my_courses);
+            navigationView.getMenu().findItem(R.id.nav_my_courses).setChecked(true);
         }
         else if (currentFragment instanceof AnnouncementFragment) {
             setTitle(R.string.title_fragment_announcements);
+            navigationView.getMenu().findItem(R.id.nav_announcements).setChecked(true);
         }
         else if (currentFragment instanceof MapFragment) {
             setTitle(R.string.title_fragment_map);
+            navigationView.getMenu().findItem(R.id.nav_map).setChecked(true);
         }
         else if (currentFragment instanceof SettingsFragment) {
             setTitle(R.string.title_fragment_settings);
+            navigationView.getMenu().findItem(R.id.nav_settings).setChecked(true);
         }
     }
 }
